@@ -1,0 +1,56 @@
+@import "tailwindcss";
+
+:root {
+    --color-primary: #b11226;
+    --color-dark: #121417;
+    --color-bg: #f7f7f5;
+    --color-slate: #2e3a46;
+    --color-accent: #d6b27c;
+  
+    --font-heading: "Sora", sans-serif;
+    --font-body: "Inter", sans-serif;
+  }
+  
+  body {
+    margin: 0;
+    background: var(--color-bg);
+    color: var(--color-dark);
+    font-family: var(--font-body);
+  }
+  
+  h1, h2, h3 {
+    font-family: var(--font-heading);
+  }
+
+  /* 3D Transform Utilities */
+  .perspective-1000 {
+    perspective: 1000px;
+  }
+
+  .backface-hidden {
+    backface-visibility: hidden;
+    -webkit-backface-visibility: hidden;
+  }
+
+  .transform-style-3d {
+    transform-style: preserve-3d;
+  }
+
+  /* Smooth scrolling */
+  html {
+    scroll-behavior: smooth;
+  }
+
+  /* Enhanced animations */
+  @keyframes float {
+    0%, 100% {
+      transform: translateY(0px);
+    }
+    50% {
+      transform: translateY(-10px);
+    }
+  }
+
+  .animate-float {
+    animation: float 3s ease-in-out infinite;
+  }
