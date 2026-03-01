@@ -1,16 +1,16 @@
-export default function HeroMobile({ data, titleRef, subtitleRef, badgeRef, ctaRefs }) {
+export default function HeroMobile({ data, titleRef, subtitleRef, badgeRef, ctaRef }) {
     return (
       <div className="md:hidden">
         <div
           ref={badgeRef}
-          className="inline-flex items-center gap-2 px-3 py-1 rounded-full border border-black/10 bg-white/70 backdrop-blur font-semibold text-sm text-[var(--color-slate)]"
+          className="inline-flex items-center gap-2 px-4 py-2 rounded-full border border-black/10 bg-white/70 backdrop-blur font-semibold text-sm text-[var(--color-slate)] mb-6"
         >
           {data.badge}
         </div>
-  
+
         <h1
           ref={titleRef}
-          className="mt-5 font-heading text-[var(--color-dark)] text-4xl leading-[1.06] tracking-tight select-none"
+          className="font-[var(--font-heading)] text-[var(--color-dark)] text-3xl leading-[1.15] tracking-tight mb-4"
         >
           {data.title.split("").map((ch, i) => (
             <span key={i} data-letter className="inline-block">
@@ -18,57 +18,40 @@ export default function HeroMobile({ data, titleRef, subtitleRef, badgeRef, ctaR
             </span>
           ))}
         </h1>
-  
-        <div
-          data-underline
-          className="mt-4 h-1 w-40 origin-left scale-x-0 rounded-full bg-[var(--color-primary)]/30"
-        />
-  
-        <p ref={subtitleRef} className="mt-5 font-body text-[var(--color-slate)]">
+
+        <p ref={subtitleRef} className="font-[var(--font-body)] text-[var(--color-slate)] mb-6">
           {data.subtitle}
         </p>
-  
-        <div className="mt-6 flex flex-wrap gap-2">
-          {data.chips.map((t) => (
-            <span
-              key={t}
-              data-chip
-              className="px-3 py-1 rounded-full border border-black/10 bg-white/60 backdrop-blur font-semibold text-sm text-[var(--color-dark)] inline-flex"
-            >
-              {t}
-            </span>
-          ))}
-        </div>
-  
-        <div className="mt-6 flex flex-col gap-3">
-          <button
-            ref={(el) => (ctaRefs.current[0] = el)}
-            onClick={() => (window.location.href = data.ctas[0].href)}
-            className="group relative w-full px-6 py-3 rounded-xl font-[var(--font-body)] font-semibold bg-[var(--color-primary)] text-white overflow-hidden"
-          >
-            <span className="relative z-10 flex items-center justify-center gap-2">
-              {data.ctas[0].label}
-              <span className="inline-block transition-transform group-hover:translate-x-1">→</span>
-            </span>
-            <span className="absolute inset-0 bg-[var(--color-primary)]/90 transform translate-x-[-100%] group-hover:translate-x-0 transition-transform duration-300 ease-out" />
-          </button>
 
-          <a
-            ref={(el) => (ctaRefs.current[1] = el)}
-            href={data.ctas[1].href}
-            className="group relative w-full px-6 py-3 rounded-xl font-[var(--font-body)] font-semibold border-2 border-[var(--color-primary)] text-[var(--color-primary)] inline-flex items-center justify-center gap-2 overflow-hidden"
-          >
-            <span className="relative z-10 flex items-center gap-2">
-              {data.ctas[1].label}
-              <span className="inline-block transition-all group-hover:rotate-[-45deg] group-hover:translate-x-1 group-hover:translate-y-[-2px]">↗</span>
-            </span>
-            <span className="absolute inset-0 bg-[var(--color-primary)] transform scale-x-0 group-hover:scale-x-100 transition-transform duration-300 ease-out origin-left" />
-            <span className="absolute inset-0 text-white transition-colors z-10 flex items-center justify-center gap-2 opacity-0 group-hover:opacity-100">
-              {data.ctas[1].label}
-              <span className="inline-block">↗</span>
-            </span>
-          </a>
+        <div className="mb-6 relative aspect-[4/3] rounded-2xl overflow-hidden bg-gray-200 border border-black/10">
+          <img 
+            src={data.image} 
+            alt={data.imageAlt}
+            className="w-full h-full object-cover"
+            onError={(e) => {
+              e.target.style.display = 'none'
+              e.target.parentElement.innerHTML = '<div class="w-full h-full bg-gray-300 flex items-center justify-center"><div class="text-center"><div class="text-5xl mb-3">🔧</div><div class="font-semibold text-gray-600 text-sm">Bild kommt bald</div></div></div>'
+            }}
+          />
         </div>
+
+        <button
+          ref={ctaRef}
+          onClick={() => (window.location.href = "#contact")}
+          className="group relative w-full px-6 py-3 rounded-xl font-[var(--font-body)] font-semibold bg-[var(--color-primary)] text-white overflow-visible"
+          data-cta-primary
+        >
+          <span className="absolute inset-0 rounded-xl overflow-hidden">
+            <span className="absolute inset-0 translate-x-[-100%] group-hover:translate-x-[100%] transition-transform duration-700 bg-gradient-to-r from-transparent via-white/30 to-transparent" />
+          </span>
+          
+          <span className="absolute -top-1 -right-1 w-2 h-2 bg-white rounded-full opacity-0 group-hover:opacity-100 group-hover:animate-ping" />
+          <span className="absolute -bottom-1 -left-1 w-2 h-2 bg-white rounded-full opacity-0 group-hover:opacity-100 group-hover:animate-ping" style={{ animationDelay: "0.1s" }} />
+          
+          <span className="relative z-10">
+            {data.cta}
+          </span>
+        </button>
       </div>
     )
   }

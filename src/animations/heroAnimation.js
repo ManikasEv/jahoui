@@ -73,25 +73,21 @@ export function heroInteractive({
   titleEl,
   subtitleEl,
   badgeEl,
-  rightCardEl,
-  ctas,
+  cta,
 }) {
   if (!wrapEl || !titleEl) return
 
   const letters = titleEl.querySelectorAll("[data-letter]")
-  const underline = wrapEl.querySelector("[data-underline]")
-  const chips = wrapEl.querySelectorAll("[data-chip]")
 
   // NO DROP - only fade in
   gsap.set(letters, { 
     opacity: 0,
     scale: 1
   })
-  gsap.set([subtitleEl, badgeEl, rightCardEl, ...ctas], { 
+  gsap.set([subtitleEl, badgeEl, cta], { 
     opacity: 0,
     scale: 1
   })
-  if (underline) gsap.set(underline, { scaleX: 0, transformOrigin: "left center" })
 
   // Clean timeline - NO drops, only fades
   const tl = gsap.timeline({ defaults: { ease: "power3.out" } })
@@ -109,82 +105,26 @@ export function heroInteractive({
     stagger: 0.015,
   }, 0.1)
   
-  // Underline draws in
-  .to(underline, { 
-    scaleX: 1, 
-    duration: 0.5, 
-    ease: "power2.out" 
-  }, 0.3)
-  
   // Subtitle fades in
   .to(subtitleEl, { 
     opacity: 1,
     duration: 0.5 
   }, 0.4)
   
-  // Right card fades in
-  .to(rightCardEl, { 
-    opacity: 1,
-    duration: 0.5
-  }, 0.5)
-  
-  // CTAs fade in
-  .to(ctas, { 
+  // CTA fades in
+  .to(cta, { 
     opacity: 1,
     duration: 0.4, 
-    stagger: 0.08
   }, 0.6)
 
   // Interactions
   const cleanups = []
-  ctas.forEach((btn) => cleanups.push(magnetic(btn, 10)))
-  cleanups.push(tiltCard(rightCardEl, 8))
-
-  // Enhanced chip animations
-  chips.forEach((chip) => {
-    const enter = () => gsap.to(chip, { 
-      y: -3, 
-      scale: 1.05, 
-      rotateZ: 1,
-      duration: 0.25, 
-      ease: "back.out(1.5)" 
-    })
-    const leave = () => gsap.to(chip, { 
-      y: 0, 
-      scale: 1, 
-      rotateZ: 0,
-      duration: 0.25, 
-      ease: "power3.out" 
-    })
-    chip.addEventListener("mouseenter", enter)
-    chip.addEventListener("mouseleave", leave)
-    cleanups.push(() => {
-      chip.removeEventListener("mouseenter", enter)
-      chip.removeEventListener("mouseleave", leave)
-    })
-  })
-
-  // Title animation on hover with 3D effect
-  const titleEnter = () => gsap.to(titleEl, { 
-    y: -4, 
-    rotateZ: -0.4,
-    scale: 1.005,
-    duration: 0.25, 
-    ease: "power3.out" 
-  })
-  const titleLeave = () => gsap.to(titleEl, { 
-    y: 0, 
-    rotateZ: 0,
-    scale: 1,
-    duration: 0.25, 
-    ease: "power3.out" 
-  })
-  titleEl.addEventListener("mouseenter", titleEnter)
-  titleEl.addEventListener("mouseleave", titleLeave)
+  
+  if (cta) {
+    cleanups.push(magnetic(cta, 10))
+  }
 
   return () => {
-    titleEl.removeEventListener("mouseenter", titleEnter)
-    titleEl.removeEventListener("mouseleave", titleLeave)
     cleanups.forEach((fn) => fn && fn())
   }
 }

@@ -1,7 +1,7 @@
 @import "tailwindcss";
 
 :root {
-    --color-primary: #b11226;
+    --color-primary: #c41e3a;
     --color-dark: #121417;
     --color-bg: #f7f7f5;
     --color-slate: #2e3a46;
@@ -53,4 +53,21 @@
 
   .animate-float {
     animation: float 3s ease-in-out infinite;
+  }
+
+  /* Gradient border animation */
+  @keyframes gradient {
+    0% {
+      background-position: 0% 50%;
+    }
+    50% {
+      background-position: 100% 50%;
+    }
+    100% {
+      background-position: 0% 50%;
+    }
+  }
+
+  .animate-gradient {
+    animation: gradient 3s ease infinite;
   }

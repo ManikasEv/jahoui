@@ -19,7 +19,7 @@ export default function Services() {
         scrollTrigger: {
           trigger: sectionRef.current,
           start: "top 80%",
-          toggleActions: "play none none reverse",
+          once: true,
         },
         opacity: 0,
         rotateY: 180,
@@ -35,7 +35,7 @@ export default function Services() {
         scrollTrigger: {
           trigger: sectionRef.current,
           start: "top 75%",
-          toggleActions: "play none none reverse",
+          once: true,
         },
         opacity: 0,
         x: -30,
@@ -58,7 +58,7 @@ export default function Services() {
           scrollTrigger: {
             trigger: card,
             start: "top 85%",
-            toggleActions: "play none none reverse",
+            once: true,
           },
           opacity: 0,
           scale: 0.8,
@@ -74,7 +74,7 @@ export default function Services() {
           scrollTrigger: {
             trigger: card,
             start: "top 80%",
-            toggleActions: "play none none reverse",
+            once: true,
           },
           opacity: 0,
           y: 20,
@@ -89,7 +89,7 @@ export default function Services() {
           scrollTrigger: {
             trigger: card,
             start: "top 80%",
-            toggleActions: "play none none reverse",
+            once: true,
           },
           opacity: 0,
           y: 10,

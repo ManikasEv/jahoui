@@ -20,7 +20,7 @@ export default function About() {
         scrollTrigger: {
           trigger: sectionRef.current,
           start: "top 80%",
-          toggleActions: "play none none reverse",
+          once: true,
         },
         opacity: 0,
         rotateX: -90,
@@ -35,7 +35,7 @@ export default function About() {
         scrollTrigger: {
           trigger: sectionRef.current,
           start: "top 75%",
-          toggleActions: "play none none reverse",
+          once: true,
         },
         opacity: 0,
         scale: 0.5,

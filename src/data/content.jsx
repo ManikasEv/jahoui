@@ -14,29 +14,13 @@ export const content = {
     },
   
     hero: {
-      badge: "Schweiz • Qualität • Pünktlich",
-      title: "Präzise Platten. Saubere Fugen.",
+      badge: "Professioneller Plattenleger Service",
+      title: "Ihr Experte für perfekte Fliesenverlegung",
       subtitle:
-        "Badezimmer, Küchen, Böden — wir liefern gerade Linien, perfekte Fugen und Ergebnisse, die halten.",
-      ctas: [
-        { type: "button", label: "Kostenlose Offerte", href: "#contact" },
-        { type: "link", label: "Projekte ansehen", href: "#projects" },
-      ],
-      chips: ["Saubere Kanten", "Langlebige Fugen", "Präzise Übergänge"],
-      note: "Antwort meist innerhalb 24h",
-      rightCard: {
-        tag: "Premium",
-        title: "Spezialisiert auf",
-        subtitle: "Präzise Ausführung für anspruchsvolle Räume.",
-        bullets: [
-          "Grossformat & Feinsteinzeug",
-          "Duschen & Nasszellen",
-          "Treppen & Übergänge",
-          "Reparaturen & Silikonfugen",
-        ],
-        calloutTitle: "Einfach erreichbar",
-        calloutText: "Wir antworten normalerweise innerhalb von 24 Stunden",
-      },
+        "Jahrelange Erfahrung in Badezimmern, Küchen und Böden. Präzise Arbeit, saubere Fugen und langlebige Qualität für Ihr Zuhause.",
+      cta: "Jetzt Kontaktieren",
+      image: "/hero-tiler.jpg",
+      imageAlt: "Professioneller Plattenleger bei der Arbeit"
     },
   
     footer: {

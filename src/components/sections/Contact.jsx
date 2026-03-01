@@ -20,7 +20,7 @@ export default function Contact() {
         scrollTrigger: {
           trigger: sectionRef.current,
           start: "top 80%",
-          toggleActions: "play none none reverse",
+          once: true,
         },
         opacity: 0,
         y: (i) => (i % 2 === 0 ? -40 : 40),
@@ -36,7 +36,7 @@ export default function Contact() {
         scrollTrigger: {
           trigger: sectionRef.current,
           start: "top 75%",
-          toggleActions: "play none none reverse",
+          once: true,
         },
         opacity: 0,
         y: (i) => Math.sin(i * 0.5) * 20,
@@ -50,7 +50,7 @@ export default function Contact() {
         scrollTrigger: {
           trigger: sectionRef.current,
           start: "top 80%",
-          toggleActions: "play none none reverse",
+          once: true,
         },
         opacity: 0,
         x: -80,
@@ -64,7 +64,7 @@ export default function Contact() {
         scrollTrigger: {
           trigger: sectionRef.current,
           start: "top 80%",
-          toggleActions: "play none none reverse",
+          once: true,
         },
         opacity: 0,
         x: 80,
@@ -147,13 +147,25 @@ export default function Contact() {
             </div>
             <button
               type="submit"
-              className="group relative w-full px-6 py-3 rounded-xl font-[var(--font-body)] font-semibold bg-[var(--color-primary)] text-white overflow-hidden"
+              className="group relative w-full px-6 py-3 rounded-xl font-[var(--font-body)] font-semibold bg-[var(--color-primary)] text-white overflow-visible"
             >
-              <span className="relative z-10 flex items-center justify-center gap-2">
-                Nachricht senden
-                <span className="inline-block transition-all group-hover:translate-x-1 group-hover:scale-110">✉</span>
+              {/* Shine effect */}
+              <span className="absolute inset-0 rounded-xl overflow-hidden">
+                <span className="absolute inset-0 translate-x-[-100%] group-hover:translate-x-[100%] transition-transform duration-700 bg-gradient-to-r from-transparent via-white/30 to-transparent" />
               </span>
-              <span className="absolute inset-0 bg-gradient-to-r from-[var(--color-primary)] to-[var(--color-primary)]/80 transform translate-y-[100%] group-hover:translate-y-0 transition-transform duration-300 ease-out" />
+              
+              {/* Particle dots */}
+              <span className="absolute -top-1 -right-1 w-2 h-2 bg-white rounded-full opacity-0 group-hover:opacity-100 group-hover:animate-ping" />
+              <span className="absolute -bottom-1 -left-1 w-2 h-2 bg-white rounded-full opacity-0 group-hover:opacity-100 group-hover:animate-ping" style={{ animationDelay: "0.1s" }} />
+              
+              {/* Email icon - appears on hover, flies away on click */}
+              <span className="absolute left-4 top-1/2 -translate-y-1/2 text-xl opacity-0 scale-0 group-hover:opacity-100 group-hover:scale-100 transition-all duration-300 group-active:translate-x-[200px] group-active:-translate-y-[100px] group-active:opacity-0 group-active:scale-150 group-active:rotate-45">
+                ✉️
+              </span>
+              
+              <span className="relative z-10 group-hover:translate-x-3 transition-transform duration-300">
+                Nachricht senden
+              </span>
             </button>
           </form>
         </div>

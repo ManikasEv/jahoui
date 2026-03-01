@@ -171,4 +171,3 @@ Alle Inhalte befinden sich in `src/data/content.jsx`. Dort können Sie einfach:
 ## 📄 Lizenz
 
 Alle Rechte vorbehalten - Jaho Plattenleger © 2026
-# jahoui

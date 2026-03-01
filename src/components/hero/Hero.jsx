@@ -11,8 +11,7 @@ export default function Hero() {
   const titleRef = useRef(null)
   const subtitleRef = useRef(null)
   const badgeRef = useRef(null)
-  const rightCardRef = useRef(null)
-  const ctaRefs = useRef([])
+  const ctaRef = useRef(null)
 
   useEffect(() => {
     let cleanup
@@ -22,8 +21,7 @@ export default function Hero() {
         titleEl: titleRef.current,
         subtitleEl: subtitleRef.current,
         badgeEl: badgeRef.current,
-        rightCardEl: rightCardRef.current,
-        ctas: ctaRefs.current,
+        cta: ctaRef.current,
       })
     }, wrapRef)
 
@@ -41,15 +39,14 @@ export default function Hero() {
           titleRef={titleRef}
           subtitleRef={subtitleRef}
           badgeRef={badgeRef}
-          rightCardRef={rightCardRef}
-          ctaRefs={ctaRefs}
+          ctaRef={ctaRef}
         />
         <HeroMobile
           data={content.hero}
           titleRef={titleRef}
           subtitleRef={subtitleRef}
           badgeRef={badgeRef}
-          ctaRefs={ctaRefs}
+          ctaRef={ctaRef}
         />
       </div>
     </section>
