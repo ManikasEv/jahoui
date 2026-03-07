@@ -6,6 +6,7 @@ import Navbar from "./components/layout/Navbar"
 import Hero from "./components/hero/Hero"
 import About from "./components/sections/About"
 import Clients from "./components/sections/Clients"
+import TileShowcase from "./components/sections/TileShowcase"
 import Projects from "./components/sections/Projects"
 import Contact from "./components/sections/Contact"
 import Footer from "./components/layout/Footer"
@@ -75,6 +76,7 @@ export default function App() {
         <Hero />
         <About />
         <Clients />
+        <TileShowcase />
         <Projects />
         <Contact />
         <Footer />

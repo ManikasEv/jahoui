@@ -21,7 +21,9 @@ export default function Projects() {
   const titleRef = useRef(null)
   const textRef = useRef(null)
   const carouselRef = useRef(null)
+  const cardsRef = useRef([])
   const [activeIndex, setActiveIndex] = useState(0)
+  const [isAnimating, setIsAnimating] = useState(false)
 
   const projects = content.sections.projects.items
 
@@ -89,11 +91,85 @@ export default function Projects() {
   }
 
   const handlePrev = () => {
-    setActiveIndex((prev) => (prev - 1 + projects.length) % projects.length)
+    if (isAnimating) return
+    setIsAnimating(true)
+    
+    const tl = gsap.timeline({
+      onComplete: () => {
+        setActiveIndex((prev) => (prev - 1 + projects.length) % projects.length)
+        setIsAnimating(false)
+      }
+    })
+
+    // Center card (index 1) shrinks and moves right
+    tl.to(cardsRef.current[1], {
+      scale: 0.7,
+      x: 250,
+      opacity: 0.5,
+      rotateY: 15,
+      duration: 0.6,
+      ease: "power2.inOut"
+    }, 0)
+
+    // Left card (index 0) moves to center and grows
+    tl.to(cardsRef.current[0], {
+      scale: 1.4,
+      x: 250,
+      opacity: 1,
+      rotateY: 0,
+      duration: 0.6,
+      ease: "power2.inOut"
+    }, 0)
+
+    // Right card (index 2) slides out
+    tl.to(cardsRef.current[2], {
+      x: 300,
+      opacity: 0,
+      scale: 0.5,
+      duration: 0.5,
+      ease: "power2.in"
+    }, 0)
   }
 
   const handleNext = () => {
-    setActiveIndex((prev) => (prev + 1) % projects.length)
+    if (isAnimating) return
+    setIsAnimating(true)
+    
+    const tl = gsap.timeline({
+      onComplete: () => {
+        setActiveIndex((prev) => (prev + 1) % projects.length)
+        setIsAnimating(false)
+      }
+    })
+
+    // Center card (index 1) shrinks and moves left
+    tl.to(cardsRef.current[1], {
+      scale: 0.7,
+      x: -250,
+      opacity: 0.5,
+      rotateY: -15,
+      duration: 0.6,
+      ease: "power2.inOut"
+    }, 0)
+
+    // Right card (index 2) moves to center and grows
+    tl.to(cardsRef.current[2], {
+      scale: 1.4,
+      x: -250,
+      opacity: 1,
+      rotateY: 0,
+      duration: 0.6,
+      ease: "power2.inOut"
+    }, 0)
+
+    // Left card (index 0) slides out
+    tl.to(cardsRef.current[0], {
+      x: -300,
+      opacity: 0,
+      scale: 0.5,
+      duration: 0.5,
+      ease: "power2.in"
+    }, 0)
   }
 
   const visibleProjects = getVisibleProjects()
@@ -147,8 +223,9 @@ export default function Projects() {
         <div 
           ref={carouselRef}
           className="flex items-center justify-center gap-8 px-20 py-8"
+          style={{ perspective: "1500px" }}
         >
-          {visibleProjects.map(({ index: projectIndex, position }) => {
+          {visibleProjects.map(({ index: projectIndex, position }, idx) => {
             const project = projects[projectIndex]
             const isCenter = position === 'center'
             const imageSrc = projectImages[projectIndex]
@@ -156,11 +233,16 @@ export default function Projects() {
             return (
               <div
                 key={`${projectIndex}-${position}`}
-                className={`transition-all duration-700 ease-out ${
+                ref={(el) => (cardsRef.current[idx] = el)}
+                className={`${
                   isCenter 
                     ? 'w-[450px] h-[550px] z-10' 
                     : 'w-[320px] h-[400px] z-0 opacity-50'
                 }`}
+                style={{ 
+                  transformStyle: "preserve-3d",
+                  transition: isAnimating ? 'none' : 'all 0.3s ease-out'
+                }}
               >
                 <div className="relative w-full h-full rounded-3xl overflow-hidden shadow-2xl group">
                   {/* Actual Image */}
@@ -170,8 +252,12 @@ export default function Projects() {
                     className="absolute inset-0 w-full h-full object-cover"
                   />
                   
-                  {/* Subtle overlay */}
-                  <div className="absolute inset-0 bg-gradient-to-t from-black/30 to-transparent" />
+                  {/* Darker overlay for side cards */}
+                  <div className={`absolute inset-0 bg-gradient-to-t transition-all duration-500 ${
+                    isCenter 
+                      ? 'from-black/30 to-transparent' 
+                      : 'from-black/60 via-black/30 to-black/20'
+                  }`} />
                   
                   {/* Glow effect on hover */}
                   <div 
