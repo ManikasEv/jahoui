@@ -89,13 +89,6 @@ export default function Projects() {
   // Mobile swipe handlers
   const handleTouchStart = (e) => {
     if (window.innerWidth >= 768) return
-    
-    // Stop auto-play on user interaction
-    if (autoPlayTimerRef.current) {
-      clearInterval(autoPlayTimerRef.current)
-      autoPlayTimerRef.current = null
-    }
-    
     dragStateRef.current.startX = e.touches[0].clientX
     dragStateRef.current.isDragging = true
   }
@@ -172,32 +165,13 @@ export default function Projects() {
     const isMobile = window.innerWidth < 768
     if (!isMobile) return
 
-    const startAutoPlay = () => {
-      autoPlayTimerRef.current = setInterval(() => {
-        setActiveIndex((prev) => (prev + 1) % projects.length)
-      }, 3000) // Change every 3 seconds
-    }
-
-    const stopAutoPlay = () => {
-      if (autoPlayTimerRef.current) {
-        clearInterval(autoPlayTimerRef.current)
-        autoPlayTimerRef.current = null
-      }
-    }
-
-    // Start auto-play
-    startAutoPlay()
-
-    // Stop on user interaction
-    const container = document.querySelector('.mobile-stack-carousel')
-    if (container) {
-      container.addEventListener('touchstart', stopAutoPlay)
-    }
+    autoPlayTimerRef.current = setInterval(() => {
+      setActiveIndex((prev) => (prev + 1) % projects.length)
+    }, 6000)
 
     return () => {
-      stopAutoPlay()
-      if (container) {
-        container.removeEventListener('touchstart', stopAutoPlay)
+      if (autoPlayTimerRef.current) {
+        clearInterval(autoPlayTimerRef.current)
       }
     }
   }, [projects.length])
@@ -414,21 +388,20 @@ export default function Projects() {
                 <div
                   key={i}
                   ref={(el) => (mobileCardsRef.current[i] = el)}
-                  className="absolute inset-x-0 top-1/2 -translate-y-1/2 cursor-pointer"
+                  className="absolute inset-x-0 top-1/2 -translate-y-1/2"
                   style={{
                     transformStyle: "preserve-3d",
-                    touchAction: isActive ? "none" : "auto"
+                    pointerEvents: isActive ? "auto" : "none"
                   }}
                   onClick={() => isActive && openLightbox(imageSrc)}
                 >
-                  <div className="relative w-full aspect-[3/4] rounded-2xl overflow-hidden shadow-2xl">
+                  <div className="relative w-full aspect-[3/4] rounded-2xl overflow-hidden shadow-2xl cursor-pointer">
                     <img 
                       src={imageSrc} 
                       alt={project.title}
                       className="w-full h-full object-cover"
                       draggable="false"
                     />
-                    {/* Slight overlay for non-active cards */}
                     {!isActive && (
                       <div className="absolute inset-0 bg-black/20" />
                     )}
@@ -436,14 +409,6 @@ export default function Projects() {
                 </div>
               )
             })}
-          </div>
-          
-          {/* Auto-play indicator */}
-          <div className="flex items-center justify-center gap-2 mt-4 text-[var(--color-slate)] text-xs">
-            <svg className="w-4 h-4 animate-pulse" fill="currentColor" viewBox="0 0 20 20">
-              <path d="M10 18a8 8 0 100-16 8 8 0 000 16zM9.555 7.168A1 1 0 008 8v4a1 1 0 001.555.832l3-2a1 1 0 000-1.664l-3-2z" />
-            </svg>
-            <span>Wechselt automatisch • Wischen zum Stoppen</span>
           </div>
         </div>
 
