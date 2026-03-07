@@ -7,7 +7,7 @@ export default function HeroDesktop({
   }) {
     return (
       <div className="hidden md:grid grid-cols-12 gap-12 items-center">
-        <div className="col-span-6">
+        <div className="col-span-7">
           <div
             ref={badgeRef}
             className="inline-flex items-center gap-2 px-4 py-2 rounded-full border border-black/10 bg-white/70 backdrop-blur font-semibold text-sm text-[var(--color-slate)] mb-6"
@@ -17,11 +17,15 @@ export default function HeroDesktop({
   
           <h1
             ref={titleRef}
-            className="font-[var(--font-heading)] text-[var(--color-dark)] text-5xl leading-[1.1] tracking-tight mb-6"
+            className="font-[var(--font-heading)] text-[var(--color-dark)] text-4xl lg:text-5xl leading-[1.3] tracking-tight mb-6 max-w-[600px]"
           >
-            {data.title.split("").map((ch, i) => (
-              <span key={i} data-letter className="inline-block">
-                {ch === " " ? "\u00A0" : ch}
+            {data.title.split(" ").map((word, wordIndex) => (
+              <span key={wordIndex} className="inline-block mr-[0.3em]">
+                {word.split("").map((ch, charIndex) => (
+                  <span key={charIndex} data-letter className="inline-block">
+                    {ch}
+                  </span>
+                ))}
               </span>
             ))}
           </h1>
@@ -52,7 +56,7 @@ export default function HeroDesktop({
           </button>
         </div>
   
-        <div className="col-span-6">
+        <div className="col-span-5">
           <div className="relative aspect-[4/3] rounded-2xl overflow-hidden bg-gray-200 border border-black/10">
             <img 
               src={data.image} 

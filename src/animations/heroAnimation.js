@@ -117,11 +117,47 @@ export function heroInteractive({
     duration: 0.4, 
   }, 0.6)
 
+  // Parallax mouse movement on title
+  const handleMouseMove = (e) => {
+    if (!titleEl) return
+    const { clientX, clientY } = e
+    const centerX = window.innerWidth / 2
+    const centerY = window.innerHeight / 2
+    const moveX = (clientX - centerX) / 50
+    const moveY = (clientY - centerY) / 50
+
+    gsap.to(titleEl, {
+      x: moveX,
+      y: moveY,
+      duration: 0.8,
+      ease: "power2.out",
+    })
+  }
+
+  const handleMouseLeave = () => {
+    gsap.to(titleEl, {
+      x: 0,
+      y: 0,
+      duration: 1,
+      ease: "elastic.out(1, 0.5)",
+    })
+  }
+
   // Interactions
   const cleanups = []
   
   if (cta) {
     cleanups.push(magnetic(cta, 10))
+  }
+
+  // Add parallax to container
+  if (wrapEl) {
+    wrapEl.addEventListener("mousemove", handleMouseMove)
+    wrapEl.addEventListener("mouseleave", handleMouseLeave)
+    cleanups.push(() => {
+      wrapEl.removeEventListener("mousemove", handleMouseMove)
+      wrapEl.removeEventListener("mouseleave", handleMouseLeave)
+    })
   }
 
   return () => {

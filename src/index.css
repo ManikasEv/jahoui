@@ -17,6 +17,15 @@
     color: var(--color-dark);
     font-family: var(--font-body);
   }
+
+  /* Remove text cursor from all elements by default */
+  * {
+    cursor: default;
+    user-select: none;
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+  }
   
   h1, h2, h3 {
     font-family: var(--font-heading);
@@ -39,6 +48,30 @@
   /* Smooth scrolling */
   html {
     scroll-behavior: smooth;
+  }
+
+  /* Allow text selection only in specific elements */
+  input,
+  textarea {
+    user-select: text !important;
+    -webkit-user-select: text !important;
+    -moz-user-select: text !important;
+    -ms-user-select: text !important;
+    cursor: text !important;
+  }
+  
+  /* Pointer cursor for interactive elements */
+  button,
+  a,
+  [role="button"] {
+    cursor: pointer !important;
+  }
+
+  /* Allow selection in bio paragraphs only */
+  #about p[data-bio] {
+    user-select: text !important;
+    -webkit-user-select: text !important;
+    cursor: text !important;
   }
 
   /* Enhanced animations */
@@ -70,4 +103,56 @@
 
   .animate-gradient {
     animation: gradient 3s ease infinite;
+  }
+
+  /* Cursor Follower */
+  .cursor-follower {
+    position: fixed;
+    width: 40px;
+    height: 40px;
+    border: 2px solid var(--color-primary);
+    border-radius: 50%;
+    pointer-events: none;
+    z-index: 9999;
+    transform: translate(-50%, -50%);
+    transition: width 0.3s, height 0.3s, border-color 0.3s;
+    mix-blend-mode: difference;
+  }
+
+  /* Glowing decorative elements */
+  @keyframes glow-pulse {
+    0%, 100% {
+      filter: drop-shadow(0 0 5px var(--color-primary)) 
+              drop-shadow(0 0 15px var(--color-primary));
+    }
+    50% {
+      filter: drop-shadow(0 0 10px var(--color-primary)) 
+              drop-shadow(0 0 25px var(--color-primary));
+    }
+  }
+
+  .glow-element {
+    animation: glow-pulse 3s ease-in-out infinite;
+  }
+
+  /* Smooth depth shadows */
+  .depth-shadow {
+    box-shadow: 
+      0 4px 6px -1px rgba(0, 0, 0, 0.1),
+      0 10px 15px -3px rgba(0, 0, 0, 0.05),
+      0 20px 25px -5px rgba(0, 0, 0, 0.03);
+    transition: box-shadow 0.3s ease;
+  }
+
+  .depth-shadow:hover {
+    box-shadow: 
+      0 10px 15px -3px rgba(0, 0, 0, 0.15),
+      0 20px 25px -5px rgba(0, 0, 0, 0.1),
+      0 30px 35px -7px rgba(0, 0, 0, 0.05);
+  }
+
+  /* Smooth parallax containers */
+  .parallax-container {
+    will-change: transform;
+    transform: translateZ(0);
   }

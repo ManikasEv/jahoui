@@ -1,4 +1,4 @@
-import { useRef, useEffect } from "react"
+import { useRef, useEffect, useState } from "react"
 import { gsap } from "gsap"
 import { ScrollTrigger } from "gsap/ScrollTrigger"
 import { content } from "../../data/content"
@@ -11,6 +11,8 @@ export default function Contact() {
   const infoRef = useRef(null)
   const titleRef = useRef(null)
   const textRef = useRef(null)
+  const [result, setResult] = useState("")
+  const [isSubmitting, setIsSubmitting] = useState(false)
 
   useEffect(() => {
     const ctx = gsap.context(() => {
@@ -84,6 +86,45 @@ export default function Contact() {
     window.open(`https://wa.me/${phone}?text=${message}`, "_blank")
   }
 
+  const onSubmit = async (event) => {
+    event.preventDefault()
+    setIsSubmitting(true)
+    setResult("")
+
+    const formData = new FormData(event.target)
+    formData.append("access_key", "9820c027-9975-44d9-a6cb-36a5b5fa711f")
+    
+    // Add custom subject and formatting
+    formData.append("subject", "Neue Anfrage von Jaho-Plattenleger.ch Website")
+    formData.append("from_name", "Jaho Plattenleger Website")
+    formData.append("replyto", formData.get("email"))
+
+    try {
+      const response = await fetch("https://api.web3forms.com/submit", {
+        method: "POST",
+        body: formData
+      })
+
+      const data = await response.json()
+
+      if (data.success) {
+        setResult("success")
+        event.target.reset()
+        
+        // Hide success message after 5 seconds
+        setTimeout(() => {
+          setResult("")
+        }, 5000)
+      } else {
+        setResult("error")
+      }
+    } catch (error) {
+      setResult("error")
+    } finally {
+      setIsSubmitting(false)
+    }
+  }
+
   return (
     <section
       id="contact"
@@ -114,13 +155,15 @@ export default function Contact() {
           <h3 className="font-[var(--font-heading)] text-2xl text-[var(--color-dark)] mb-6">
             Nachricht senden
           </h3>
-          <form className="space-y-4">
+          <form onSubmit={onSubmit} className="space-y-4">
             <div>
               <label className="block text-sm font-semibold text-[var(--color-dark)] mb-2">
                 Name
               </label>
               <input
                 type="text"
+                name="name"
+                required
                 className="w-full px-4 py-3 rounded-xl border border-black/10 bg-white focus:outline-none focus:ring-2 focus:ring-[var(--color-primary)]/50"
                 placeholder="Ihr Name"
               />
@@ -131,6 +174,8 @@ export default function Contact() {
               </label>
               <input
                 type="email"
+                name="email"
+                required
                 className="w-full px-4 py-3 rounded-xl border border-black/10 bg-white focus:outline-none focus:ring-2 focus:ring-[var(--color-primary)]/50"
                 placeholder="ihre@email.com"
               />
@@ -140,14 +185,30 @@ export default function Contact() {
                 Nachricht
               </label>
               <textarea
+                name="message"
                 rows="4"
+                required
                 className="w-full px-4 py-3 rounded-xl border border-black/10 bg-white focus:outline-none focus:ring-2 focus:ring-[var(--color-primary)]/50 resize-none"
                 placeholder="Beschreiben Sie Ihr Projekt..."
               />
             </div>
+            
+            {/* Success/Error Messages */}
+            {result === "success" && (
+              <div className="p-4 rounded-xl bg-green-50 border border-green-200 text-green-800 font-semibold text-center animate-pulse">
+                ✅ Nachricht erfolgreich gesendet!
+              </div>
+            )}
+            {result === "error" && (
+              <div className="p-4 rounded-xl bg-red-50 border border-red-200 text-red-800 font-semibold text-center">
+                ❌ Fehler beim Senden. Bitte versuchen Sie es erneut.
+              </div>
+            )}
+            
             <button
               type="submit"
-              className="group relative w-full px-6 py-3 rounded-xl font-[var(--font-body)] font-semibold bg-[var(--color-primary)] text-white overflow-visible"
+              disabled={isSubmitting}
+              className="group relative w-full px-6 py-3 rounded-xl font-[var(--font-body)] font-semibold bg-[var(--color-primary)] text-white overflow-visible disabled:opacity-50 disabled:cursor-not-allowed"
             >
               {/* Shine effect */}
               <span className="absolute inset-0 rounded-xl overflow-hidden">
@@ -164,7 +225,7 @@ export default function Contact() {
               </span>
               
               <span className="relative z-10 group-hover:translate-x-3 transition-transform duration-300">
-                Nachricht senden
+                {isSubmitting ? "Wird gesendet..." : "Nachricht senden"}
               </span>
             </button>
           </form>

@@ -4,7 +4,7 @@ export const content = {
       links: [
         { href: "#hero", label: "Start" },
         { href: "#about", label: "Über uns" },
-        { href: "#services", label: "Leistungen" },
+        { href: "#clients", label: "Kunden" },
         { href: "#projects", label: "Projekte" },
         { href: "#contact", label: "Kontakt" },
       ],
@@ -35,56 +35,88 @@ export const content = {
     sections: {
       about: {
         title: "Über uns",
-        text:
-          "Wir sind ein professioneller Plattenleger-Service mit Fokus auf Präzision, saubere Handwerkskunst und dauerhafte Qualität. Mit jahrelanger Erfahrung in der Schweizer Baubranche garantieren wir höchste Standards bei jedem Projekt.",
+        name: "Elton Jaho",
+        image: "/elton-jaho.jpg",
+        bio: [
+          "Ich wurde im Jahr 1981 geboren und begann schon in jungen Jahren meinen beruflichen Weg im Bauhandwerk.",
+          "Mit 17 Jahren startete ich meine Arbeit im Bereich Fliesen- und Plattenverlegung als Helfer. In dieser Zeit lernte ich die Grundlagen des Berufs und sammelte wertvolle praktische Erfahrung auf verschiedenen Baustellen. Durch harte Arbeit, Ausdauer und großes Interesse an meinem Handwerk entwickelte ich meine Fähigkeiten Schritt für Schritt weiter.",
+          "Mit 25 Jahren hatte ich bereits ein sehr hohes Niveau erreicht und arbeitete als erfahrener Fliesenleger. Von diesem Zeitpunkt an bis zu meinem 38. Lebensjahr arbeitete ich als Meister in meinem Beruf und führte zahlreiche Projekte im Bereich Fliesen- und Plattenarbeiten durch.",
+          "Mit 38 Jahren zog ich in die Schweiz und arbeitete dort fünf Jahre lang in verschiedenen Unternehmen als Fliesenleger. In dieser Zeit konnte ich meine langjährige Erfahrung einbringen und gleichzeitig neue Arbeitsweisen und Qualitätsstandards kennenlernen.",
+          "Heute habe ich meine eigene Firma gegründet und arbeite selbstständig im Bereich Fliesen- und Plattenarbeiten. Mein Ziel ist es, hochwertige Arbeit zu leisten, zuverlässig zu sein und meinen Kunden stets professionelle Ergebnisse zu bieten.",
+          "Durch meine langjährige Erfahrung, meine Leidenschaft für das Handwerk und meine präzise Arbeitsweise habe ich mir starke Fachkenntnisse in meinem Beruf aufgebaut."
+        ]
       },
-      services: {
-        title: "Unsere Leistungen",
-        text: "Von der Planung bis zur perfekten Ausführung — wir bieten umfassende Plattenleger-Dienstleistungen für Privat- und Geschäftskunden.",
+      clients: {
+        title: "Für wen wir arbeiten",
+        text: "Wir bieten professionelle Fliesenverlegung für verschiedene Kundengruppen",
         items: [
           {
-            title: "Badezimmer & Nasszellen",
-            description: "Fachgerechte Verlegung in Feuchträumen mit perfekter Abdichtung",
-            icon: "bath"
-          },
-          {
-            title: "Küchen & Wohnräume",
-            description: "Stilvolle Bodenbeläge und Wandverkleidungen für jeden Geschmack",
+            title: "Privatpersonen",
+            description: "Renovierungen und Neubauten für Ihr Zuhause - Badezimmer, Küchen, Wohnräume",
             icon: "home"
           },
           {
-            title: "Grossformat Fliesen",
-            description: "Moderne Grossformate und Feinsteinzeug professionell verlegt",
-            icon: "grid"
+            title: "Bauunternehmen",
+            description: "Zuverlässiger Partner für Neubauprojekte und Sanierungen",
+            icon: "building"
           },
           {
-            title: "Renovationen & Reparaturen",
-            description: "Sanierung alter Fliesen und Ausbesserung von Schäden",
-            icon: "tools"
+            title: "Architekten",
+            description: "Präzise Umsetzung Ihrer Designvorgaben mit höchster Qualität",
+            icon: "design"
+          },
+          {
+            title: "Immobilienverwaltungen",
+            description: "Wartung, Reparatur und Modernisierung von Objekten",
+            icon: "property"
           }
         ]
       },
       projects: {
         title: "Unsere Projekte",
-        text: "Überzeugen Sie sich von unserer Qualität. Hier sehen Sie eine Auswahl unserer abgeschlossenen Arbeiten.",
+        text: "Eine Auswahl unserer abgeschlossenen Arbeiten",
         items: [
           {
             title: "Luxusbad Zürich",
             description: "Komplette Badsanierung mit Grossformat-Feinsteinzeug",
             category: "Badezimmer",
-            image: "/projects/project1.jpg"
+            image: "/p1.jpg"
           },
           {
             title: "Moderne Küche Bern",
             description: "Stilvolle Wandfliesen und Bodenfliesen in offener Küche",
             category: "Küche",
-            image: "/projects/project2.jpg"
+            image: "/p2.jpg"
           },
           {
             title: "Penthouse Basel",
             description: "Durchgehende Bodenverlegung in exklusivem Penthouse",
             category: "Wohnbereich",
-            image: "/projects/project3.jpg"
+            image: "/p3.jpg"
+          },
+          {
+            title: "Boutique Hotel Luzern",
+            description: "Elegante Marmorfliesen in Hotellobby und Zimmer",
+            category: "Hotel",
+            image: "/p4.jpg"
+          },
+          {
+            title: "Wellness-Oase St. Gallen",
+            description: "Grossformatige Natursteinfliesen im Spa-Bereich",
+            category: "Wellness",
+            image: "/p5.jpg"
+          },
+          {
+            title: "Neubau Einfamilienhaus Zug",
+            description: "Komplettverlegung von Fliesen im gesamten Haus",
+            category: "Neubau",
+            image: "/p6.jpg"
+          },
+          {
+            title: "Restaurant Terrasse Genf",
+            description: "Rutschfeste Terrassenfliesen für Aussenbereich",
+            category: "Gastronomie",
+            image: "/p7.jpg"
           }
         ]
       },

@@ -10,11 +10,15 @@ export default function HeroMobile({ data, titleRef, subtitleRef, badgeRef, ctaR
 
         <h1
           ref={titleRef}
-          className="font-[var(--font-heading)] text-[var(--color-dark)] text-3xl leading-[1.15] tracking-tight mb-4"
+          className="font-[var(--font-heading)] text-[var(--color-dark)] text-2xl sm:text-3xl leading-[1.3] tracking-tight mb-4"
         >
-          {data.title.split("").map((ch, i) => (
-            <span key={i} data-letter className="inline-block">
-              {ch === " " ? "\u00A0" : ch}
+          {data.title.split(" ").map((word, wordIndex) => (
+            <span key={wordIndex} className="inline-block mr-[0.3em]">
+              {word.split("").map((ch, charIndex) => (
+                <span key={charIndex} data-letter className="inline-block">
+                  {ch}
+                </span>
+              ))}
             </span>
           ))}
         </h1>

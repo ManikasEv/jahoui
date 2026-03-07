@@ -1,5 +1,43 @@
 import { gsap } from "gsap"
 
+// Magnetic effect for navbar elements
+function magneticNavElement(element, strength = 5) {
+  if (!element) return
+
+  const handleMouseMove = (e) => {
+    const rect = element.getBoundingClientRect()
+    const centerX = rect.left + rect.width / 2
+    const centerY = rect.top + rect.height / 2
+    
+    const deltaX = (e.clientX - centerX) / 10 * strength
+    const deltaY = (e.clientY - centerY) / 10 * strength
+
+    gsap.to(element, {
+      x: deltaX,
+      y: deltaY,
+      duration: 0.4,
+      ease: "power2.out",
+    })
+  }
+
+  const handleMouseLeave = () => {
+    gsap.to(element, {
+      x: 0,
+      y: 0,
+      duration: 0.6,
+      ease: "elastic.out(1, 0.5)",
+    })
+  }
+
+  element.addEventListener("mousemove", handleMouseMove)
+  element.addEventListener("mouseleave", handleMouseLeave)
+
+  return () => {
+    element.removeEventListener("mousemove", handleMouseMove)
+    element.removeEventListener("mouseleave", handleMouseLeave)
+  }
+}
+
 export function navbarAnimation({ nav, links, cta }) {
   const allChars = nav.querySelectorAll("[data-char]")
   
@@ -15,15 +53,21 @@ export function navbarAnimation({ nav, links, cta }) {
     stagger: 0.015 
   })
 
-  // Add hover animations to links
+  // Add magnetic and hover animations to links
+  const cleanups = []
+  
   links.forEach((link) => {
     if (!link) return
 
     const chars = link.querySelectorAll("[data-char]")
     
+    // Add magnetic effect
+    cleanups.push(magneticNavElement(link, 3))
+    
     const onEnter = () => {
       gsap.to(chars, {
         y: -3,
+        scale: 1.05,
         duration: 0.3,
         stagger: 0.02,
         ease: "power2.out"
@@ -33,6 +77,7 @@ export function navbarAnimation({ nav, links, cta }) {
     const onLeave = () => {
       gsap.to(chars, {
         y: 0,
+        scale: 1,
         duration: 0.3,
         stagger: 0.02,
         ease: "power2.out"
@@ -43,16 +88,22 @@ export function navbarAnimation({ nav, links, cta }) {
     link.addEventListener("mouseleave", onLeave)
   })
 
-  // Add hover animation to CTA button with particles
+  // Add magnetic and hover animation to CTA button with particles
   if (cta) {
     const ctaChars = cta.querySelectorAll("[data-char]")
     const particles = cta.querySelectorAll("[data-particle]")
+    const ctaButton = cta.querySelector("button")
+    
+    // Add magnetic effect to button
+    if (ctaButton) {
+      cleanups.push(magneticNavElement(ctaButton, 4))
+    }
     
     const onEnter = () => {
       // Button scale and shadow
-      gsap.to(cta.querySelector("button"), {
+      gsap.to(ctaButton, {
         scale: 1.05,
-        boxShadow: "0 8px 20px rgba(177, 18, 38, 0.3)",
+        boxShadow: "0 8px 20px rgba(196, 30, 58, 0.3)",
         duration: 0.3,
         ease: "power2.out"
       })
@@ -96,9 +147,9 @@ export function navbarAnimation({ nav, links, cta }) {
 
     const onLeave = () => {
       // Reset button
-      gsap.to(cta.querySelector("button"), {
+      gsap.to(ctaButton, {
         scale: 1,
-        boxShadow: "0 0 0 rgba(177, 18, 38, 0)",
+        boxShadow: "0 0 0 rgba(196, 30, 58, 0)",
         duration: 0.3,
         ease: "power2.out"
       })

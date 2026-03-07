@@ -8,12 +8,11 @@ gsap.registerPlugin(ScrollTrigger)
 export default function About() {
   const sectionRef = useRef(null)
   const titleRef = useRef(null)
-  const textRef = useRef(null)
+  const imageRef = useRef(null)
 
   useEffect(() => {
     const ctx = gsap.context(() => {
       const titleChars = titleRef.current.querySelectorAll("[data-char]")
-      const words = textRef.current.querySelectorAll("[data-word]")
 
       // Animate title with rotation and wave
       gsap.from(titleChars, {
@@ -30,20 +29,44 @@ export default function About() {
         ease: "back.out(1.5)",
       })
 
-      // Animate words with scale and bounce
-      gsap.from(words, {
+      // Animate image
+      gsap.from(imageRef.current, {
         scrollTrigger: {
           trigger: sectionRef.current,
           start: "top 75%",
           once: true,
         },
         opacity: 0,
-        scale: 0.5,
+        scale: 0.8,
+        duration: 0.8,
+        ease: "back.out(1.5)",
+      })
+
+      // Animate bio paragraphs
+      const bioElements = sectionRef.current.querySelectorAll("[data-bio]")
+      gsap.from(bioElements, {
+        scrollTrigger: {
+          trigger: sectionRef.current,
+          start: "top 70%",
+          once: true,
+        },
+        opacity: 0,
         y: 30,
-        rotateZ: -10,
-        stagger: 0.05,
+        stagger: 0.15,
         duration: 0.7,
-        ease: "elastic.out(1, 0.6)",
+        ease: "power3.out",
+      })
+
+      // Parallax effect on scroll
+      gsap.to(imageRef.current, {
+        scrollTrigger: {
+          trigger: sectionRef.current,
+          start: "top bottom",
+          end: "bottom top",
+          scrub: 1,
+        },
+        y: -50,
+        ease: "none",
       })
     }, sectionRef)
 
@@ -58,7 +81,7 @@ export default function About() {
     >
       <h2 
         ref={titleRef}
-        className="font-[var(--font-heading)] text-4xl md:text-5xl text-[var(--color-dark)]"
+        className="font-[var(--font-heading)] text-4xl md:text-5xl text-[var(--color-dark)] mb-12 text-center"
       >
         {content.sections.about.title.split("").map((char, i) => (
           <span key={i} className="inline-block" data-char>
@@ -66,16 +89,45 @@ export default function About() {
           </span>
         ))}
       </h2>
-      <p 
-        ref={textRef}
-        className="mt-6 font-[var(--font-body)] text-lg text-[var(--color-slate)] max-w-2xl leading-relaxed"
-      >
-        {content.sections.about.text.split(" ").map((word, i) => (
-          <span key={i} className="inline-block mr-[0.3em]" data-word>
-            {word}
-          </span>
-        ))}
-      </p>
+
+      <div className="grid grid-cols-1 md:grid-cols-3 gap-8 items-start">
+        {/* Circular Image */}
+        <div className="flex justify-center md:justify-start">
+          <div 
+            ref={imageRef}
+            className="relative w-48 h-48 md:w-56 md:h-56 rounded-full overflow-hidden border-4 border-[var(--color-primary)] bg-gray-200"
+          >
+            <img 
+              src={content.sections.about.image} 
+              alt={content.sections.about.name}
+              className="w-full h-full object-cover"
+              onError={(e) => {
+                e.target.style.display = 'none'
+                e.target.parentElement.innerHTML = '<div class="w-full h-full bg-gray-300 flex items-center justify-center"><div class="text-6xl">👨‍🔧</div></div>'
+              }}
+            />
+          </div>
+        </div>
+
+        {/* Bio Text */}
+        <div className="md:col-span-2 space-y-4">
+          {content.sections.about.bio.map((paragraph, i) => (
+            <p 
+              key={i}
+              data-bio
+              className="font-[var(--font-body)] text-[var(--color-slate)] leading-relaxed"
+            >
+              {paragraph}
+            </p>
+          ))}
+          <p 
+            data-bio
+            className="font-[var(--font-heading)] text-lg text-[var(--color-dark)] mt-6"
+          >
+            {content.sections.about.name}
+          </p>
+        </div>
+      </div>
     </section>
   )
 }
