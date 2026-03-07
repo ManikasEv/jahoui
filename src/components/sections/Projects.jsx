@@ -2,6 +2,7 @@ import { useRef, useEffect, useState } from "react"
 import { gsap } from "gsap"
 import { ScrollTrigger } from "gsap/ScrollTrigger"
 import { content } from "../../data/content"
+import ImageLightbox from "../ui/ImageLightbox"
 
 // Import images
 import p1 from "../../assets/p1.jpg"
@@ -22,8 +23,12 @@ export default function Projects() {
   const textRef = useRef(null)
   const carouselRef = useRef(null)
   const cardsRef = useRef([])
+  const mobileImageRef = useRef(null)
+  const mobileCardsRef = useRef([])
   const [activeIndex, setActiveIndex] = useState(0)
   const [isAnimating, setIsAnimating] = useState(false)
+  const [lightboxImage, setLightboxImage] = useState(null)
+  const dragStateRef = useRef({ startX: 0, currentX: 0, isDragging: false })
 
   const projects = content.sections.projects.items
 
@@ -80,6 +85,80 @@ export default function Projects() {
     return () => ctx.revert()
   }, [])
 
+  // Mobile swipe handlers
+  const handleTouchStart = (e) => {
+    if (window.innerWidth >= 768) return
+    dragStateRef.current.startX = e.touches[0].clientX
+    dragStateRef.current.isDragging = true
+  }
+
+  const handleTouchMove = (e) => {
+    if (window.innerWidth >= 768 || !dragStateRef.current.isDragging) return
+    dragStateRef.current.currentX = e.touches[0].clientX
+    const diff = dragStateRef.current.currentX - dragStateRef.current.startX
+    
+    // Apply drag transform to cards
+    const cards = mobileCardsRef.current.filter(el => el !== null)
+    cards.forEach((card, i) => {
+      const offset = i - activeIndex
+      gsap.to(card, {
+        x: offset * 5 + diff * 0.3,
+        duration: 0.1
+      })
+    })
+  }
+
+  const handleTouchEnd = () => {
+    if (window.innerWidth >= 768 || !dragStateRef.current.isDragging) return
+    dragStateRef.current.isDragging = false
+    
+    const diff = dragStateRef.current.currentX - dragStateRef.current.startX
+    const threshold = 50
+    
+    if (Math.abs(diff) > threshold) {
+      if (diff > 0) {
+        handlePrev()
+      } else {
+        handleNext()
+      }
+    } else {
+      // Snap back
+      const cards = mobileCardsRef.current.filter(el => el !== null)
+      cards.forEach((card, i) => {
+        const offset = i - activeIndex
+        gsap.to(card, {
+          x: offset * 5,
+          duration: 0.3,
+          ease: "power2.out"
+        })
+      })
+    }
+  }
+
+  // Update card positions when activeIndex changes
+  useEffect(() => {
+    const isMobile = window.innerWidth < 768
+    if (!isMobile) return
+
+    const cards = mobileCardsRef.current.filter(el => el !== null)
+    if (cards.length === 0) return
+
+    cards.forEach((card, i) => {
+      const offset = i - activeIndex
+      const absOffset = Math.abs(offset)
+      
+      gsap.to(card, {
+        zIndex: cards.length - absOffset,
+        scale: 1 - absOffset * 0.05,
+        y: absOffset * 10,
+        x: offset * 5,
+        opacity: absOffset <= 2 ? 1 - absOffset * 0.3 : 0,
+        duration: 0.4,
+        ease: "power2.out"
+      })
+    })
+  }, [activeIndex])
+
   const getVisibleProjects = () => {
     const prevIndex = (activeIndex - 1 + projects.length) % projects.length
     const nextIndex = (activeIndex + 1) % projects.length
@@ -92,87 +171,75 @@ export default function Projects() {
 
   const handlePrev = () => {
     if (isAnimating) return
-    setIsAnimating(true)
     
-    const tl = gsap.timeline({
-      onComplete: () => {
-        setActiveIndex((prev) => (prev - 1 + projects.length) % projects.length)
-        setIsAnimating(false)
-      }
-    })
+    const isMobile = window.innerWidth < 768
 
-    // Center card (index 1) shrinks and moves right
-    tl.to(cardsRef.current[1], {
-      scale: 0.7,
-      x: 250,
-      opacity: 0.5,
-      rotateY: 15,
-      duration: 0.6,
-      ease: "power2.inOut"
-    }, 0)
+    if (isMobile) {
+      setActiveIndex((prev) => (prev - 1 + projects.length) % projects.length)
+    } else {
+      setIsAnimating(true)
+      const newIndex = (activeIndex - 1 + projects.length) % projects.length
+      
+      const tl = gsap.timeline({
+        onComplete: () => setIsAnimating(false)
+      })
 
-    // Left card (index 0) moves to center and grows
-    tl.to(cardsRef.current[0], {
-      scale: 1.4,
-      x: 250,
-      opacity: 1,
-      rotateY: 0,
-      duration: 0.6,
-      ease: "power2.inOut"
-    }, 0)
-
-    // Right card (index 2) slides out
-    tl.to(cardsRef.current[2], {
-      x: 300,
-      opacity: 0,
-      scale: 0.5,
-      duration: 0.5,
-      ease: "power2.in"
-    }, 0)
+      tl.to(cardsRef.current[1], {
+        opacity: 0,
+        scale: 0.97,
+        duration: 0.25,
+        ease: "power2.inOut",
+        onComplete: () => setActiveIndex(newIndex)
+      })
+      .to(cardsRef.current[1], {
+        opacity: 1,
+        scale: 1,
+        duration: 0.25,
+        ease: "power2.out"
+      })
+    }
   }
 
   const handleNext = () => {
     if (isAnimating) return
-    setIsAnimating(true)
     
-    const tl = gsap.timeline({
-      onComplete: () => {
-        setActiveIndex((prev) => (prev + 1) % projects.length)
-        setIsAnimating(false)
-      }
-    })
+    const isMobile = window.innerWidth < 768
 
-    // Center card (index 1) shrinks and moves left
-    tl.to(cardsRef.current[1], {
-      scale: 0.7,
-      x: -250,
-      opacity: 0.5,
-      rotateY: -15,
-      duration: 0.6,
-      ease: "power2.inOut"
-    }, 0)
+    if (isMobile) {
+      setActiveIndex((prev) => (prev + 1) % projects.length)
+    } else {
+      setIsAnimating(true)
+      const newIndex = (activeIndex + 1) % projects.length
+      
+      const tl = gsap.timeline({
+        onComplete: () => setIsAnimating(false)
+      })
 
-    // Right card (index 2) moves to center and grows
-    tl.to(cardsRef.current[2], {
-      scale: 1.4,
-      x: -250,
-      opacity: 1,
-      rotateY: 0,
-      duration: 0.6,
-      ease: "power2.inOut"
-    }, 0)
-
-    // Left card (index 0) slides out
-    tl.to(cardsRef.current[0], {
-      x: -300,
-      opacity: 0,
-      scale: 0.5,
-      duration: 0.5,
-      ease: "power2.in"
-    }, 0)
+      tl.to(cardsRef.current[1], {
+        opacity: 0,
+        scale: 0.97,
+        duration: 0.25,
+        ease: "power2.inOut",
+        onComplete: () => setActiveIndex(newIndex)
+      })
+      .to(cardsRef.current[1], {
+        opacity: 1,
+        scale: 1,
+        duration: 0.25,
+        ease: "power2.out"
+      })
+    }
   }
 
   const visibleProjects = getVisibleProjects()
+
+  const openLightbox = (imageSrc) => {
+    setLightboxImage(imageSrc)
+  }
+
+  const closeLightbox = () => {
+    setLightboxImage(null)
+  }
 
   return (
     <section
@@ -180,6 +247,14 @@ export default function Projects() {
       ref={sectionRef}
       className="mx-auto w-full max-w-[1400px] px-6 py-20"
     >
+      {/* Lightbox */}
+      {lightboxImage && (
+        <ImageLightbox 
+          imageSrc={lightboxImage} 
+          onClose={closeLightbox}
+          altText="Projekt Bild"
+        />
+      )}
       <h2 ref={titleRef} className="font-[var(--font-heading)] text-4xl md:text-5xl text-[var(--color-dark)] mb-4 text-center">
         {content.sections.projects.title.split("").map((char, i) => (
           <span key={i} className="inline-block" data-char>
@@ -197,10 +272,10 @@ export default function Projects() {
 
       {/* Carousel Container */}
       <div className="relative">
-        {/* Left Arrow */}
+        {/* Left Arrow - Hidden on mobile */}
         <button
           onClick={handlePrev}
-          className="absolute left-0 top-1/2 -translate-y-1/2 z-20 w-14 h-14 rounded-full bg-white border-2 border-[var(--color-primary)] text-[var(--color-primary)] flex items-center justify-center hover:bg-[var(--color-primary)] hover:text-white hover:scale-110 transition-all duration-300 shadow-lg"
+          className="hidden md:flex absolute left-0 top-1/2 -translate-y-1/2 z-20 w-14 h-14 rounded-full bg-white border-2 border-[var(--color-primary)] text-[var(--color-primary)] items-center justify-center hover:bg-[var(--color-primary)] hover:text-white hover:scale-110 transition-all duration-300 shadow-lg"
           aria-label="Vorheriges Projekt"
         >
           <svg className="w-7 h-7" fill="none" stroke="currentColor" viewBox="0 0 24 24" strokeWidth="3">
@@ -208,10 +283,10 @@ export default function Projects() {
           </svg>
         </button>
 
-        {/* Right Arrow */}
+        {/* Right Arrow - Hidden on mobile */}
         <button
           onClick={handleNext}
-          className="absolute right-0 top-1/2 -translate-y-1/2 z-20 w-14 h-14 rounded-full bg-white border-2 border-[var(--color-primary)] text-[var(--color-primary)] flex items-center justify-center hover:bg-[var(--color-primary)] hover:text-white hover:scale-110 transition-all duration-300 shadow-lg"
+          className="hidden md:flex absolute right-0 top-1/2 -translate-y-1/2 z-20 w-14 h-14 rounded-full bg-white border-2 border-[var(--color-primary)] text-[var(--color-primary)] items-center justify-center hover:bg-[var(--color-primary)] hover:text-white hover:scale-110 transition-all duration-300 shadow-lg"
           aria-label="Nächstes Projekt"
         >
           <svg className="w-7 h-7" fill="none" stroke="currentColor" viewBox="0 0 24 24" strokeWidth="3">
@@ -219,10 +294,10 @@ export default function Projects() {
           </svg>
         </button>
 
-        {/* Carousel */}
+        {/* Carousel - Desktop */}
         <div 
           ref={carouselRef}
-          className="flex items-center justify-center gap-8 px-20 py-8"
+          className="hidden md:flex items-center justify-center gap-8 px-20 py-8"
           style={{ perspective: "1500px" }}
         >
           {visibleProjects.map(({ index: projectIndex, position }, idx) => {
@@ -244,12 +319,12 @@ export default function Projects() {
                   transition: isAnimating ? 'none' : 'all 0.3s ease-out'
                 }}
               >
-                <div className="relative w-full h-full rounded-3xl overflow-hidden shadow-2xl group">
+                <div className="relative w-full h-full rounded-3xl overflow-hidden shadow-2xl group cursor-pointer" onClick={() => openLightbox(imageSrc)}>
                   {/* Actual Image */}
                   <img 
                     src={imageSrc} 
                     alt={project.title}
-                    className="absolute inset-0 w-full h-full object-cover"
+                    className="absolute inset-0 w-full h-full object-cover transition-transform duration-500 group-hover:scale-105"
                   />
                   
                   {/* Darker overlay for side cards */}
@@ -277,6 +352,47 @@ export default function Projects() {
               </div>
             )
           })}
+        </div>
+
+        {/* Mobile Stack Carousel - All cards visible */}
+        <div className="md:hidden px-4">
+          <div 
+            className="relative h-[500px] max-w-sm mx-auto"
+            onTouchStart={handleTouchStart}
+            onTouchMove={handleTouchMove}
+            onTouchEnd={handleTouchEnd}
+            style={{ perspective: "1500px" }}
+          >
+            {projects.map((project, i) => {
+              const imageSrc = projectImages[i]
+              const isActive = i === activeIndex
+              
+              return (
+                <div
+                  key={i}
+                  ref={(el) => (mobileCardsRef.current[i] = el)}
+                  className="absolute inset-x-0 top-1/2 -translate-y-1/2 cursor-pointer"
+                  style={{
+                    transformStyle: "preserve-3d",
+                    touchAction: isActive ? "none" : "auto"
+                  }}
+                  onClick={() => isActive && openLightbox(imageSrc)}
+                >
+                  <div className="relative w-full aspect-[3/4] rounded-3xl overflow-hidden shadow-2xl">
+                    <img 
+                      src={imageSrc} 
+                      alt={project.title}
+                      className="w-full h-full object-cover"
+                    />
+                    {/* Slight overlay for non-active cards */}
+                    {!isActive && (
+                      <div className="absolute inset-0 bg-black/20" />
+                    )}
+                  </div>
+                </div>
+              )
+            })}
+          </div>
         </div>
 
         {/* Dots Indicator */}

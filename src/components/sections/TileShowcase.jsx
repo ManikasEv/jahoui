@@ -1,4 +1,5 @@
-import { useRef, useEffect } from "react"
+import { useRef, useEffect, useState } from "react"
+import { gsap } from "gsap"
 import * as THREE from "three"
 import { FontLoader } from "three/examples/jsm/loaders/FontLoader.js"
 import { TextGeometry } from "three/examples/jsm/geometries/TextGeometry.js"
@@ -28,6 +29,8 @@ export default function TileShowcase() {
   const textGroupsRef = useRef([])
   const mouseRef = useRef({ x: 0, y: 0 })
   const targetRotationRef = useRef({ x: 0, y: 0 })
+  const mobileMessagesRef = useRef([])
+  const [currentMobileIndex, setCurrentMobileIndex] = useState(0)
 
   useEffect(() => {
     if (!canvasRef.current || !containerRef.current) return
@@ -316,6 +319,77 @@ export default function TileShowcase() {
     }
   }, [])
 
+  // Mobile 3D animation effect
+  useEffect(() => {
+    const isMobile = window.innerWidth < 768
+    if (!isMobile) return
+
+    const messages = mobileMessagesRef.current.filter(el => el !== null && el !== undefined)
+    if (messages.length === 0) {
+      console.log('No messages found for animation')
+      return
+    }
+
+    console.log(`Starting mobile animation with ${messages.length} messages`)
+    
+    let currentIndex = 0
+    let isAnimating = false
+
+    const animateMessage = () => {
+      if (isAnimating) return
+      isAnimating = true
+
+      const currentMsg = messages[currentIndex]
+      const nextIndex = (currentIndex + 1) % messages.length
+      
+      // Hide all messages first
+      messages.forEach(msg => {
+        if (msg) gsap.set(msg, { opacity: 0, scale: 0.3, y: 50 })
+      })
+
+      const tl = gsap.timeline({
+        onComplete: () => {
+          isAnimating = false
+          currentIndex = nextIndex
+          setTimeout(animateMessage, 100)
+        }
+      })
+
+      // Animate current message
+      tl.to(currentMsg, {
+        scale: 1, 
+        opacity: 1,
+        y: 0,
+        duration: 0.6,
+        ease: "back.out(1.7)"
+      })
+      .to(currentMsg, {
+        scale: 1,
+        opacity: 1,
+        duration: 2.0,
+        ease: "none"
+      })
+      .to(currentMsg, {
+        opacity: 0,
+        scale: 0.8,
+        y: -30,
+        duration: 0.4,
+        ease: "power2.in"
+      })
+    }
+
+    // Start animation after delay
+    const timeout = setTimeout(() => {
+      console.log('Starting first animation')
+      animateMessage()
+    }, 800)
+
+    return () => {
+      clearTimeout(timeout)
+      gsap.killTweensOf(messages)
+    }
+  }, [])
+
   return (
     <section className="relative py-24 bg-gradient-to-b from-gray-50 to-white">
       <div className="container-custom">
@@ -324,15 +398,16 @@ export default function TileShowcase() {
             Unsere Qualität spricht für sich
           </h2>
           <p className="font-[var(--font-body)] text-lg text-[var(--color-slate)] max-w-2xl mx-auto">
-            Bewegen Sie die Maus und entdecken Sie unsere Werte
+            <span className="hidden md:inline">Bewegen Sie die Maus und entdecken Sie unsere Werte</span>
+            <span className="md:hidden">Sehen Sie unsere Qualitätsmerkmale</span>
           </p>
         </div>
 
         <div className="flex flex-col items-center gap-8">
-          {/* 3D Canvas Container */}
+          {/* Desktop 3D Canvas Container */}
           <div
             ref={containerRef}
-            className="relative w-full max-w-4xl aspect-[16/9] rounded-2xl overflow-hidden bg-gradient-to-br from-gray-900 via-gray-800 to-black border border-white/10 shadow-2xl"
+            className="hidden md:block relative w-full max-w-4xl aspect-[16/9] rounded-2xl overflow-hidden bg-gradient-to-br from-gray-900 via-gray-800 to-black border border-white/10 shadow-2xl"
           >
             <canvas ref={canvasRef} className="w-full h-full" />
             
@@ -343,8 +418,59 @@ export default function TileShowcase() {
             }} />
           </div>
 
-          {/* Instruction hint */}
-          <div className="flex items-center gap-3 text-center justify-center bg-white/90 backdrop-blur px-6 py-4 rounded-xl border border-black/10 shadow-lg">
+          {/* Mobile 3D animated messages */}
+          <div className="md:hidden w-full max-w-md mx-auto">
+            <div 
+              className="relative h-[300px] rounded-2xl overflow-visible bg-gradient-to-br from-gray-900 via-gray-800 to-black border border-white/10 shadow-2xl flex items-center justify-center"
+              style={{ perspective: "1000px" }}
+            >
+              {/* Subtle grid overlay */}
+              <div className="absolute inset-0 pointer-events-none z-0 rounded-2xl overflow-hidden" style={{
+                backgroundImage: 'linear-gradient(rgba(255,255,255,0.03) 1px, transparent 1px), linear-gradient(90deg, rgba(255,255,255,0.03) 1px, transparent 1px)',
+                backgroundSize: '40px 40px'
+              }} />
+
+              {/* Animated messages */}
+              <div className="relative z-10 w-full h-full flex items-center justify-center overflow-hidden rounded-2xl">
+                {praises.map((praise, i) => (
+                  <div
+                    key={i}
+                    ref={(el) => {
+                      if (el) mobileMessagesRef.current[i] = el
+                    }}
+                    className="absolute inset-0 flex flex-col items-center justify-center p-8 text-center pointer-events-none"
+                    style={{
+                      opacity: 0,
+                      transform: "scale(0.3) translateY(50px)"
+                    }}
+                  >
+                    <svg 
+                      className="w-16 h-16 text-[var(--color-primary)] mb-4" 
+                      fill="currentColor" 
+                      viewBox="0 0 24 24"
+                    >
+                      <rect x="2" y="2" width="8" height="8" rx="1" />
+                      <rect x="13" y="2" width="8" height="8" rx="1" />
+                      <rect x="2" y="13" width="8" height="8" rx="1" />
+                      <rect x="13" y="13" width="8" height="8" rx="1" />
+                    </svg>
+                    <p className="font-[var(--font-heading)] text-xl font-bold text-white drop-shadow-lg">
+                      {praise.text}
+                    </p>
+                  </div>
+                ))}
+              </div>
+
+              {/* Decorative corner accents */}
+              <div className="absolute top-4 left-4 w-8 h-8 border-l-2 border-t-2 border-[var(--color-primary)] opacity-50 pointer-events-none" />
+              <div className="absolute top-4 right-4 w-8 h-8 border-r-2 border-t-2 border-[var(--color-primary)] opacity-50 pointer-events-none" />
+              <div className="absolute bottom-4 left-4 w-8 h-8 border-l-2 border-b-2 border-[var(--color-primary)] opacity-50 pointer-events-none" />
+              <div className="absolute bottom-4 right-4 w-8 h-8 border-r-2 border-b-2 border-[var(--color-primary)] opacity-50 pointer-events-none" />
+            </div>
+          </div>
+
+          {/* Instruction hint - Desktop only */}
+          <div className="hidden md:flex items-center gap-3 text-center justify-center bg-white/90 backdrop-blur px-6 py-4 rounded-xl border border-black/10 shadow-lg">
             <svg 
               className="w-6 h-6 text-[var(--color-primary)]" 
               fill="currentColor" 
