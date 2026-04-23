@@ -27,7 +27,7 @@ export const content = {
       copyright: "Alle Rechte vorbehalten.",
       whatsappLabel: "WhatsApp",
       // digits only: countrycode + number, no +
-      whatsappPhone: "41791234567",
+      whatsappPhone: "41765452332",
       whatsappPrefill:
         "Hallo! Ich hätte gerne eine Offerte für Plattenarbeiten. Können wir die Details besprechen?",
     },
@@ -36,7 +36,6 @@ export const content = {
       about: {
         title: "Über uns",
         name: "Elton Jaho",
-        image: "/elton-jaho.jpg",
         bio: [
           "Ich wurde im Jahr 1981 geboren und begann schon in jungen Jahren meinen beruflichen Weg im Bauhandwerk.",
           "Mit 17 Jahren startete ich meine Arbeit im Bereich Fliesen- und Plattenverlegung als Helfer. In dieser Zeit lernte ich die Grundlagen des Berufs und sammelte wertvolle praktische Erfahrung auf verschiedenen Baustellen. Durch harte Arbeit, Ausdauer und großes Interesse an meinem Handwerk entwickelte ich meine Fähigkeiten Schritt für Schritt weiter.",
@@ -124,7 +123,7 @@ export const content = {
         title: "Kontakt aufnehmen",
         text: "Schreiben Sie uns oder kontaktieren Sie uns direkt über WhatsApp. Wir freuen uns auf Ihr Projekt!",
         info: {
-          phone: "+41 79 123 45 67",
+          phone: "+41 76 545 23 32",
           email: "info@jaho-plattenleger.ch",
           address: "Schweiz"
         }

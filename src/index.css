@@ -156,3 +156,83 @@
     will-change: transform;
     transform: translateZ(0);
   }
+
+  /* Display headings — fluid size, tight line-height, balanced wraps */
+  .hero-title {
+    font-family: var(--font-heading);
+    color: var(--color-dark);
+    font-size: clamp(1.45rem, 0.75rem + 3.2vw, 3rem);
+    line-height: 1.12;
+    letter-spacing: -0.035em;
+    text-wrap: balance;
+  }
+
+  /* Per-letter GSAP wrappers can add visual gaps; nudge together slightly */
+  .hero-title [data-letter] {
+    margin-inline: -0.02em;
+  }
+
+  .section-title {
+    font-family: var(--font-heading);
+    color: var(--color-dark);
+    font-size: clamp(1.6rem, 1rem + 2.6vw, 2.85rem);
+    line-height: 1.12;
+    letter-spacing: -0.03em;
+    text-wrap: balance;
+  }
+
+  .section-title [data-char] {
+    margin-inline: -0.025em;
+  }
+
+  @keyframes profile-halo {
+    0%, 100% {
+      box-shadow:
+        0 0 0 0 rgba(196, 30, 58, 0.28),
+        0 20px 40px -12px rgba(0, 0, 0, 0.18);
+    }
+    50% {
+      box-shadow:
+        0 0 0 10px rgba(196, 30, 58, 0),
+        0 24px 48px -10px rgba(0, 0, 0, 0.22);
+    }
+  }
+
+  .profile-halo {
+    animation: profile-halo 3.5s ease-out infinite;
+  }
+
+  .hero-media-frame {
+    position: relative;
+    isolation: isolate;
+  }
+
+  .hero-media-frame::before {
+    content: "";
+    position: absolute;
+    inset: -2px;
+    border-radius: inherit;
+    z-index: 1;
+    pointer-events: none;
+    background: linear-gradient(
+      125deg,
+      rgba(214, 178, 124, 0.35),
+      transparent 40%,
+      rgba(196, 30, 58, 0.25) 70%,
+      transparent
+    );
+    background-size: 200% 200%;
+    animation: gradient 10s ease infinite;
+    opacity: 0.5;
+    mix-blend-mode: overlay;
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .profile-halo,
+    .hero-media-frame::before {
+      animation: none !important;
+    }
+    .hero-media-frame::before {
+      opacity: 0.25;
+    }
+  }

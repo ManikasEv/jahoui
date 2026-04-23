@@ -10,10 +10,10 @@ export default function HeroMobile({ data, titleRef, subtitleRef, badgeRef, ctaR
 
         <h1
           ref={titleRef}
-          className="font-[var(--font-heading)] text-[var(--color-dark)] text-2xl sm:text-3xl leading-[1.3] tracking-tight mb-4"
+          className="hero-title mb-4"
         >
           {data.title.split(" ").map((word, wordIndex) => (
-            <span key={wordIndex} className="inline-block mr-[0.3em]">
+            <span key={wordIndex} className="inline-block mr-[0.18em]">
               {word.split("").map((ch, charIndex) => (
                 <span key={charIndex} data-letter className="inline-block">
                   {ch}
@@ -23,15 +23,15 @@ export default function HeroMobile({ data, titleRef, subtitleRef, badgeRef, ctaR
           ))}
         </h1>
 
-        <p ref={subtitleRef} className="font-[var(--font-body)] text-[var(--color-slate)] mb-6">
+        <p ref={subtitleRef} className="font-[var(--font-body)] text-[var(--color-slate)] text-base leading-relaxed mb-6">
           {data.subtitle}
         </p>
 
-        <div className="mb-6 relative aspect-[4/3] rounded-2xl overflow-hidden bg-gray-200 border border-black/10">
+        <div className="hero-media-frame mb-6 relative aspect-[4/3] rounded-2xl overflow-hidden bg-gray-200 border border-black/10 shadow-lg">
           <img 
             src={data.image} 
             alt={data.imageAlt}
-            className="w-full h-full object-cover"
+            className="relative z-0 w-full h-full object-cover"
             onError={(e) => {
               e.target.style.display = 'none'
               e.target.parentElement.innerHTML = '<div class="w-full h-full bg-gray-300 flex items-center justify-center"><div class="text-center"><div class="text-5xl mb-3">🔧</div><div class="font-semibold text-gray-600 text-sm">Bild kommt bald</div></div></div>'

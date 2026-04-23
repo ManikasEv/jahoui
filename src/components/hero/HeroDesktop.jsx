@@ -17,10 +17,10 @@ export default function HeroDesktop({
   
           <h1
             ref={titleRef}
-            className="font-[var(--font-heading)] text-[var(--color-dark)] text-4xl lg:text-5xl leading-[1.3] tracking-tight mb-6 max-w-[600px]"
+            className="hero-title mb-6 max-w-[600px]"
           >
             {data.title.split(" ").map((word, wordIndex) => (
-              <span key={wordIndex} className="inline-block mr-[0.3em]">
+              <span key={wordIndex} className="inline-block mr-[0.18em]">
                 {word.split("").map((ch, charIndex) => (
                   <span key={charIndex} data-letter className="inline-block">
                     {ch}
@@ -57,11 +57,11 @@ export default function HeroDesktop({
         </div>
   
         <div className="col-span-5">
-          <div className="relative aspect-[4/3] rounded-2xl overflow-hidden bg-gray-200 border border-black/10">
+          <div className="hero-media-frame relative aspect-[4/3] rounded-2xl overflow-hidden bg-gray-200 border border-black/10 shadow-xl">
             <img 
               src={data.image} 
               alt={data.imageAlt}
-              className="w-full h-full object-cover"
+              className="relative z-0 w-full h-full object-cover"
               onError={(e) => {
                 e.target.style.display = 'none'
                 e.target.parentElement.innerHTML = '<div class="w-full h-full bg-gray-300 flex items-center justify-center"><div class="text-center"><div class="text-6xl mb-4">🔧</div><div class="font-semibold text-gray-600">Bild kommt bald</div></div></div>'

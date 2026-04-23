@@ -86,6 +86,9 @@ export default function Contact() {
     window.open(`https://wa.me/${phone}?text=${message}`, "_blank")
   }
 
+  const phoneDigits = content.sections.contact.info.phone.replace(/\D/g, "")
+  const phoneHref = phoneDigits ? `tel:+${phoneDigits.replace(/^\+?/, "")}` : ""
+
   const onSubmit = async (event) => {
     event.preventDefault()
     setIsSubmitting(true)
@@ -131,7 +134,7 @@ export default function Contact() {
       ref={sectionRef}
       className="mx-auto w-full max-w-[1100px] px-6 py-20"
     >
-      <h2 ref={titleRef} className="font-[var(--font-heading)] text-4xl md:text-5xl text-[var(--color-dark)] mb-4">
+      <h2 ref={titleRef} className="section-title mb-4">
         {content.sections.contact.title.split("").map((char, i) => (
           <span key={i} className="inline-block" data-char>
             {char === " " ? "\u00A0" : char}
@@ -140,7 +143,7 @@ export default function Contact() {
       </h2>
       <p ref={textRef} className="font-[var(--font-body)] text-lg text-[var(--color-slate)] mb-12 max-w-2xl">
         {content.sections.contact.text.split(" ").map((word, i) => (
-          <span key={i} className="inline-block mr-[0.3em]" data-word>
+          <span key={i} className="inline-block mr-[0.18em]" data-word>
             {word}
           </span>
         ))}
@@ -152,7 +155,7 @@ export default function Contact() {
           ref={formRef}
           className="rounded-2xl border border-black/10 bg-white/70 backdrop-blur p-8"
         >
-          <h3 className="font-[var(--font-heading)] text-2xl text-[var(--color-dark)] mb-6">
+          <h3 className="font-[var(--font-heading)] text-xl md:text-2xl leading-snug text-[var(--color-dark)] mb-6">
             Nachricht senden
           </h3>
           <form onSubmit={onSubmit} className="space-y-4">
@@ -234,7 +237,7 @@ export default function Contact() {
         {/* Contact Info */}
         <div ref={infoRef} className="space-y-6">
           <div className="rounded-2xl border border-black/10 bg-white/70 backdrop-blur p-8">
-            <h3 className="font-[var(--font-heading)] text-2xl text-[var(--color-dark)] mb-6">
+            <h3 className="font-[var(--font-heading)] text-xl md:text-2xl leading-snug text-[var(--color-dark)] mb-6">
               Kontaktinformationen
             </h3>
             <div className="space-y-4">
@@ -245,7 +248,7 @@ export default function Contact() {
                 <div>
                   <div className="font-semibold text-[var(--color-dark)]">Telefon</div>
                   <a
-                    href={`tel:${content.sections.contact.info.phone}`}
+                    href={phoneHref}
                     className="text-[var(--color-slate)] hover:text-[var(--color-primary)] transition-colors"
                   >
                     {content.sections.contact.info.phone}

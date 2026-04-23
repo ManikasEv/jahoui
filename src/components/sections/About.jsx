@@ -2,6 +2,7 @@ import { useRef, useEffect } from "react"
 import { gsap } from "gsap"
 import { ScrollTrigger } from "gsap/ScrollTrigger"
 import { content } from "../../data/content"
+import profilePhoto from "../../assets/profile.jpg"
 
 gsap.registerPlugin(ScrollTrigger)
 
@@ -81,7 +82,7 @@ export default function About() {
     >
       <h2 
         ref={titleRef}
-        className="font-[var(--font-heading)] text-4xl md:text-5xl text-[var(--color-dark)] mb-12 text-center"
+        className="section-title mb-8 md:mb-10 text-center"
       >
         {content.sections.about.title.split("").map((char, i) => (
           <span key={i} className="inline-block" data-char>
@@ -95,16 +96,12 @@ export default function About() {
         <div className="flex justify-center md:justify-start">
           <div 
             ref={imageRef}
-            className="relative w-48 h-48 md:w-56 md:h-56 rounded-full overflow-hidden border-4 border-[var(--color-primary)] bg-gray-200"
+            className="profile-halo relative w-48 h-48 md:w-56 md:h-56 rounded-full overflow-hidden border-4 border-[var(--color-primary)] bg-gray-200"
           >
             <img 
-              src={content.sections.about.image} 
+              src={profilePhoto} 
               alt={content.sections.about.name}
-              className="w-full h-full object-cover"
-              onError={(e) => {
-                e.target.style.display = 'none'
-                e.target.parentElement.innerHTML = '<div class="w-full h-full bg-gray-300 flex items-center justify-center"><div class="text-6xl">👨‍🔧</div></div>'
-              }}
+              className="w-full h-full object-cover object-top"
             />
           </div>
         </div>

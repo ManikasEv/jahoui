@@ -112,7 +112,7 @@ export default function Clients() {
       ref={sectionRef}
       className="mx-auto w-full max-w-[1100px] px-6 py-20"
     >
-      <h2 ref={titleRef} className="font-[var(--font-heading)] text-4xl md:text-5xl text-[var(--color-dark)] mb-4 text-center">
+      <h2 ref={titleRef} className="section-title mb-4 text-center">
         {content.sections.clients.title.split("").map((char, i) => (
           <span key={i} className="inline-block" data-char>
             {char === " " ? "\u00A0" : char}
@@ -121,7 +121,7 @@ export default function Clients() {
       </h2>
       <p ref={textRef} className="font-[var(--font-body)] text-lg text-[var(--color-slate)] mb-12 max-w-2xl mx-auto text-center">
         {content.sections.clients.text.split(" ").map((word, i) => (
-          <span key={i} className="inline-block mr-[0.3em]" data-word>
+          <span key={i} className="inline-block mr-[0.18em]" data-word>
             {word}
           </span>
         ))}
@@ -145,7 +145,7 @@ export default function Clients() {
                 <span className="text-2xl">{getIcon(item.icon)}</span>
               </div>
               
-              <h3 className="font-[var(--font-heading)] text-2xl text-[var(--color-dark)] mb-3">
+              <h3 className="font-[var(--font-heading)] text-xl md:text-2xl leading-snug text-[var(--color-dark)] mb-3">
                 {item.title}
               </h3>
               

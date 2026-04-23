@@ -394,7 +394,7 @@ export default function TileShowcase() {
     <section className="relative py-24 bg-gradient-to-b from-gray-50 to-white">
       <div className="container-custom">
         <div className="text-center mb-12">
-          <h2 className="font-[var(--font-heading)] text-4xl md:text-5xl text-[var(--color-dark)] mb-4">
+          <h2 className="section-title mb-4">
             Unsere Qualität spricht für sich
           </h2>
           <p className="font-[var(--font-body)] text-lg text-[var(--color-slate)] max-w-2xl mx-auto">

@@ -272,7 +272,7 @@ export default function Projects() {
           altText="Projekt Bild"
         />
       )}
-      <h2 ref={titleRef} className="font-[var(--font-heading)] text-4xl md:text-5xl text-[var(--color-dark)] mb-4 text-center">
+      <h2 ref={titleRef} className="section-title mb-4 text-center">
         {content.sections.projects.title.split("").map((char, i) => (
           <span key={i} className="inline-block" data-char>
             {char === " " ? "\u00A0" : char}
@@ -281,7 +281,7 @@ export default function Projects() {
       </h2>
       <p ref={textRef} className="font-[var(--font-body)] text-lg text-[var(--color-slate)] mb-16 max-w-2xl mx-auto text-center">
         {content.sections.projects.text.split(" ").map((word, i) => (
-          <span key={i} className="inline-block mr-[0.3em]" data-word>
+          <span key={i} className="inline-block mr-[0.18em]" data-word>
             {word}
           </span>
         ))}
