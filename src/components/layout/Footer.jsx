@@ -47,7 +47,7 @@ export default function Footer() {
             <div className="text-sm font-semibold text-[var(--color-dark)]">Schnellzugriff</div>
             <ul className="mt-4 space-y-2">
               <li>
-                <a href="/" className="font-[var(--font-body)] text-[var(--color-slate)] hover:text-[var(--color-dark)] transition-colors font-semibold">
+                <a href="/" className="font-[var(--font-body)] text-[var(--color-slate)] hover:text-[var(--color-primary)] transition-colors font-semibold">
                   Startseite
                 </a>
               </li>
@@ -55,7 +55,7 @@ export default function Footer() {
                 <li key={l.href}>
                   <a
                     href={l.href}
-                    className="font-[var(--font-body)] text-[var(--color-slate)] hover:text-[var(--color-dark)] transition-colors"
+                    className="font-[var(--font-body)] text-[var(--color-slate)] hover:text-[var(--color-primary)] transition-colors"
                   >
                     {l.label}
                   </a>
@@ -64,7 +64,7 @@ export default function Footer() {
               <li>
                 <a
                   href="/plattenleger-zuerich"
-                  className="font-[var(--font-body)] text-[var(--color-slate)] hover:text-[var(--color-dark)] transition-colors"
+                  className="font-[var(--font-body)] text-[var(--color-slate)] hover:text-[var(--color-primary)] transition-colors"
                 >
                   Plattenleger Zürich
                 </a>
@@ -72,7 +72,7 @@ export default function Footer() {
               <li>
                 <a
                   href="/badrenovation-zuerich"
-                  className="font-[var(--font-body)] text-[var(--color-slate)] hover:text-[var(--color-dark)] transition-colors"
+                  className="font-[var(--font-body)] text-[var(--color-slate)] hover:text-[var(--color-primary)] transition-colors"
                 >
                   Bad Renovation Zürich
                 </a>
@@ -80,7 +80,7 @@ export default function Footer() {
               <li>
                 <a
                   href="/kueche-fliesen-zuerich"
-                  className="font-[var(--font-body)] text-[var(--color-slate)] hover:text-[var(--color-dark)] transition-colors"
+                  className="font-[var(--font-body)] text-[var(--color-slate)] hover:text-[var(--color-primary)] transition-colors"
                 >
                   Küchen Fliesen Zürich
                 </a>

@@ -150,6 +150,43 @@ export default function GalleryShowcase({
     return () => ctx.revert()
   }, [reducedMotion])
 
+  /** Intro: heading letters + description words on scroll (once). */
+  useEffect(() => {
+    if (reducedMotion || !sectionRef.current) return
+
+    const root = sectionRef.current
+    const ctx = gsap.context(() => {
+      const chars = root.querySelectorAll("[data-gallery-heading-char]")
+      if (chars.length) {
+        gsap.from(chars, {
+          scrollTrigger: { trigger: root, start: "top 82%", once: true },
+          opacity: 0,
+          y: (i) => (i % 2 === 0 ? -22 : 22),
+          rotateZ: (i) => (i % 2 === 0 ? -14 : 14),
+          stagger: 0.028,
+          duration: 0.72,
+          ease: "back.out(1.55)",
+        })
+      }
+
+      const words = root.querySelectorAll("[data-gallery-desc-word]")
+      if (words.length) {
+        gsap.from(words, {
+          scrollTrigger: { trigger: root, start: "top 78%", once: true },
+          opacity: 0,
+          y: 18,
+          rotateX: -35,
+          stagger: 0.045,
+          duration: 0.55,
+          ease: "power3.out",
+          delay: 0.12,
+        })
+      }
+    }, sectionRef)
+
+    return () => ctx.revert()
+  }, [reducedMotion, title, description])
+
   /** Slide change: featured media & copy + collage motion (transform-only on tiles so quotes stay independent). */
   useEffect(() => {
     if (reducedMotion) return
@@ -168,17 +205,119 @@ export default function GalleryShowcase({
       }
 
       if (featCol) {
-        const lines = featCol.querySelectorAll("[data-feature-line]")
+        const labelChars = featCol.querySelectorAll("[data-feature-label-char]")
+        if (labelChars.length) {
+          gsap.fromTo(
+            labelChars,
+            { opacity: 0, y: 14, rotateX: -70 },
+            {
+              opacity: 1,
+              y: 0,
+              rotateX: 0,
+              duration: 0.42,
+              stagger: 0.035,
+              ease: "power2.out",
+            }
+          )
+        }
+
+        const titleChars = featCol.querySelectorAll("[data-feature-title-char]")
+        if (titleChars.length) {
+          gsap.fromTo(
+            titleChars,
+            { opacity: 0, y: 28, rotateY: -52, transformOrigin: "50% 50% -12px" },
+            {
+              opacity: 1,
+              y: 0,
+              rotateY: 0,
+              duration: 0.52,
+              stagger: 0.022,
+              ease: "power3.out",
+              delay: 0.06,
+            }
+          )
+        }
+
+        const divider = featCol.querySelector("[data-feature-divider]")
+        if (divider) {
+          gsap.fromTo(
+            divider,
+            { scaleX: 0, opacity: 0 },
+            {
+              scaleX: 1,
+              opacity: 1,
+              duration: 0.38,
+              ease: "power2.out",
+              transformOrigin: "left center",
+              delay: 0.14,
+            }
+          )
+        }
+
+        const quoteWords = featCol.querySelectorAll("[data-quote-word]")
+        if (quoteWords.length) {
+          gsap.fromTo(
+            quoteWords,
+            { opacity: 0, y: 14, skewX: -6 },
+            {
+              opacity: 1,
+              y: 0,
+              skewX: 0,
+              duration: 0.44,
+              stagger: 0.032,
+              ease: "power2.out",
+              delay: 0.2,
+            }
+          )
+        }
+
+        const btnChars = featCol.querySelectorAll("[data-feature-btn-char]")
+        if (btnChars.length) {
+          gsap.fromTo(
+            btnChars,
+            { opacity: 0, y: 12, scale: 0.65 },
+            {
+              opacity: 1,
+              y: 0,
+              scale: 1,
+              duration: 0.38,
+              stagger: 0.018,
+              ease: "back.out(1.8)",
+              delay: 0.32,
+            }
+          )
+        }
+
+        const lineBlocks = featCol.querySelectorAll("[data-feature-line-block]")
+        if (lineBlocks.length) {
+          gsap.fromTo(
+            lineBlocks,
+            { opacity: 0, y: 14 },
+            {
+              opacity: 1,
+              y: 0,
+              duration: 0.42,
+              stagger: 0.1,
+              ease: "power2.out",
+              delay: 0.26,
+            }
+          )
+        }
+      }
+
+      const collageLabelChars = sectionRef.current?.querySelectorAll("[data-collage-label-char]")
+      if (collageLabelChars?.length) {
         gsap.fromTo(
-          lines,
-          { opacity: 0, y: 16 },
+          collageLabelChars,
+          { opacity: 0, x: -10, rotateZ: -18 },
           {
             opacity: 1,
-            y: 0,
-            duration: 0.52,
-            stagger: 0.075,
+            x: 0,
+            rotateZ: 0,
+            duration: 0.36,
+            stagger: 0.04,
             ease: "power2.out",
-            delay: 0.06,
+            delay: 0.04,
           }
         )
       }
@@ -198,7 +337,7 @@ export default function GalleryShowcase({
           }
         )
       }
-    })
+    }, sectionRef)
 
     return () => ctx.revert()
   }, [index, reducedMotion, collage])
@@ -268,10 +407,24 @@ export default function GalleryShowcase({
       className="mx-auto w-full max-w-[80vw] px-6 py-10 md:py-11 reveal-group"
     >
       <div className="flex flex-col gap-4 md:gap-5">
-        <div ref={introRef} className="max-w-xl mx-auto text-center">
-          <h2 className="section-title mb-1 leading-tight text-[clamp(1.35rem,2.6vw,1.85rem)]">{title}</h2>
+        <div ref={introRef} className="max-w-xl mx-auto text-center perspective-[880px]">
+          <h2 className="section-title mb-1 leading-tight text-[clamp(1.35rem,2.6vw,1.85rem)]">
+            {reducedMotion
+              ? title
+              : title.split("").map((char, i) => (
+                  <span key={`gallery-h-${i}`} className="inline-block" data-gallery-heading-char>
+                    {char === " " ? "\u00A0" : char}
+                  </span>
+                ))}
+          </h2>
           <p className="font-[var(--font-body)] text-[11px] md:text-xs text-[var(--color-slate)] leading-relaxed text-safe italic">
-            {description}
+            {reducedMotion
+              ? description
+              : description.split(/\s+/).filter(Boolean).map((word, i) => (
+                  <span key={`gallery-d-${i}`} className="inline-block mr-[0.22em]" data-gallery-desc-word>
+                    {word}
+                  </span>
+                ))}
           </p>
         </div>
 
@@ -309,28 +462,41 @@ export default function GalleryShowcase({
 
                 <div
                   ref={featuredColRef}
-                  className="flex flex-col gap-1.5 text-left items-start rounded-lg border border-black/[0.07] bg-[var(--color-bg)]/50 px-3 py-2.5 min-h-0 lg:flex-1 lg:basis-0 lg:justify-center lg:overflow-y-auto"
+                  className="flex flex-col gap-1.5 text-left items-start rounded-lg border border-black/[0.07] bg-[var(--color-bg)]/50 px-3 py-2.5 min-h-0 lg:flex-1 lg:basis-0 lg:justify-center lg:overflow-y-auto perspective-[720px]"
                 >
-                  <p
-                    data-feature-line
-                    className="text-[9px] font-semibold uppercase tracking-[0.12em] text-[var(--color-primary)]"
-                  >
-                    Schwerpunkte
+                  <p className="text-[9px] font-semibold uppercase tracking-[0.12em] text-[var(--color-primary)] flex flex-wrap gap-0">
+                    {reducedMotion
+                      ? "Schwerpunkte"
+                      : "Schwerpunkte".split("").map((char, i) => (
+                          <span key={`${index}-lb-${i}`} data-feature-label-char className="inline-block">
+                            {char}
+                          </span>
+                        ))}
                   </p>
-                  <h3
-                    data-feature-line
-                    className="font-[var(--font-heading)] text-base md:text-lg text-[var(--color-dark)] tracking-tight leading-snug"
-                  >
-                    {current.title}
+                  <h3 className="font-[var(--font-heading)] text-base md:text-lg text-[var(--color-dark)] tracking-tight leading-snug [transform-style:preserve-3d]">
+                    {reducedMotion
+                      ? current.title
+                      : current.title.split("").map((char, i) => (
+                          <span key={`${index}-tl-${i}`} data-feature-title-char className="inline-block">
+                            {char === " " ? "\u00A0" : char}
+                          </span>
+                        ))}
                   </h3>
-                  <div data-feature-line className="h-px w-8 rounded-full bg-[var(--color-primary)]/30" aria-hidden />
-                  <p
-                    data-feature-line
-                    className="font-[var(--font-body)] text-[var(--color-slate)] text-xs leading-relaxed italic text-safe"
-                  >
-                    {current.quote}
+                  <div
+                    data-feature-divider
+                    className="h-px w-8 rounded-full bg-[var(--color-primary)]/30"
+                    aria-hidden
+                  />
+                  <p className="font-[var(--font-body)] text-[var(--color-slate)] text-xs leading-relaxed italic text-safe">
+                    {reducedMotion
+                      ? current.quote
+                      : current.quote.split(/\s+/).filter(Boolean).map((word, i) => (
+                          <span key={`${index}-qw-${i}`} data-quote-word className="inline-block mr-[0.28em]">
+                            {word}
+                          </span>
+                        ))}
                   </p>
-                  <div data-feature-line className="flex flex-wrap gap-1.5">
+                  <div data-feature-line-block className="flex flex-wrap gap-1.5">
                     {current.tags.map((t) => (
                       <span
                         key={t}
@@ -341,20 +507,31 @@ export default function GalleryShowcase({
                     ))}
                   </div>
                   <button
-                    data-feature-line
                     type="button"
                     onClick={() => setLightboxImage(current.src)}
                     className="mt-0.5 px-3 py-1.5 rounded-md font-[var(--font-body)] font-semibold bg-[var(--color-primary)] text-white text-[11px] transition-colors hover:bg-[var(--color-primary)]/92 shadow-sm"
                   >
-                    Bild gross ansehen
+                    {reducedMotion
+                      ? "Bild gross ansehen"
+                      : "Bild gross ansehen".split("").map((char, i) => (
+                          <span key={`${index}-btn-${i}`} data-feature-btn-char className="inline-block">
+                            {char === " " ? "\u00A0" : char}
+                          </span>
+                        ))}
                   </button>
                 </div>
               </div>
 
               <div className="flex flex-col gap-1.5 min-w-0 lg:h-full lg:min-h-0">
                 <div className="flex items-center justify-between gap-2 px-0.5">
-                  <p className="text-[9px] font-semibold uppercase tracking-[0.12em] text-[var(--color-slate)]/90">
-                    Collage
+                  <p className="text-[9px] font-semibold uppercase tracking-[0.12em] text-[var(--color-slate)]/90 flex flex-wrap gap-0">
+                    {reducedMotion
+                      ? "Collage"
+                      : "Collage".split("").map((char, i) => (
+                          <span key={`${index}-cl-${i}`} data-collage-label-char className="inline-block">
+                            {char}
+                          </span>
+                        ))}
                   </p>
                   {!reducedMotion && paused ? (
                     <span className="text-[9px] text-[var(--color-slate)] shrink-0">Pausiert</span>
