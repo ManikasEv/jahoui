@@ -1,4 +1,24 @@
+import logoJaho from "../../assets/logojaho.jpg"
+import { useEffect, useRef } from "react"
+import { gsap } from "gsap"
+
 export default function HeroMobile({ data, titleRef, subtitleRef, badgeRef, ctaRef }) {
+  const logoRef = useRef(null)
+
+  useEffect(() => {
+    const el = logoRef.current
+    if (!el) return
+
+    const prefersReduced =
+      typeof window !== "undefined" &&
+      window.matchMedia &&
+      window.matchMedia("(prefers-reduced-motion: reduce)").matches
+    if (prefersReduced) return
+
+    const tw = gsap.fromTo(el, { opacity: 0 }, { opacity: 1, duration: 0.5, ease: "power2.out" })
+    return () => tw.kill()
+  }, [])
+
     return (
       <div className="md:hidden">
         <div
@@ -27,34 +47,26 @@ export default function HeroMobile({ data, titleRef, subtitleRef, badgeRef, ctaR
           {data.subtitle}
         </p>
 
-        <div className="hero-media-frame mb-6 relative aspect-[4/3] rounded-2xl overflow-hidden bg-gray-200 border border-black/10 shadow-lg">
-          <img 
-            src={data.image} 
-            alt={data.imageAlt}
-            className="relative z-0 w-full h-full object-cover"
-            onError={(e) => {
-              e.target.style.display = 'none'
-              e.target.parentElement.innerHTML = '<div class="w-full h-full bg-gray-300 flex items-center justify-center"><div class="text-center"><div class="text-5xl mb-3">🔧</div><div class="font-semibold text-gray-600 text-sm">Bild kommt bald</div></div></div>'
-            }}
+      <div className="relative aspect-[4/3] rounded-2xl overflow-hidden bg-[var(--color-dark)] border border-black/10 shadow-lg mb-6">
+        <div className="absolute inset-0 hero-logo-motion">
+          <img
+            src={logoJaho}
+            alt="Jaho Plattenleger Logo"
+            ref={logoRef}
+            className="absolute inset-0 w-full h-full object-cover scale-[1.32]"
+            loading="eager"
+            decoding="async"
           />
+        </div>
         </div>
 
         <button
           ref={ctaRef}
+          type="button"
           onClick={() => (window.location.href = "#contact")}
-          className="group relative w-full px-6 py-3 rounded-xl font-[var(--font-body)] font-semibold bg-[var(--color-primary)] text-white overflow-visible"
-          data-cta-primary
+          className="w-full px-6 py-3 rounded-xl font-[var(--font-body)] font-semibold bg-[var(--color-primary)] text-white transition-all duration-300 hover:bg-[var(--color-primary)]/92 hover:scale-[1.01] active:scale-[0.99] shadow-md hover:shadow-lg"
         >
-          <span className="absolute inset-0 rounded-xl overflow-hidden">
-            <span className="absolute inset-0 translate-x-[-100%] group-hover:translate-x-[100%] transition-transform duration-700 bg-gradient-to-r from-transparent via-white/30 to-transparent" />
-          </span>
-          
-          <span className="absolute -top-1 -right-1 w-2 h-2 bg-white rounded-full opacity-0 group-hover:opacity-100 group-hover:animate-ping" />
-          <span className="absolute -bottom-1 -left-1 w-2 h-2 bg-white rounded-full opacity-0 group-hover:opacity-100 group-hover:animate-ping" style={{ animationDelay: "0.1s" }} />
-          
-          <span className="relative z-10">
-            {data.cta}
-          </span>
+          {data.cta}
         </button>
       </div>
     )

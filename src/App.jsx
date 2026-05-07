@@ -1,84 +1,65 @@
 import { useEffect } from "react"
 import { gsap } from "gsap"
 import { ScrollTrigger } from "gsap/ScrollTrigger"
-import { createCursorFollower } from "./utils/magneticEffect"
+import { Routes, Route, useLocation } from "react-router-dom"
 import Navbar from "./components/layout/Navbar"
-import Hero from "./components/hero/Hero"
-import About from "./components/sections/About"
-import Clients from "./components/sections/Clients"
-import TileShowcase from "./components/sections/TileShowcase"
-import Projects from "./components/sections/Projects"
-import Contact from "./components/sections/Contact"
 import Footer from "./components/layout/Footer"
+import Home from "./pages/Home"
+import PlattenlegerZuerich from "./pages/PlattenlegerZuerich"
+import BadRenovationZuerich from "./pages/BadRenovationZuerich"
+import KuecheFliesenZuerich from "./pages/KuecheFliesenZuerich"
 
 gsap.registerPlugin(ScrollTrigger)
 
 export default function App() {
+  const location = useLocation()
+
   useEffect(() => {
     ScrollTrigger.config({
       autoRefreshEvents: "visibilitychange,DOMContentLoaded,load"
     })
 
-    // Initialize cursor follower
-    const cleanupCursor = createCursorFollower()
-
     return () => {
       ScrollTrigger.getAll().forEach(trigger => trigger.kill())
-      cleanupCursor()
     }
   }, [])
 
+  useEffect(() => {
+    const hash = location.hash
+
+    if (!hash) {
+      window.scrollTo({ top: 0, left: 0, behavior: "instant" })
+      ScrollTrigger.refresh(true)
+      return
+    }
+
+    // If we have a hash, scroll to that section after paint.
+    const id = hash.replace("#", "")
+    const t = window.setTimeout(() => {
+      const el = document.getElementById(id)
+      if (el) el.scrollIntoView({ behavior: "smooth", block: "start" })
+      ScrollTrigger.refresh(true)
+    }, 0)
+
+    return () => window.clearTimeout(t)
+  }, [location.pathname, location.hash])
+
   return (
     <div className="min-h-screen bg-[var(--color-bg)] overflow-x-hidden relative">
-      {/* Decorative glowing elements */}
-      <svg className="fixed top-0 left-0 w-full h-full pointer-events-none z-0 opacity-20" style={{ mixBlendMode: 'screen' }}>
-        <defs>
-          <filter id="glow">
-            <feGaussianBlur stdDeviation="10" result="coloredBlur"/>
-            <feMerge>
-              <feMergeNode in="coloredBlur"/>
-              <feMergeNode in="SourceGraphic"/>
-            </feMerge>
-          </filter>
-        </defs>
-        
-        {/* Organic flowing lines */}
-        <path
-          className="glow-element"
-          d="M 100 300 Q 300 200, 500 300 T 900 300"
-          stroke="var(--color-primary)"
-          strokeWidth="3"
-          fill="none"
-          filter="url(#glow)"
-        />
-        <path
-          className="glow-element"
-          d="M 200 600 Q 400 500, 600 600 T 1000 600"
-          stroke="var(--color-primary)"
-          strokeWidth="2"
-          fill="none"
-          filter="url(#glow)"
-          style={{ animationDelay: '1s' }}
-        />
-        <path
-          className="glow-element"
-          d="M 50 150 Q 200 100, 350 150 T 650 150"
-          stroke="var(--color-primary)"
-          strokeWidth="2"
-          fill="none"
-          filter="url(#glow)"
-          style={{ animationDelay: '2s' }}
-        />
-      </svg>
+      <div
+        aria-hidden="true"
+        className="app-bg-wash pointer-events-none fixed inset-0 z-0 bg-[radial-gradient(120%_80%_at_50%_-10%,rgba(196,30,58,0.06),transparent_55%)]"
+      />
 
       <div className="relative z-10">
         <Navbar />
-        <Hero />
-        <About />
-        <Clients />
-        <TileShowcase />
-        <Projects />
-        <Contact />
+        <Routes>
+          <Route path="/" element={<Home />} />
+          <Route path="/plattenleger-zuerich" element={<PlattenlegerZuerich />} />
+          <Route path="/badrenovation-zuerich" element={<BadRenovationZuerich />} />
+          <Route path="/kueche-fliesen-zuerich" element={<KuecheFliesenZuerich />} />
+          <Route path="*" element={<Home />} />
+        </Routes>
         <Footer />
       </div>
     </div>

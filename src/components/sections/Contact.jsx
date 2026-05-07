@@ -132,7 +132,7 @@ export default function Contact() {
     <section
       id="contact"
       ref={sectionRef}
-      className="mx-auto w-full max-w-[1100px] px-6 py-20"
+      className="mx-auto w-full max-w-[80vw] px-6 py-20"
     >
       <h2 ref={titleRef} className="section-title mb-4">
         {content.sections.contact.title.split("").map((char, i) => (

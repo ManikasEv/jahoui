@@ -2,10 +2,11 @@ export const content = {
     brand: "Jaho Plattenleger",
     nav: {
       links: [
-        { href: "#hero", label: "Start" },
+        { href: "/", label: "Start" },
         { href: "#about", label: "Über uns" },
         { href: "#clients", label: "Kunden" },
-        { href: "#projects", label: "Projekte" },
+        { href: "#gallery", label: "Referenzen" },
+        { href: "#faq", label: "FAQ" },
         { href: "#contact", label: "Kontakt" },
       ],
       cta: "Offerte anfragen",
@@ -118,6 +119,37 @@ export const content = {
             image: "/p7.jpg"
           }
         ]
+      },
+      faq: {
+        title: "Häufige Fragen",
+        subtitle:
+          "Kurze Antworten zu Offerten, Material und Ablauf. Für Einzelfälle melden wir uns gern persönlich bei Ihnen.",
+        items: [
+          {
+            q: "Wie läuft eine Offerte ab?",
+            a: "Schreiben Sie uns kurz Ihr Projekt (Räume, ungefähre Flächen, Fotos wenn möglich). Wir melden uns zeitnah mit Rückfragen und einer transparenten Einschätzung.",
+          },
+          {
+            q: "In welchen Regionen arbeiten Sie?",
+            a: "Schwerpunkt Zürich und Umgebung. Bei grösseren Projekten oder weiter entfernten Objekten klären wir Anfahrt und Termine individuell.",
+          },
+          {
+            q: "Verlegen Sie auch Grossformat und Feinsteinzeug?",
+            a: "Ja. Wir legen Wert auf saubere Untergrundvorbereitung, präzise Schnitte und Kanten – auch bei Grossformat-Platten.",
+          },
+          {
+            q: "Übernehmen Sie Beratung oder nur die Ausführung?",
+            a: "Beides: Wir beraten zu Format, Mustern und Übergängen und führen die Arbeit von der Vorbereitung bis zum Finish aus.",
+          },
+          {
+            q: "Wie lange dauert etwa ein Bad?",
+            a: "Das hängt von Fläche, Abdichtung, Trocknungszeiten und Schnittaufwand ab. Nach Besichtigung erhalten Sie einen realistischen Zeitrahmen.",
+          },
+          {
+            q: "Machen Sie auch kleine Reparaturen?",
+            a: "Ja, je nach Aufwand – z. B. Einzelplatten, Silikonfugen oder lokale Ausbesserungen. Ein kurzes Foto hilft für die Ersteinschätzung.",
+          },
+        ],
       },
       contact: {
         title: "Kontakt aufnehmen",

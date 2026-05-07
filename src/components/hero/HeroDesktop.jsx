@@ -1,10 +1,24 @@
-export default function HeroDesktop({
-    data,
-    titleRef,
-    subtitleRef,
-    badgeRef,
-    ctaRef,
-  }) {
+import logoJaho from "../../assets/logojaho.jpg"
+import { useEffect, useRef } from "react"
+import { gsap } from "gsap"
+
+export default function HeroDesktop({ data, titleRef, subtitleRef, badgeRef, ctaRef }) {
+  const logoRef = useRef(null)
+
+  useEffect(() => {
+    const el = logoRef.current
+    if (!el) return
+
+    const prefersReduced =
+      typeof window !== "undefined" &&
+      window.matchMedia &&
+      window.matchMedia("(prefers-reduced-motion: reduce)").matches
+    if (prefersReduced) return
+
+    const tw = gsap.fromTo(el, { opacity: 0 }, { opacity: 1, duration: 0.55, ease: "power2.out" })
+    return () => tw.kill()
+  }, [])
+
     return (
       <div className="hidden md:grid grid-cols-12 gap-12 items-center">
         <div className="col-span-7">
@@ -39,34 +53,26 @@ export default function HeroDesktop({
   
           <button
             ref={ctaRef}
+            type="button"
             onClick={() => (window.location.href = "#contact")}
-            className="group relative px-8 py-4 rounded-xl font-[var(--font-body)] font-semibold bg-[var(--color-primary)] text-white text-lg overflow-visible"
-            data-cta-primary
+            className="px-8 py-4 rounded-xl font-[var(--font-body)] font-semibold bg-[var(--color-primary)] text-white text-lg transition-all duration-300 hover:bg-[var(--color-primary)]/92 hover:scale-[1.02] active:scale-[0.98] shadow-lg hover:shadow-xl"
           >
-            <span className="absolute inset-0 rounded-xl overflow-hidden">
-              <span className="absolute inset-0 translate-x-[-100%] group-hover:translate-x-[100%] transition-transform duration-700 bg-gradient-to-r from-transparent via-white/30 to-transparent" />
-            </span>
-            
-            <span className="absolute -top-1 -right-1 w-2 h-2 bg-white rounded-full opacity-0 group-hover:opacity-100 group-hover:animate-ping" />
-            <span className="absolute -bottom-1 -left-1 w-2 h-2 bg-white rounded-full opacity-0 group-hover:opacity-100 group-hover:animate-ping" style={{ animationDelay: "0.1s" }} />
-            
-            <span className="relative z-10">
-              {data.cta}
-            </span>
+            {data.cta}
           </button>
         </div>
   
         <div className="col-span-5">
-          <div className="hero-media-frame relative aspect-[4/3] rounded-2xl overflow-hidden bg-gray-200 border border-black/10 shadow-xl">
-            <img 
-              src={data.image} 
-              alt={data.imageAlt}
-              className="relative z-0 w-full h-full object-cover"
-              onError={(e) => {
-                e.target.style.display = 'none'
-                e.target.parentElement.innerHTML = '<div class="w-full h-full bg-gray-300 flex items-center justify-center"><div class="text-center"><div class="text-6xl mb-4">🔧</div><div class="font-semibold text-gray-600">Bild kommt bald</div></div></div>'
-              }}
+        <div className="relative aspect-[4/3] rounded-2xl overflow-hidden bg-[var(--color-dark)] border border-black/10 shadow-xl">
+          <div className="absolute inset-0 hero-logo-motion">
+            <img
+              src={logoJaho}
+              alt="Jaho Plattenleger Logo"
+              ref={logoRef}
+              className="absolute inset-0 w-full h-full object-cover scale-[1.35] md:scale-[1.28]"
+              loading="eager"
+              decoding="async"
             />
+          </div>
           </div>
         </div>
       </div>

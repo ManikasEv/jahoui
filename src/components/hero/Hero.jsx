@@ -17,7 +17,6 @@ export default function Hero() {
     let cleanup
     const ctx = gsap.context(() => {
       cleanup = heroInteractive({
-        wrapEl: wrapRef.current,
         titleEl: titleRef.current,
         subtitleEl: subtitleRef.current,
         badgeEl: badgeRef.current,
@@ -32,8 +31,8 @@ export default function Hero() {
   }, [])
 
   return (
-    <section id="hero" ref={wrapRef} className="w-full relative">
-      <div className="mx-auto w-full max-w-[1100px] px-6 pt-10 pb-14 relative">
+    <section id="hero" ref={wrapRef} className="w-full relative min-h-[100svh] flex">
+      <div className="mx-auto w-full max-w-[80vw] px-6 py-14 md:py-18 relative flex items-center min-h-[100svh]">
         <HeroDesktop
           data={content.hero}
           titleRef={titleRef}
