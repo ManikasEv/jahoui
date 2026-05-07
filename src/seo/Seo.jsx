@@ -1,6 +1,5 @@
 import { Helmet } from "react-helmet-async"
-
-const SITE_URL = "https://jaho-plattenleger.ch"
+import { SITE_ORIGIN as SITE_URL } from "../config/siteOrigin"
 const DEFAULT_OG_IMAGE = `${SITE_URL}/logojaho.jpg`
 
 export default function Seo({
@@ -9,9 +8,10 @@ export default function Seo({
   path = "/",
   canonical,
   ogImage = DEFAULT_OG_IMAGE,
+  jsonLd,
 }) {
   const url = canonical || `${SITE_URL}${path}`
-  const safeTitle = title || "Jaho Plattenleger"
+  const safeTitle = title || "Plattenleger Jaho GmbH"
   const safeDescription = description || ""
 
   return (
@@ -32,6 +32,9 @@ export default function Seo({
       <meta name="twitter:title" content={safeTitle} />
       {safeDescription ? <meta name="twitter:description" content={safeDescription} /> : null}
       <meta name="twitter:image" content={ogImage} />
+      {jsonLd ? (
+        <script type="application/ld+json">{JSON.stringify(jsonLd)}</script>
+      ) : null}
     </Helmet>
   )
 }

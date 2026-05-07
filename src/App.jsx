@@ -6,8 +6,10 @@ import Navbar from "./components/layout/Navbar"
 import Footer from "./components/layout/Footer"
 import Home from "./pages/Home"
 import PlattenlegerZuerich from "./pages/PlattenlegerZuerich"
+import CityPlattenleger from "./pages/CityPlattenleger"
 import BadRenovationZuerich from "./pages/BadRenovationZuerich"
 import KuecheFliesenZuerich from "./pages/KuecheFliesenZuerich"
+import LeistungenPage from "./pages/LeistungenPage"
 
 gsap.registerPlugin(ScrollTrigger)
 
@@ -56,8 +58,13 @@ export default function App() {
         <Routes>
           <Route path="/" element={<Home />} />
           <Route path="/plattenleger-zuerich" element={<PlattenlegerZuerich />} />
+          <Route path="/plattenleger-luzern" element={<CityPlattenleger cityId="luzern" />} />
+          <Route path="/plattenleger-zug" element={<CityPlattenleger cityId="zug" />} />
+          <Route path="/plattenleger-winterthur" element={<CityPlattenleger cityId="winterthur" />} />
+          <Route path="/plattenleger-aargau" element={<CityPlattenleger cityId="aargau" />} />
           <Route path="/badrenovation-zuerich" element={<BadRenovationZuerich />} />
           <Route path="/kueche-fliesen-zuerich" element={<KuecheFliesenZuerich />} />
+          <Route path="/leistungen" element={<LeistungenPage />} />
           <Route path="*" element={<Home />} />
         </Routes>
         <Footer />

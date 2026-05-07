@@ -1,4 +1,6 @@
 import Seo from "../seo/Seo"
+import { buildHomeJsonLd } from "../seo/jsonLd"
+import { content } from "../data/content"
 import Hero from "../components/hero/Hero"
 import About from "../components/sections/About"
 import Clients from "../components/sections/Clients"
@@ -11,9 +13,10 @@ export default function Home() {
   return (
     <>
       <Seo
-        title="Plattenleger Zürich – Bad, Küche & Boden | Jaho Plattenleger"
-        description="Professioneller Plattenleger in Zürich für Badezimmer, Küchen und Böden. Saubere Arbeit, faire Preise und schnelle Umsetzung. Jetzt Offerte anfragen!"
+        title={`Plattenleger in Zürich & Schweiz | Badezimmer, Küchen & Bodenplatten | ${content.brand}`}
+        description="Professioneller Plattenleger in der Schweiz. Spezialisiert auf Badezimmer, Küchen, Bodenplatten und Renovationen. Präzise Arbeit & faire Preise."
         path="/"
+        jsonLd={buildHomeJsonLd(content)}
       />
       <Hero />
       <About />

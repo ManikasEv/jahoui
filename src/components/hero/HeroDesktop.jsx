@@ -31,7 +31,7 @@ export default function HeroDesktop({ data, titleRef, subtitleRef, badgeRef, cta
   
           <h1
             ref={titleRef}
-            className="hero-title mb-6 max-w-[600px]"
+            className="hero-title mb-6 max-w-[600px] perspective-[900px] [transform-style:preserve-3d]"
           >
             {data.title.split(" ").map((word, wordIndex) => (
               <span key={wordIndex} className="inline-block mr-[0.18em]">
@@ -46,15 +46,19 @@ export default function HeroDesktop({ data, titleRef, subtitleRef, badgeRef, cta
   
           <p
             ref={subtitleRef}
-            className="font-[var(--font-body)] text-[var(--color-slate)] text-lg leading-relaxed mb-8 max-w-xl"
+            className="font-[var(--font-body)] text-[var(--color-slate)] text-lg leading-relaxed mb-8 max-w-xl perspective-[760px]"
           >
-            {data.subtitle}
+            {data.subtitle.split(/\s+/).filter(Boolean).map((word, i) => (
+              <span key={i} className="inline-block mr-[0.22em]" data-hero-subword>
+                {word}
+              </span>
+            ))}
           </p>
   
           <button
             ref={ctaRef}
             type="button"
-            onClick={() => (window.location.href = "#contact")}
+            onClick={() => (window.location.href = "/#contact")}
             className="px-8 py-4 rounded-xl font-[var(--font-body)] font-semibold bg-[var(--color-primary)] text-white text-lg transition-all duration-300 hover:bg-[var(--color-primary)]/92 hover:scale-[1.02] active:scale-[0.98] shadow-lg hover:shadow-xl"
           >
             {data.cta}
@@ -66,7 +70,7 @@ export default function HeroDesktop({ data, titleRef, subtitleRef, badgeRef, cta
           <div className="absolute inset-0 hero-logo-motion">
             <img
               src={logoJaho}
-              alt="Jaho Plattenleger Logo"
+              alt="Logo Plattenleger Jaho GmbH"
               ref={logoRef}
               className="absolute inset-0 w-full h-full object-cover scale-[1.35] md:scale-[1.28]"
               loading="eager"

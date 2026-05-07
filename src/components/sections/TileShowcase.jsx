@@ -1,6 +1,8 @@
 import { useEffect, useRef } from "react"
 import { gsap } from "gsap"
 import { ScrollTrigger } from "gsap/ScrollTrigger"
+import { usePrefersReducedMotion } from "../../hooks/usePrefersReducedMotion"
+import { useSectionCrossFade } from "../../hooks/useSectionCrossFade"
 
 gsap.registerPlugin(ScrollTrigger)
 
@@ -23,34 +25,62 @@ const STATS = [
   { value: "100%", label: "Engagement" },
 ]
 
+const TILE_TITLE = "Qualität im Detail"
+const TILE_BODY =
+  "Präzise Verlegung, saubere Übergänge und Arbeit, die im Alltag überzeugt — ohne Schnickschnack."
+
 export default function TileShowcase() {
+  const reducedMotion = usePrefersReducedMotion()
   const sectionRef = useRef(null)
   const row = [...PRAISES, ...PRAISES]
 
+  useSectionCrossFade(sectionRef, reducedMotion)
+
   useEffect(() => {
-    if (!sectionRef.current) return
+    if (!sectionRef.current || reducedMotion) return
+
     const root = sectionRef.current
 
     const ctx = gsap.context(() => {
-      const intro = root.querySelector("[data-tile-intro]")
-      if (intro) {
-        gsap.from(intro, {
-          scrollTrigger: { trigger: root, start: "top 86%", once: true },
+      const stMain = { trigger: root, start: "top 84%", once: true }
+
+      const titleChars = root.querySelectorAll("[data-tile-title-char]")
+      if (titleChars.length) {
+        gsap.from(titleChars, {
+          scrollTrigger: stMain,
           opacity: 0,
-          y: 18,
-          duration: 0.55,
+          y: (i) => (i % 2 === 0 ? -18 : 18),
+          rotateZ: (i) => (i % 3 === 0 ? -12 : i % 3 === 1 ? 10 : 0),
+          stagger: 0.03,
+          duration: 0.58,
+          ease: "back.out(1.4)",
+        })
+      }
+
+      const introWords = root.querySelectorAll("[data-tile-intro-word]")
+      if (introWords.length) {
+        gsap.from(introWords, {
+          scrollTrigger: stMain,
+          opacity: 0,
+          y: 14,
+          skewX: -5,
+          stagger: 0.022,
+          duration: 0.42,
           ease: "power2.out",
+          delay: 0.1,
         })
       }
 
       const marqueeWrap = root.querySelector("[data-tile-marquee-wrap]")
       if (marqueeWrap) {
         gsap.from(marqueeWrap, {
-          scrollTrigger: { trigger: root, start: "top 84%", once: true },
+          scrollTrigger: { trigger: root, start: "top 82%", once: true },
           opacity: 0,
-          y: 12,
-          duration: 0.5,
-          ease: "power2.out",
+          y: 22,
+          scale: 0.97,
+          duration: 0.55,
+          ease: "power3.out",
+          delay: 0.14,
         })
       }
 
@@ -59,26 +89,45 @@ export default function TileShowcase() {
         gsap.from(stats, {
           scrollTrigger: { trigger: root, start: "top 78%", once: true },
           opacity: 0,
-          y: 12,
-          stagger: 0.07,
-          duration: 0.45,
-          ease: "power2.out",
+          y: 22,
+          rotateX: -18,
+          transformOrigin: "50% 50%",
+          stagger: 0.09,
+          duration: 0.52,
+          ease: "power3.out",
+          delay: 0.2,
         })
       }
     }, sectionRef)
 
     return () => ctx.revert()
-  }, [])
+  }, [reducedMotion])
 
   return (
-    <section ref={sectionRef} className="relative py-10 md:py-11 bg-[var(--color-bg)] border-y border-black/[0.05]">
+    <section ref={sectionRef} className="relative py-10 md:py-11 bg-[var(--color-bg)] border-y border-black/[0.05] perspective-[1100px]">
       <div className="mx-auto w-full max-w-[80vw] px-6">
         <div data-tile-intro className="max-w-xl mx-auto text-center mb-5 md:mb-6">
-          <h2 className="font-[var(--font-heading)] text-xl md:text-2xl font-bold tracking-tight text-[var(--color-dark)] mb-2">
-            Qualität im Detail
+          <h2 className="font-[var(--font-heading)] text-xl md:text-2xl font-bold tracking-tight text-[var(--color-dark)] mb-2 [transform-style:preserve-3d]">
+            {reducedMotion ? (
+              TILE_TITLE
+            ) : (
+              TILE_TITLE.split("").map((char, i) => (
+                <span key={`tt-${i}`} data-tile-title-char className="inline-block">
+                  {char === " " ? "\u00A0" : char}
+                </span>
+              ))
+            )}
           </h2>
           <p className="font-[var(--font-body)] text-sm md:text-[0.9375rem] text-[var(--color-slate)] leading-relaxed text-safe">
-            Präzise Verlegung, saubere Übergänge und Arbeit, die im Alltag überzeugt — ohne Schnickschnack.
+            {reducedMotion ? (
+              TILE_BODY
+            ) : (
+              TILE_BODY.split(/\s+/).filter(Boolean).map((word, i) => (
+                <span key={`tb-${i}`} data-tile-intro-word className="inline-block mr-[0.22em]">
+                  {word}
+                </span>
+              ))
+            )}
           </p>
         </div>
 
@@ -105,7 +154,7 @@ export default function TileShowcase() {
           </div>
         </div>
 
-        <div className="flex flex-wrap items-center justify-center gap-x-8 gap-y-3 md:gap-x-14">
+        <div className="flex flex-wrap items-center justify-center gap-x-8 gap-y-3 md:gap-x-14 [transform-style:preserve-3d]">
           {STATS.map((s) => (
             <div key={s.label} data-stat className="text-center px-2">
               <div className="text-xl md:text-2xl font-bold text-[var(--color-primary)] tabular-nums">{s.value}</div>

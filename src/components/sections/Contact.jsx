@@ -2,10 +2,13 @@ import { useRef, useEffect, useState } from "react"
 import { gsap } from "gsap"
 import { ScrollTrigger } from "gsap/ScrollTrigger"
 import { content } from "../../data/content"
+import { usePrefersReducedMotion } from "../../hooks/usePrefersReducedMotion"
+import { useSectionCrossFade, useSectionHeadingSoftReveal } from "../../hooks/useSectionCrossFade"
 
 gsap.registerPlugin(ScrollTrigger)
 
 export default function Contact() {
+  const reducedMotion = usePrefersReducedMotion()
   const sectionRef = useRef(null)
   const formRef = useRef(null)
   const infoRef = useRef(null)
@@ -14,71 +17,103 @@ export default function Contact() {
   const [result, setResult] = useState("")
   const [isSubmitting, setIsSubmitting] = useState(false)
 
+  useSectionCrossFade(sectionRef, reducedMotion)
+  useSectionHeadingSoftReveal(sectionRef, reducedMotion)
+
   useEffect(() => {
+    if (!sectionRef.current) return
+
+    if (reducedMotion) {
+      const titleChars = titleRef.current?.querySelectorAll("[data-char]")
+      const words = textRef.current?.querySelectorAll("[data-word]")
+      const formBits = formRef.current?.querySelectorAll("[data-contact-anim]")
+      const infoBits = infoRef.current?.querySelectorAll("[data-contact-anim]")
+      gsap.set(titleChars || [], { opacity: 1, y: 0, rotateZ: 0 })
+      gsap.set(words || [], { opacity: 1, y: 0 })
+      gsap.set([formRef.current, infoRef.current].filter(Boolean), { opacity: 1, x: 0, y: 0, rotateY: 0, scale: 1 })
+      gsap.set([...(formBits || []), ...(infoBits || [])], { opacity: 1, x: 0, y: 0 })
+      return
+    }
+
     const ctx = gsap.context(() => {
-      // Title with zigzag animation
+      const st = {
+        trigger: sectionRef.current,
+        start: "top 80%",
+        once: true,
+      }
+
       const titleChars = titleRef.current.querySelectorAll("[data-char]")
       gsap.from(titleChars, {
-        scrollTrigger: {
-          trigger: sectionRef.current,
-          start: "top 80%",
-          once: true,
-        },
+        scrollTrigger: st,
         opacity: 0,
-        y: (i) => (i % 2 === 0 ? -40 : 40),
-        rotateZ: (i) => (i % 2 === 0 ? -15 : 15),
-        stagger: 0.04,
-        duration: 0.7,
-        ease: "back.out(1.5)",
+        y: (i) => (i % 2 === 0 ? -48 : 48),
+        rotateZ: (i) => (i % 2 === 0 ? -18 : 18),
+        stagger: 0.038,
+        duration: 0.75,
+        ease: "back.out(1.55)",
       })
 
-      // Text with wave
       const words = textRef.current.querySelectorAll("[data-word]")
       gsap.from(words, {
-        scrollTrigger: {
-          trigger: sectionRef.current,
-          start: "top 75%",
-          once: true,
-        },
+        scrollTrigger: st,
         opacity: 0,
-        y: (i) => Math.sin(i * 0.5) * 20,
-        stagger: 0.03,
-        duration: 0.6,
-        ease: "power2.out",
+        y: (i) => Math.sin(i * 0.55) * 24,
+        rotateX: -28,
+        stagger: 0.028,
+        duration: 0.58,
+        ease: "power3.out",
+        delay: 0.1,
       })
 
-      // Form with slide and rotate
       gsap.from(formRef.current, {
-        scrollTrigger: {
-          trigger: sectionRef.current,
-          start: "top 80%",
-          once: true,
-        },
+        scrollTrigger: st,
         opacity: 0,
-        x: -80,
-        rotateY: -30,
-        duration: 0.8,
+        x: -90,
+        rotateY: -34,
+        duration: 0.82,
+        ease: "power3.out",
+        delay: 0.08,
+      })
+
+      gsap.from(infoRef.current, {
+        scrollTrigger: st,
+        opacity: 0,
+        x: 90,
+        rotateY: 34,
+        duration: 0.82,
+        delay: 0.18,
         ease: "power3.out",
       })
 
-      // Info with slide and rotate opposite
-      gsap.from(infoRef.current, {
-        scrollTrigger: {
-          trigger: sectionRef.current,
-          start: "top 80%",
-          once: true,
-        },
-        opacity: 0,
-        x: 80,
-        rotateY: 30,
-        duration: 0.8,
-        delay: 0.15,
-        ease: "power3.out",
-      })
+      const formPieces = formRef.current?.querySelectorAll("[data-contact-anim]")
+      if (formPieces?.length) {
+        gsap.from(formPieces, {
+          scrollTrigger: st,
+          opacity: 0,
+          y: 26,
+          stagger: 0.07,
+          duration: 0.48,
+          ease: "power2.out",
+          delay: 0.28,
+        })
+      }
+
+      const infoPieces = infoRef.current?.querySelectorAll("[data-contact-anim]")
+      if (infoPieces?.length) {
+        gsap.from(infoPieces, {
+          scrollTrigger: st,
+          opacity: 0,
+          y: 20,
+          stagger: 0.08,
+          duration: 0.46,
+          ease: "power2.out",
+          delay: 0.34,
+        })
+      }
     }, sectionRef)
 
     return () => ctx.revert()
-  }, [])
+  }, [reducedMotion])
 
   const handleWhatsAppClick = () => {
     const phone = content.footer.whatsappPhone
@@ -98,8 +133,8 @@ export default function Contact() {
     formData.append("access_key", "9820c027-9975-44d9-a6cb-36a5b5fa711f")
     
     // Add custom subject and formatting
-    formData.append("subject", "Neue Anfrage von Jaho-Plattenleger.ch Website")
-    formData.append("from_name", "Jaho Plattenleger Website")
+    formData.append("subject", "Neue Anfrage – Plattenleger Jaho GmbH (jaho-plattenleger.ch)")
+    formData.append("from_name", "Plattenleger Jaho GmbH Website")
     formData.append("replyto", formData.get("email"))
 
     try {
@@ -132,16 +167,16 @@ export default function Contact() {
     <section
       id="contact"
       ref={sectionRef}
-      className="mx-auto w-full max-w-[80vw] px-6 py-20"
+      className="mx-auto w-full max-w-[80vw] px-6 py-20 perspective-[1100px]"
     >
-      <h2 ref={titleRef} className="section-title mb-4">
+      <h2 ref={titleRef} className="section-title mb-4 [transform-style:preserve-3d]">
         {content.sections.contact.title.split("").map((char, i) => (
           <span key={i} className="inline-block" data-char>
             {char === " " ? "\u00A0" : char}
           </span>
         ))}
       </h2>
-      <p ref={textRef} className="font-[var(--font-body)] text-lg text-[var(--color-slate)] mb-12 max-w-2xl">
+      <p ref={textRef} className="font-[var(--font-body)] text-lg text-[var(--color-slate)] mb-12 max-w-2xl perspective-[760px]">
         {content.sections.contact.text.split(" ").map((word, i) => (
           <span key={i} className="inline-block mr-[0.18em]" data-word>
             {word}
@@ -155,11 +190,11 @@ export default function Contact() {
           ref={formRef}
           className="rounded-2xl border border-black/10 bg-white/70 backdrop-blur p-8"
         >
-          <h3 className="font-[var(--font-heading)] text-xl md:text-2xl leading-snug text-[var(--color-dark)] mb-6">
+          <h3 className="section-heading-soft font-[var(--font-heading)] text-xl md:text-2xl leading-snug text-[var(--color-dark)] mb-6">
             Nachricht senden
           </h3>
           <form onSubmit={onSubmit} className="space-y-4">
-            <div>
+            <div data-contact-anim>
               <label className="block text-sm font-semibold text-[var(--color-dark)] mb-2">
                 Name
               </label>
@@ -171,7 +206,7 @@ export default function Contact() {
                 placeholder="Ihr Name"
               />
             </div>
-            <div>
+            <div data-contact-anim>
               <label className="block text-sm font-semibold text-[var(--color-dark)] mb-2">
                 E-Mail
               </label>
@@ -183,7 +218,7 @@ export default function Contact() {
                 placeholder="ihre@email.com"
               />
             </div>
-            <div>
+            <div data-contact-anim>
               <label className="block text-sm font-semibold text-[var(--color-dark)] mb-2">
                 Nachricht
               </label>
@@ -209,6 +244,7 @@ export default function Contact() {
             )}
             
             <button
+              data-contact-anim
               type="submit"
               disabled={isSubmitting}
               className="group relative w-full px-6 py-3 rounded-xl font-[var(--font-body)] font-semibold bg-[var(--color-primary)] text-white overflow-visible disabled:opacity-50 disabled:cursor-not-allowed"
@@ -236,7 +272,7 @@ export default function Contact() {
 
         {/* Contact Info */}
         <div ref={infoRef} className="space-y-6">
-          <div className="rounded-2xl border border-black/10 bg-white/70 backdrop-blur p-8">
+          <div data-contact-anim className="rounded-2xl border border-black/10 bg-white/70 backdrop-blur p-8">
             <h3 className="font-[var(--font-heading)] text-xl md:text-2xl leading-snug text-[var(--color-dark)] mb-6">
               Kontaktinformationen
             </h3>
@@ -286,6 +322,8 @@ export default function Contact() {
           </div>
 
           <button
+            data-contact-anim
+            type="button"
             onClick={handleWhatsAppClick}
             className="group relative w-full rounded-2xl border-2 border-green-500/30 bg-green-50 p-6 hover:bg-green-100 transition-colors overflow-hidden"
           >

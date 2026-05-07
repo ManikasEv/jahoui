@@ -1,4 +1,6 @@
+import { Link } from "react-router-dom"
 import Seo from "../seo/Seo"
+import { content } from "../data/content"
 import BackToHome from "../components/layout/BackToHome"
 import Contact from "../components/sections/Contact"
 import GalleryShowcase from "../components/sections/GalleryShowcase"
@@ -7,7 +9,7 @@ export default function KuecheFliesenZuerich() {
   return (
     <>
       <Seo
-        title="Küchen Fliesen Zürich – Modern & Langlebig"
+        title={`Küchen Fliesen Zürich – Modern & Langlebig | ${content.brand}`}
         description="Küchen Fliesen in Zürich: Rückwände, Wandfliesen und Übergänge – modern, pflegeleicht und langlebig. Referenzen ansehen und Offerte anfragen."
         path="/kueche-fliesen-zuerich"
       />
@@ -18,6 +20,16 @@ export default function KuecheFliesenZuerich() {
         <p className="font-[var(--font-body)] text-[var(--color-slate)] text-base md:text-lg leading-relaxed max-w-3xl text-safe">
           Ob Rückwand, Wand oder Boden: Küchenfliesen müssen robust, pflegeleicht und optisch stimmig sein. Wir beraten zu Material,
           Format und Übergängen – und verlegen sauber bis ins Detail.
+        </p>
+        <p className="mt-4 font-[var(--font-body)] text-sm text-[var(--color-slate)] leading-relaxed max-w-3xl">
+          Passende Übersicht:{" "}
+          <Link to="/plattenleger-zuerich" className="font-semibold text-[var(--color-primary)] underline-offset-2 hover:underline">
+            Plattenleger Zürich
+          </Link>
+          {" · "}
+          <Link to="/badrenovation-zuerich" className="font-semibold text-[var(--color-primary)] underline-offset-2 hover:underline">
+            Bad Renovation Zürich
+          </Link>
         </p>
       </section>
 

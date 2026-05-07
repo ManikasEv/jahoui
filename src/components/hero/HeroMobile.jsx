@@ -30,7 +30,7 @@ export default function HeroMobile({ data, titleRef, subtitleRef, badgeRef, ctaR
 
         <h1
           ref={titleRef}
-          className="hero-title mb-4"
+          className="hero-title mb-4 perspective-[900px] [transform-style:preserve-3d]"
         >
           {data.title.split(" ").map((word, wordIndex) => (
             <span key={wordIndex} className="inline-block mr-[0.18em]">
@@ -43,15 +43,19 @@ export default function HeroMobile({ data, titleRef, subtitleRef, badgeRef, ctaR
           ))}
         </h1>
 
-        <p ref={subtitleRef} className="font-[var(--font-body)] text-[var(--color-slate)] text-base leading-relaxed mb-6">
-          {data.subtitle}
+        <p ref={subtitleRef} className="font-[var(--font-body)] text-[var(--color-slate)] text-base leading-relaxed mb-6 perspective-[760px]">
+          {data.subtitle.split(/\s+/).filter(Boolean).map((word, i) => (
+            <span key={i} className="inline-block mr-[0.22em]" data-hero-subword>
+              {word}
+            </span>
+          ))}
         </p>
 
       <div className="relative aspect-[4/3] rounded-2xl overflow-hidden bg-[var(--color-dark)] border border-black/10 shadow-lg mb-6">
         <div className="absolute inset-0 hero-logo-motion">
           <img
             src={logoJaho}
-            alt="Jaho Plattenleger Logo"
+            alt="Logo Plattenleger Jaho GmbH"
             ref={logoRef}
             className="absolute inset-0 w-full h-full object-cover scale-[1.32]"
             loading="eager"
@@ -63,7 +67,7 @@ export default function HeroMobile({ data, titleRef, subtitleRef, badgeRef, ctaR
         <button
           ref={ctaRef}
           type="button"
-          onClick={() => (window.location.href = "#contact")}
+          onClick={() => (window.location.href = "/#contact")}
           className="w-full px-6 py-3 rounded-xl font-[var(--font-body)] font-semibold bg-[var(--color-primary)] text-white transition-all duration-300 hover:bg-[var(--color-primary)]/92 hover:scale-[1.01] active:scale-[0.99] shadow-md hover:shadow-lg"
         >
           {data.cta}

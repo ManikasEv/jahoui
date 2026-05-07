@@ -2,6 +2,8 @@ import { useEffect, useMemo, useState, useCallback, useRef } from "react"
 import { gsap } from "gsap"
 import { ScrollTrigger } from "gsap/ScrollTrigger"
 import ImageLightbox from "../ui/ImageLightbox"
+import { usePrefersReducedMotion } from "../../hooks/usePrefersReducedMotion"
+import { useSectionCrossFade } from "../../hooks/useSectionCrossFade"
 
 import a1 from "../../assets/a1.jpg"
 import a2 from "../../assets/a2.jpg"
@@ -63,18 +65,6 @@ const PROJECTS = [
   { src: f1, title: "Boden – Finale Fläche", tags: ["Final", "Gerade", "stimmig"], quote: "„Am Ende zählt: alles wirkt wie aus einem Guss.“" },
 ]
 
-function usePrefersReducedMotion() {
-  const [reduced, setReduced] = useState(false)
-  useEffect(() => {
-    const mq = window.matchMedia("(prefers-reduced-motion: reduce)")
-    const update = () => setReduced(!!mq.matches)
-    update()
-    mq.addEventListener?.("change", update)
-    return () => mq.removeEventListener?.("change", update)
-  }, [])
-  return reduced
-}
-
 /** Six collage picks per slide: full batch rotates. Excludes featured index. */
 function collageForIndex(featuredIndex, projects, count = 6) {
   const n = projects.length
@@ -103,9 +93,11 @@ export default function GalleryShowcase({
   const featuredImgRef = useRef(null)
   const featuredColRef = useRef(null)
 
+  useSectionCrossFade(sectionRef, reducedMotion)
+
   const projects = useMemo(() => PROJECTS, [])
   const [index, setIndex] = useState(0)
-  const [lightboxImage, setLightboxImage] = useState(null)
+  const [lightbox, setLightbox] = useState(null)
   const [paused, setPaused] = useState(false)
 
   const current = projects[index]
@@ -451,7 +443,7 @@ export default function GalleryShowcase({
                   <img
                     ref={featuredImgRef}
                     src={current.src}
-                    alt=""
+                    alt={`Referenzfoto Plattenarbeit: ${current.title}`}
                     loading="eager"
                     decoding="async"
                     draggable={false}
@@ -508,7 +500,12 @@ export default function GalleryShowcase({
                   </div>
                   <button
                     type="button"
-                    onClick={() => setLightboxImage(current.src)}
+                    onClick={() =>
+                      setLightbox({
+                        src: current.src,
+                        alt: `Referenz gross: ${current.title}`,
+                      })
+                    }
                     className="mt-0.5 px-3 py-1.5 rounded-md font-[var(--font-body)] font-semibold bg-[var(--color-primary)] text-white text-[11px] transition-colors hover:bg-[var(--color-primary)]/92 shadow-sm"
                   >
                     {reducedMotion
@@ -547,7 +544,12 @@ export default function GalleryShowcase({
                       key={p._key}
                       type="button"
                       data-collage-cell
-                      onClick={() => setLightboxImage(p.src)}
+                      onClick={() =>
+                        setLightbox({
+                          src: p.src,
+                          alt: `Referenz gross: ${p.title}`,
+                        })
+                      }
                       className={[
                         "relative aspect-square min-h-0 w-full overflow-hidden rounded-md border border-black/10 bg-gray-200 shadow-sm",
                         "focus:outline-none focus-visible:ring-2 focus-visible:ring-[var(--color-primary)]/45 focus-visible:ring-offset-1 focus-visible:ring-offset-white",
@@ -557,7 +559,7 @@ export default function GalleryShowcase({
                       <img
                         data-collage-img
                         src={p.src}
-                        alt=""
+                        alt={`Kleinansicht Referenz: ${p.title}`}
                         loading="lazy"
                         decoding="async"
                         draggable={false}
@@ -599,7 +601,6 @@ export default function GalleryShowcase({
             </div>
             <p className="text-[11px] text-[var(--color-slate)]" aria-live="polite">
               {index + 1} / {n}
-              {!reducedMotion ? " · 5 Sek." : null}
             </p>
             <div className="flex flex-wrap justify-end gap-0.5 max-w-[min(100%,200px)]">
               {projects.map((p, i) => (
@@ -620,8 +621,12 @@ export default function GalleryShowcase({
         </article>
       </div>
 
-      {lightboxImage ? (
-        <ImageLightbox imageSrc={lightboxImage} altText="Referenzbild" onClose={() => setLightboxImage(null)} />
+      {lightbox ? (
+        <ImageLightbox
+          imageSrc={lightbox.src}
+          altText={lightbox.alt}
+          onClose={() => setLightbox(null)}
+        />
       ) : null}
     </section>
   )

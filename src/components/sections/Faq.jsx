@@ -2,20 +2,10 @@ import { useEffect, useLayoutEffect, useRef, useState, useCallback } from "react
 import { gsap } from "gsap"
 import { ScrollTrigger } from "gsap/ScrollTrigger"
 import { content } from "../../data/content"
+import { usePrefersReducedMotion } from "../../hooks/usePrefersReducedMotion"
+import { useSectionCrossFade } from "../../hooks/useSectionCrossFade"
 
 gsap.registerPlugin(ScrollTrigger)
-
-function usePrefersReducedMotion() {
-  const [reduced, setReduced] = useState(false)
-  useEffect(() => {
-    const mq = window.matchMedia("(prefers-reduced-motion: reduce)")
-    const update = () => setReduced(!!mq.matches)
-    update()
-    mq.addEventListener?.("change", update)
-    return () => mq.removeEventListener?.("change", update)
-  }, [])
-  return reduced
-}
 
 function FaqRow({ item, index, reducedMotion }) {
   const [open, setOpen] = useState(false)
@@ -111,8 +101,16 @@ function FaqRow({ item, index, reducedMotion }) {
         <span className="mt-0.5 flex h-8 w-8 shrink-0 items-center justify-center rounded-full bg-[var(--color-primary)]/10 text-sm font-bold text-[var(--color-primary)]">
           {index + 1}
         </span>
-        <span className="min-w-0 flex-1 pt-1 font-[var(--font-heading)] text-base md:text-lg leading-snug text-[var(--color-dark)]">
-          {item.q}
+        <span className="min-w-0 flex-1 pt-1 font-[var(--font-heading)] text-base md:text-lg leading-snug text-[var(--color-dark)] perspective-[520px]">
+          {reducedMotion ? (
+            item.q
+          ) : (
+            item.q.split("").map((char, ci) => (
+              <span key={`${index}-qc-${ci}`} data-faq-q-char className="inline-block">
+                {char === " " ? "\u00A0" : char}
+              </span>
+            ))
+          )}
         </span>
         <span
           ref={chevronRef}
@@ -154,10 +152,11 @@ export default function Faq() {
   const subtitleRef = useRef(null)
 
   const faq = content?.sections?.faq
-  if (!faq?.items?.length) return null
+
+  useSectionCrossFade(sectionRef, reducedMotion)
 
   useEffect(() => {
-    if (!sectionRef.current || reducedMotion) return
+    if (!sectionRef.current || reducedMotion || !faq?.items?.length) return
 
     const ctx = gsap.context(() => {
       const chars = titleRef.current?.querySelectorAll("[data-char]")
@@ -169,10 +168,12 @@ export default function Faq() {
             once: true,
           },
           opacity: 0,
-          y: (i) => (i % 2 === 0 ? -18 : 18),
-          stagger: 0.025,
-          duration: 0.55,
-          ease: "back.out(1.35)",
+          y: (i) => (i % 2 === 0 ? -26 : 26),
+          rotateZ: (i) => (i % 2 === 0 ? -14 : 14),
+          scale: 0.65,
+          stagger: 0.028,
+          duration: 0.68,
+          ease: "back.out(1.45)",
         })
       }
 
@@ -185,36 +186,60 @@ export default function Faq() {
             once: true,
           },
           opacity: 0,
-          y: 12,
-          stagger: 0.02,
-          duration: 0.45,
-          ease: "power2.out",
-          delay: 0.08,
+          y: 18,
+          rotateX: -40,
+          stagger: 0.024,
+          duration: 0.52,
+          ease: "power3.out",
+          delay: 0.1,
         })
       }
 
       const items = sectionRef.current.querySelectorAll("[data-faq-item]")
       if (items.length) {
-        gsap.from(items, {
+        gsap.fromTo(
+          items,
+          { y: 48, scale: 0.94, rotateX: -10 },
+          {
+            scrollTrigger: {
+              trigger: sectionRef.current,
+              start: "top 76%",
+              once: true,
+            },
+            y: 0,
+            scale: 1,
+            rotateX: 0,
+            stagger: 0.09,
+            duration: 0.68,
+            ease: "power3.out",
+            delay: 0.08,
+          }
+        )
+      }
+
+      const qChars = sectionRef.current.querySelectorAll("[data-faq-q-char]")
+      if (qChars.length) {
+        gsap.from(qChars, {
           scrollTrigger: {
             trigger: sectionRef.current,
-            start: "top 76%",
+            start: "top 74%",
             once: true,
           },
           opacity: 0,
-          y: 36,
-          rotateX: -6,
-          transformOrigin: "50% 0%",
-          stagger: 0.085,
-          duration: 0.62,
-          ease: "power3.out",
-          delay: 0.12,
+          y: 12,
+          rotateZ: (i) => (i % 2 === 0 ? -6 : 6),
+          stagger: 0.005,
+          duration: 0.36,
+          ease: "power2.out",
+          delay: 0.22,
         })
       }
     }, sectionRef)
 
     return () => ctx.revert()
-  }, [reducedMotion])
+  }, [reducedMotion, faq?.items?.length])
+
+  if (!faq?.items?.length) return null
 
   return (
     <section
@@ -223,22 +248,30 @@ export default function Faq() {
       className="mx-auto w-full max-w-[80vw] px-6 py-14 reveal-group perspective-[1200px]"
     >
       <div className="max-w-3xl mx-auto">
-        <h2 ref={titleRef} className="section-title mb-3 text-center">
-          {faq.title.split("").map((char, i) => (
-            <span key={i} className="inline-block" data-char>
-              {char === " " ? "\u00A0" : char}
-            </span>
-          ))}
+        <h2 ref={titleRef} className="section-title mb-3 text-center [transform-style:preserve-3d]">
+          {reducedMotion ? (
+            faq.title
+          ) : (
+            faq.title.split("").map((char, i) => (
+              <span key={i} className="inline-block" data-char>
+                {char === " " ? "\u00A0" : char}
+              </span>
+            ))
+          )}
         </h2>
         <p
           ref={subtitleRef}
-          className="font-[var(--font-body)] text-base md:text-[0.9375rem] text-[var(--color-slate)] mb-10 max-w-2xl mx-auto text-center leading-relaxed text-safe"
+          className="font-[var(--font-body)] text-base md:text-[0.9375rem] text-[var(--color-slate)] mb-10 max-w-2xl mx-auto text-center leading-relaxed text-safe perspective-[880px]"
         >
-          {faq.subtitle.split(" ").map((word, i) => (
-            <span key={i} className="inline-block mr-[0.2em]" data-word>
-              {word}
-            </span>
-          ))}
+          {reducedMotion ? (
+            faq.subtitle
+          ) : (
+            faq.subtitle.split(" ").map((word, i) => (
+              <span key={i} className="inline-block mr-[0.2em]" data-word>
+                {word}
+              </span>
+            ))
+          )}
         </p>
 
         <div className="flex flex-col gap-3 md:gap-4">

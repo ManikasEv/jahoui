@@ -1,13 +1,14 @@
 export const content = {
-    brand: "Jaho Plattenleger",
+    brand: "Plattenleger Jaho GmbH",
     nav: {
       links: [
         { href: "/", label: "Start" },
-        { href: "#about", label: "Über uns" },
-        { href: "#clients", label: "Kunden" },
-        { href: "#gallery", label: "Referenzen" },
-        { href: "#faq", label: "FAQ" },
-        { href: "#contact", label: "Kontakt" },
+        // Root-relative hash URLs work from any route and match crawlable anchors on the homepage.
+        { href: "/#about", label: "Über uns" },
+        { href: "/#clients", label: "Kunden" },
+        { href: "/#gallery", label: "Referenzen" },
+        { href: "/#faq", label: "FAQ" },
+        { href: "/#contact", label: "Kontakt" },
       ],
       cta: "Offerte anfragen",
       mobileOpen: "Menü",
@@ -16,9 +17,9 @@ export const content = {
   
     hero: {
       badge: "Professioneller Plattenleger Service",
-      title: "Ihr Experte für perfekte Fliesenverlegung",
+      title: "Professioneller Plattenleger in der Schweiz",
       subtitle:
-        "Jahrelange Erfahrung in Badezimmern, Küchen und Böden. Präzise Arbeit, saubere Fugen und langlebige Qualität für Ihr Zuhause.",
+        "Spezialisiert auf Badezimmer, Küchen, Bodenplatten und Renovationen. Präzise Verlegung, saubere Fugen und langlebige Qualität – von Zürich bis in die Region.",
       cta: "Jetzt Kontaktieren",
       image: "/hero-tiler.jpg",
       imageAlt: "Professioneller Plattenleger bei der Arbeit"

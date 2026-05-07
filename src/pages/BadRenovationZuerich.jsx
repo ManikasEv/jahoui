@@ -1,4 +1,6 @@
+import { Link } from "react-router-dom"
 import Seo from "../seo/Seo"
+import { content } from "../data/content"
 import BackToHome from "../components/layout/BackToHome"
 import Contact from "../components/sections/Contact"
 import GalleryShowcase from "../components/sections/GalleryShowcase"
@@ -7,7 +9,7 @@ export default function BadRenovationZuerich() {
   return (
     <>
       <Seo
-        title="Bad Renovation Zürich – Fliesen & Umbau"
+        title={`Bad Renovation Zürich – Fliesen & Umbau | ${content.brand}`}
         description="Bad Renovation in Zürich: neue Fliesen, saubere Abdichtung und professionelle Ausführung. Sehen Sie Referenzen und fragen Sie Ihre Offerte an."
         path="/badrenovation-zuerich"
       />
@@ -18,6 +20,16 @@ export default function BadRenovationZuerich() {
         <p className="font-[var(--font-body)] text-[var(--color-slate)] text-base md:text-lg leading-relaxed max-w-3xl text-safe">
           Von der Vorbereitung bis zur finalen Fuge: Wir renovieren Badezimmer mit Fokus auf Dichtigkeit, saubere Details und
           hochwertige Optik. Ideal für Duschen, Nasszellen und komplette Badumbauten.
+        </p>
+        <p className="mt-4 font-[var(--font-body)] text-sm text-[var(--color-slate)] leading-relaxed max-w-3xl">
+          Gesamtleistungen und Region:{" "}
+          <Link to="/plattenleger-zuerich" className="font-semibold text-[var(--color-primary)] underline-offset-2 hover:underline">
+            Plattenleger Zürich
+          </Link>
+          {" · "}
+          <Link to="/#contact" className="font-semibold text-[var(--color-primary)] underline-offset-2 hover:underline">
+            Kontakt & Offerte
+          </Link>
         </p>
       </section>
 

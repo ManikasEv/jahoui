@@ -14,7 +14,7 @@ export default function Footer() {
     <footer className="border-t border-black/5 bg-[var(--color-bg)]">
       <div className="mx-auto w-full max-w-[80vw] px-6 pt-14 pb-10">
         <div className="grid grid-cols-1 md:grid-cols-12 gap-10">
-          <div className="md:col-span-5">
+          <div className="md:col-span-4">
             <div className="text-lg font-bold tracking-tight text-[var(--color-dark)]">{content.brand}</div>
             <p className="mt-3 font-[var(--font-body)] text-[var(--color-slate)] leading-relaxed max-w-md">
               „Präzise Ausführung, saubere Übergaben und Ergebnisse, die im Alltag bestehen — in Bad, Küche und Boden.“
@@ -63,6 +63,14 @@ export default function Footer() {
               ))}
               <li>
                 <a
+                  href="/leistungen"
+                  className="font-[var(--font-body)] text-[var(--color-slate)] hover:text-[var(--color-primary)] transition-colors"
+                >
+                  Leistungen &amp; Region
+                </a>
+              </li>
+              <li>
+                <a
                   href="/plattenleger-zuerich"
                   className="font-[var(--font-body)] text-[var(--color-slate)] hover:text-[var(--color-primary)] transition-colors"
                 >
@@ -88,7 +96,45 @@ export default function Footer() {
             </ul>
           </div>
 
-          <div className="md:col-span-4">
+          <div className="md:col-span-2">
+            <div className="text-xs font-semibold uppercase tracking-wide text-[var(--color-dark)]/70">Region</div>
+            <ul className="mt-4 space-y-2">
+              <li>
+                <a
+                  href="/plattenleger-luzern"
+                  className="font-[var(--font-body)] text-[var(--color-slate)] hover:text-[var(--color-primary)] transition-colors"
+                >
+                  Plattenleger Luzern
+                </a>
+              </li>
+              <li>
+                <a
+                  href="/plattenleger-zug"
+                  className="font-[var(--font-body)] text-[var(--color-slate)] hover:text-[var(--color-primary)] transition-colors"
+                >
+                  Plattenleger Zug
+                </a>
+              </li>
+              <li>
+                <a
+                  href="/plattenleger-winterthur"
+                  className="font-[var(--font-body)] text-[var(--color-slate)] hover:text-[var(--color-primary)] transition-colors"
+                >
+                  Plattenleger Winterthur
+                </a>
+              </li>
+              <li>
+                <a
+                  href="/plattenleger-aargau"
+                  className="font-[var(--font-body)] text-[var(--color-slate)] hover:text-[var(--color-primary)] transition-colors"
+                >
+                  Plattenleger Aargau
+                </a>
+              </li>
+            </ul>
+          </div>
+
+          <div className="md:col-span-3">
             <div className="text-sm font-semibold text-[var(--color-dark)]">Kontakt</div>
             <div className="mt-4 space-y-3 font-[var(--font-body)] text-[var(--color-slate)]">
               {contact?.phone ? (

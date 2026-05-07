@@ -1,6 +1,6 @@
-# Jaho Plattenleger Website
+# Plattenleger Jaho GmbH – Website
 
-Professionelle Website für Jaho Plattenleger - Schweizer Plattenleger Service mit Fokus auf Qualität und Präzision.
+Professionelle Website für Plattenleger Jaho GmbH – Schweizer Plattenleger Service mit Fokus auf Qualität und Präzision.
 
 ## 🚀 Features
 
@@ -170,4 +170,4 @@ Alle Inhalte befinden sich in `src/data/content.jsx`. Dort können Sie einfach:
 
 ## 📄 Lizenz
 
-Alle Rechte vorbehalten - Jaho Plattenleger © 2026
+Alle Rechte vorbehalten – Plattenleger Jaho GmbH © 2026

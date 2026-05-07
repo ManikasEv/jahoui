@@ -60,25 +60,35 @@ export default function Navbar() {
       return
     }
 
-    if (!href.startsWith("#")) return
-
-    e.preventDefault()
-    // If we’re not on home, route to "/#section" first.
-    if (location.pathname !== "/") {
-      navigate(`/${href}`)
+    // /#section — crawlable path + hash (works from any page)
+    if (href.startsWith("/#")) {
+      e.preventDefault()
+      const sectionId = href.slice(2)
+      if (location.pathname !== "/") {
+        navigate({ pathname: "/", hash: sectionId })
+      } else {
+        navigate({ hash: sectionId })
+      }
       return
     }
 
-    // Already on home: just update hash so App scroll handler runs.
-    navigate(href)
+    if (!href.startsWith("#")) return
+
+    e.preventDefault()
+    if (location.pathname !== "/") {
+      navigate({ pathname: "/", hash: href.slice(1) })
+      return
+    }
+
+    navigate({ hash: href.slice(1) })
   }
 
   const goContact = useCallback(() => {
     if (location.pathname !== "/") {
-      navigate({ pathname: "/", hash: "#contact" })
+      navigate({ pathname: "/", hash: "contact" })
       return
     }
-    navigate("#contact")
+    navigate({ hash: "contact" })
   }, [location.pathname, navigate])
 
   return (

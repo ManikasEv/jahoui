@@ -1,4 +1,4 @@
-# SEO Optimization Summary - Jaho Plattenleger
+# SEO Optimization Summary – Plattenleger Jaho GmbH
 
 ## ✅ Implemented SEO Features
 
