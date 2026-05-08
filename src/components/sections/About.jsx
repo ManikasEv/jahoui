@@ -86,7 +86,7 @@ export default function About() {
   }, [reducedMotion])
 
   return (
-    <section id="about" ref={sectionRef} className="mx-auto w-full max-w-[80vw] px-6 py-14 perspective-[1200px]">
+    <section id="about" ref={sectionRef} className="mx-auto w-full min-w-0 content-shell py-12 sm:py-14 perspective-[1200px]">
       <h2 className="section-title mb-8 md:mb-10 text-center [transform-style:preserve-3d]">
         {reducedMotion ? (
           about.title

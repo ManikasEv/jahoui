@@ -167,7 +167,7 @@ export default function Contact() {
     <section
       id="contact"
       ref={sectionRef}
-      className="mx-auto w-full max-w-[80vw] px-6 py-20 perspective-[1100px]"
+      className="mx-auto w-full min-w-0 content-shell py-16 sm:py-20 perspective-[1100px]"
     >
       <h2 ref={titleRef} className="section-title mb-4 [transform-style:preserve-3d]">
         {content.sections.contact.title.split("").map((char, i) => (
@@ -184,7 +184,7 @@ export default function Contact() {
         ))}
       </p>
 
-      <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
+      <div className="grid min-w-0 grid-cols-1 md:grid-cols-2 gap-8">
         {/* Contact Form */}
         <div
           ref={formRef}

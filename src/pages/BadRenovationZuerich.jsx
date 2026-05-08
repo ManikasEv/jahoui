@@ -14,7 +14,7 @@ export default function BadRenovationZuerich() {
         path="/badrenovation-zuerich"
       />
 
-      <section className="mx-auto w-full max-w-[1100px] px-6 pt-12 pb-10">
+      <section className="mx-auto w-full min-w-0 content-shell content-shell--article pt-12 pb-10">
         <BackToHome className="mb-6" />
         <h1 className="hero-title mb-4">Bad Renovation Zürich – Fliesen & Umbau</h1>
         <p className="font-[var(--font-body)] text-[var(--color-slate)] text-base md:text-lg leading-relaxed max-w-3xl text-safe">
@@ -33,7 +33,7 @@ export default function BadRenovationZuerich() {
         </p>
       </section>
 
-      <section className="mx-auto w-full max-w-[1100px] px-6 py-10">
+      <section className="mx-auto w-full min-w-0 content-shell content-shell--article py-10">
         <h2 className="section-title mb-4">Ablauf</h2>
         <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
           {[
@@ -56,7 +56,7 @@ export default function BadRenovationZuerich() {
         description="„Aus alt wird neu – mit sauberen Details und perfektem Finish.“"
       />
 
-      <section className="mx-auto w-full max-w-[1100px] px-6 py-10">
+      <section className="mx-auto w-full min-w-0 content-shell content-shell--article py-10">
         <h2 className="section-title mb-4">Kosten & Beratung</h2>
         <p className="font-[var(--font-body)] text-[var(--color-slate)] leading-relaxed max-w-3xl text-safe">
           Bei Badrenovationen sind Untergrund, Abdichtung, Gefälle und Details entscheidend. Darum kalkulieren wir nach Besichtigung
@@ -64,7 +64,7 @@ export default function BadRenovationZuerich() {
         </p>
       </section>
 
-      <section className="mx-auto w-full max-w-[1100px] px-6 py-10">
+      <section className="mx-auto w-full min-w-0 content-shell content-shell--article py-10">
         <h2 className="section-title mb-4">FAQ</h2>
         <div className="space-y-4">
           {[

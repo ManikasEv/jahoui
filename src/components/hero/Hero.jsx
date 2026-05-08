@@ -33,8 +33,8 @@ export default function Hero() {
   }, [isMdUp])
 
   return (
-    <section id="hero" ref={wrapRef} className="w-full relative min-h-[100svh] flex">
-      <div className="mx-auto w-full max-w-[80vw] px-6 py-14 md:py-18 relative flex items-center min-h-[100svh]">
+    <section id="hero" ref={wrapRef} className="w-full relative min-h-[100svh] flex overflow-x-hidden">
+      <div className="content-shell min-w-0 flex w-full flex-1 flex-col justify-start py-8 sm:py-12 md:min-h-[100svh] md:justify-center md:py-14 lg:py-[4.5rem] relative">
         {isMdUp ? (
           <HeroDesktop
             data={content.hero}

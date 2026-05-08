@@ -245,7 +245,7 @@ export default function Faq() {
     <section
       id="faq"
       ref={sectionRef}
-      className="mx-auto w-full max-w-[80vw] px-6 py-14 reveal-group perspective-[1200px]"
+      className="mx-auto w-full min-w-0 content-shell py-12 sm:py-14 reveal-group perspective-[1200px]"
     >
       <div className="max-w-3xl mx-auto">
         <h2 ref={titleRef} className="section-title mb-3 text-center [transform-style:preserve-3d]">

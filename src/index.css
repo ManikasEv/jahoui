@@ -212,6 +212,45 @@
     transform: translateZ(0);
   }
 
+  /*
+   * Page width: full-bleed safe area on phones (no 80vw squeeze + huge side gaps).
+   * Desktop keeps similar proportions to the former max-w-[80vw] layout.
+   */
+  .content-shell {
+    box-sizing: border-box;
+    width: 100%;
+    max-width: min(100%, 80rem);
+    margin-left: auto;
+    margin-right: auto;
+    padding-left: max(0.875rem, env(safe-area-inset-left, 0px));
+    padding-right: max(0.875rem, env(safe-area-inset-right, 0px));
+  }
+
+  @media (min-width: 640px) {
+    .content-shell {
+      padding-left: max(1.25rem, env(safe-area-inset-left, 0px));
+      padding-right: max(1.25rem, env(safe-area-inset-right, 0px));
+      max-width: min(92vw, 80rem);
+    }
+  }
+
+  @media (min-width: 1024px) {
+    .content-shell {
+      max-width: min(80vw, 80rem);
+    }
+  }
+
+  /* Inner pages with a fixed readable column width */
+  .content-shell--article {
+    max-width: min(68.75rem, 100%) !important;
+  }
+
+  @media (min-width: 640px) {
+    .content-shell--article {
+      max-width: min(68.75rem, 94vw) !important;
+    }
+  }
+
   /* Display headings — fluid size, tight line-height, balanced wraps */
   .hero-title {
     font-family: var(--font-heading);
@@ -220,6 +259,9 @@
     line-height: 1.12;
     letter-spacing: -0.035em;
     text-wrap: balance;
+    max-width: 100%;
+    overflow-wrap: anywhere;
+    word-break: break-word;
   }
 
   /* Per-letter GSAP wrappers can add visual gaps; nudge together slightly */
@@ -234,10 +276,28 @@
     line-height: 1.12;
     letter-spacing: -0.03em;
     text-wrap: balance;
+    max-width: 100%;
+    overflow-wrap: anywhere;
+    word-break: break-word;
   }
 
   .section-title [data-char] {
     margin-inline: -0.025em;
+  }
+
+  /* Phones: one coherent scale so hero ≠ giant vs sections tiny */
+  @media (max-width: 639.98px) {
+    .hero-title {
+      font-size: clamp(1.2rem, 4.3vw + 0.55rem, 1.85rem);
+      line-height: 1.18;
+      letter-spacing: -0.03em;
+    }
+
+    .section-title {
+      font-size: clamp(1.2rem, 3.6vw + 0.65rem, 1.75rem);
+      line-height: 1.2;
+      letter-spacing: -0.028em;
+    }
   }
 
   @keyframes profile-halo {

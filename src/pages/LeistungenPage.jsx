@@ -12,7 +12,7 @@ export default function LeistungenPage() {
         path="/leistungen"
       />
       <div className="pt-10 pb-4">
-        <div className="mx-auto w-full max-w-[80vw] px-6">
+        <div className="mx-auto w-full min-w-0 content-shell">
           <BackToHome className="mb-2" />
         </div>
       </div>

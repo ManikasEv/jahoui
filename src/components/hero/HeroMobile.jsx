@@ -20,17 +20,17 @@ export default function HeroMobile({ data, titleRef, subtitleRef, badgeRef, ctaR
   }, [])
 
     return (
-      <div className="md:hidden">
+      <div className="md:hidden w-full min-w-0 max-w-full">
         <div
           ref={badgeRef}
-          className="inline-flex items-center gap-2 px-4 py-2 rounded-full border border-black/10 bg-white/70 backdrop-blur font-semibold text-sm text-[var(--color-slate)] mb-6"
+          className="inline-flex max-w-full items-center gap-2 px-3 py-2 sm:px-4 rounded-full border border-black/10 bg-white/70 backdrop-blur text-[var(--font-body)] text-xs font-semibold sm:text-sm text-[var(--color-slate)] mb-5 text-safe"
         >
           {data.badge}
         </div>
 
         <h1
           ref={titleRef}
-          className="hero-title mb-4 perspective-[900px] [transform-style:preserve-3d]"
+          className="hero-title mb-4 max-w-full text-safe perspective-[900px] [transform-style:preserve-3d]"
         >
           {data.title.split(" ").map((word, wordIndex) => (
             <span key={wordIndex} className="inline-block mr-[0.18em]">
@@ -43,7 +43,7 @@ export default function HeroMobile({ data, titleRef, subtitleRef, badgeRef, ctaR
           ))}
         </h1>
 
-        <p ref={subtitleRef} className="font-[var(--font-body)] text-[var(--color-slate)] text-base leading-relaxed mb-6 perspective-[760px]">
+        <p ref={subtitleRef} className="font-[var(--font-body)] text-[var(--color-slate)] text-[0.9375rem] sm:text-base leading-relaxed mb-6 text-safe max-w-full perspective-[760px]">
           {data.subtitle.split(/\s+/).filter(Boolean).map((word, i) => (
             <span key={i} className="inline-block mr-[0.22em]" data-hero-subword>
               {word}
@@ -51,13 +51,13 @@ export default function HeroMobile({ data, titleRef, subtitleRef, badgeRef, ctaR
           ))}
         </p>
 
-      <div className="relative aspect-[4/3] rounded-2xl overflow-hidden bg-[var(--color-dark)] border border-black/10 shadow-lg mb-6">
+      <div className="relative aspect-[4/3] w-full max-w-full rounded-2xl overflow-hidden bg-[var(--color-dark)] border border-black/10 shadow-lg mb-6">
         <div className="absolute inset-0 hero-logo-motion">
           <img
             src={logoJaho}
             alt="Logo Plattenleger Jaho GmbH"
             ref={logoRef}
-            className="absolute inset-0 w-full h-full object-cover scale-[1.32]"
+            className="absolute inset-0 w-full h-full object-cover scale-110 sm:scale-[1.22]"
             loading="eager"
             decoding="async"
           />

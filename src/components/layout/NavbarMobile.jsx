@@ -13,9 +13,9 @@ export default function NavbarMobile({
 }) {
   return (
     <>
-      <div className="lg:hidden flex items-center justify-between">
-        <div className="flex flex-col leading-none">
-          <div className="font-[var(--font-heading)] text-xl text-[var(--color-dark)] font-bold">
+      <div className="lg:hidden flex items-center justify-between gap-2 min-w-0">
+        <div className="flex flex-col leading-tight min-w-0 flex-1">
+          <div className="font-[var(--font-heading)] text-[clamp(0.95rem,3.5vw,1.125rem)] text-[var(--color-dark)] font-bold text-safe">
             {content.brand}
           </div>
           <div

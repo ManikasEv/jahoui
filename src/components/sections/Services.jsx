@@ -146,7 +146,7 @@ export default function Services() {
     <section
       id="services"
       ref={sectionRef}
-      className="mx-auto w-full max-w-[80vw] px-6 py-20"
+      className="mx-auto w-full min-w-0 content-shell py-16 sm:py-20"
     >
       <h2 ref={titleRef} className="font-[var(--font-heading)] text-4xl md:text-5xl text-[var(--color-dark)] mb-4">
         {content.sections.services.title.split("").map((char, i) => (

@@ -105,9 +105,9 @@ export default function TileShowcase() {
 
   return (
     <section ref={sectionRef} className="relative py-10 md:py-11 bg-[var(--color-bg)] border-y border-black/[0.05] perspective-[1100px]">
-      <div className="mx-auto w-full max-w-[80vw] px-6">
-        <div data-tile-intro className="max-w-xl mx-auto text-center mb-5 md:mb-6">
-          <h2 className="font-[var(--font-heading)] text-xl md:text-2xl font-bold tracking-tight text-[var(--color-dark)] mb-2 [transform-style:preserve-3d]">
+      <div className="mx-auto w-full min-w-0 content-shell">
+        <div data-tile-intro className="w-full min-w-0 max-w-xl mx-auto text-center mb-5 md:mb-6 px-0">
+          <h2 className="section-title font-bold mb-2 [transform-style:preserve-3d]">
             {reducedMotion ? (
               TILE_TITLE
             ) : (

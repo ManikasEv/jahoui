@@ -14,7 +14,7 @@ export default function KuecheFliesenZuerich() {
         path="/kueche-fliesen-zuerich"
       />
 
-      <section className="mx-auto w-full max-w-[1100px] px-6 pt-12 pb-10">
+      <section className="mx-auto w-full min-w-0 content-shell content-shell--article pt-12 pb-10">
         <BackToHome className="mb-6" />
         <h1 className="hero-title mb-4">Küchen Fliesen Zürich – Modern & Langlebig</h1>
         <p className="font-[var(--font-body)] text-[var(--color-slate)] text-base md:text-lg leading-relaxed max-w-3xl text-safe">
@@ -33,7 +33,7 @@ export default function KuecheFliesenZuerich() {
         </p>
       </section>
 
-      <section className="mx-auto w-full max-w-[1100px] px-6 py-10">
+      <section className="mx-auto w-full min-w-0 content-shell content-shell--article py-10">
         <h2 className="section-title mb-4">Beliebte Lösungen</h2>
         <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
           {[
@@ -54,7 +54,7 @@ export default function KuecheFliesenZuerich() {
 
       <GalleryShowcase title="Küchen Referenzen" />
 
-      <section className="mx-auto w-full max-w-[1100px] px-6 py-10">
+      <section className="mx-auto w-full min-w-0 content-shell content-shell--article py-10">
         <h2 className="section-title mb-4">FAQ</h2>
         <div className="space-y-4">
           {[

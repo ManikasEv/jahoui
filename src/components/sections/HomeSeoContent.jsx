@@ -7,15 +7,15 @@ export default function HomeSeoContent() {
   return (
     <section
       id="leistungen-text"
-      className="mx-auto w-full max-w-[80vw] px-6 py-14 border-y border-black/[0.06] bg-white/[0.35]"
+      className="mx-auto w-full min-w-0 content-shell py-12 sm:py-14 border-y border-black/[0.06] bg-white/[0.35]"
       aria-labelledby="home-seo-h2-main"
     >
-      <div className="max-w-3xl mx-auto font-[var(--font-body)] text-[var(--color-slate)] leading-relaxed text-safe space-y-8">
-        <header className="text-center space-y-3">
+      <div className="max-w-3xl mx-auto w-full min-w-0 font-[var(--font-body)] text-[var(--color-slate)] leading-relaxed text-safe space-y-8">
+        <header className="text-center space-y-3 px-0">
           <p className="text-xs font-semibold uppercase tracking-[0.14em] text-[var(--color-primary)]">
             Leistungen & Region
           </p>
-          <h2 id="home-seo-h2-main" className="font-[var(--font-heading)] text-2xl md:text-3xl font-bold text-[var(--color-dark)] tracking-tight">
+          <h2 id="home-seo-h2-main" className="font-[var(--font-heading)] text-[clamp(1.2rem,4vw+0.6rem,1.85rem)] md:text-3xl font-bold text-[var(--color-dark)] tracking-tight text-safe">
             Leistungen von Bad, Küche bis Boden
           </h2>
           <p className="text-base md:text-[1.05rem]">

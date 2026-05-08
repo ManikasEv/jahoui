@@ -12,7 +12,7 @@ export default function Footer() {
 
   return (
     <footer className="border-t border-black/5 bg-[var(--color-bg)]">
-      <div className="mx-auto w-full max-w-[80vw] px-6 pt-14 pb-10">
+      <div className="mx-auto w-full min-w-0 content-shell pt-12 sm:pt-14 pb-10">
         <div className="grid grid-cols-1 md:grid-cols-12 gap-10">
           <div className="md:col-span-4">
             <div className="text-lg font-bold tracking-tight text-[var(--color-dark)]">{content.brand}</div>

@@ -106,7 +106,7 @@ export default function Clients() {
   }, [reducedMotion])
 
   return (
-    <section id="clients" ref={sectionRef} className="mx-auto w-full max-w-[80vw] px-6 py-14 perspective-[1100px]">
+    <section id="clients" ref={sectionRef} className="mx-auto w-full min-w-0 content-shell py-12 sm:py-14 perspective-[1100px]">
       <h2 className="section-title mb-3 text-center [transform-style:preserve-3d]">
         {reducedMotion ? (
           clients.title

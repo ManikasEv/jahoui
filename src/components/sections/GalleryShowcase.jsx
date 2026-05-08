@@ -396,11 +396,11 @@ export default function GalleryShowcase({
     <section
       id="gallery"
       ref={sectionRef}
-      className="mx-auto w-full max-w-[80vw] px-6 py-10 md:py-11 reveal-group"
+      className="mx-auto w-full min-w-0 content-shell py-10 md:py-11 reveal-group"
     >
       <div className="flex flex-col gap-4 md:gap-5">
-        <div ref={introRef} className="max-w-xl mx-auto text-center perspective-[880px]">
-          <h2 className="section-title mb-1 leading-tight text-[clamp(1.35rem,2.6vw,1.85rem)]">
+        <div ref={introRef} className="w-full min-w-0 max-w-xl mx-auto text-center perspective-[880px] px-0">
+          <h2 className="section-title mb-1 leading-tight">
             {reducedMotion
               ? title
               : title.split("").map((char, i) => (
@@ -422,7 +422,7 @@ export default function GalleryShowcase({
 
         <article
           ref={articleRef}
-          className="mx-auto w-full rounded-xl border border-black/10 bg-white shadow-[0_8px_28px_-16px_rgba(0,0,0,0.12)] overflow-hidden"
+          className="mx-auto w-full min-w-0 max-w-full rounded-xl border border-black/10 bg-white shadow-[0_8px_28px_-16px_rgba(0,0,0,0.12)] overflow-hidden"
           onMouseEnter={() => setPaused(true)}
           onMouseLeave={() => setPaused(false)}
           onFocus={() => setPaused(true)}

@@ -20,18 +20,18 @@ export default function HeroDesktop({ data, titleRef, subtitleRef, badgeRef, cta
   }, [])
 
     return (
-      <div className="hidden md:grid grid-cols-12 gap-12 items-center">
-        <div className="col-span-7">
+      <div className="hidden md:grid w-full min-w-0 grid-cols-12 gap-8 lg:gap-12 items-center">
+        <div className="col-span-7 min-w-0">
           <div
             ref={badgeRef}
-            className="inline-flex items-center gap-2 px-4 py-2 rounded-full border border-black/10 bg-white/70 backdrop-blur font-semibold text-sm text-[var(--color-slate)] mb-6"
+            className="inline-flex max-w-full items-center gap-2 px-4 py-2 rounded-full border border-black/10 bg-white/70 backdrop-blur font-semibold text-sm text-[var(--color-slate)] mb-6 text-safe"
           >
             {data.badge}
           </div>
   
           <h1
             ref={titleRef}
-            className="hero-title mb-6 max-w-[600px] perspective-[900px] [transform-style:preserve-3d]"
+            className="hero-title mb-6 max-w-full min-w-0 md:max-w-[min(600px,100%)] text-safe perspective-[900px] [transform-style:preserve-3d]"
           >
             {data.title.split(" ").map((word, wordIndex) => (
               <span key={wordIndex} className="inline-block mr-[0.18em]">
@@ -46,7 +46,7 @@ export default function HeroDesktop({ data, titleRef, subtitleRef, badgeRef, cta
   
           <p
             ref={subtitleRef}
-            className="font-[var(--font-body)] text-[var(--color-slate)] text-lg leading-relaxed mb-8 max-w-xl perspective-[760px]"
+            className="font-[var(--font-body)] text-[var(--color-slate)] text-base md:text-lg leading-relaxed mb-8 max-w-full md:max-w-xl text-safe perspective-[760px]"
           >
             {data.subtitle.split(/\s+/).filter(Boolean).map((word, i) => (
               <span key={i} className="inline-block mr-[0.22em]" data-hero-subword>
@@ -65,8 +65,8 @@ export default function HeroDesktop({ data, titleRef, subtitleRef, badgeRef, cta
           </button>
         </div>
   
-        <div className="col-span-5">
-        <div className="relative aspect-[4/3] rounded-2xl overflow-hidden bg-[var(--color-dark)] border border-black/10 shadow-xl">
+        <div className="col-span-5 min-w-0">
+        <div className="relative aspect-[4/3] w-full rounded-2xl overflow-hidden bg-[var(--color-dark)] border border-black/10 shadow-xl">
           <div className="absolute inset-0 hero-logo-motion">
             <img
               src={logoJaho}
