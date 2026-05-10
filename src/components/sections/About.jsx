@@ -1,6 +1,7 @@
 import { useEffect, useRef } from "react"
 import { gsap } from "gsap"
 import { ScrollTrigger } from "gsap/ScrollTrigger"
+import { Link } from "react-router-dom"
 import profilePhoto from "../../assets/profile.jpg"
 import { content } from "../../data/content"
 import { usePrefersReducedMotion } from "../../hooks/usePrefersReducedMotion"
@@ -136,6 +137,28 @@ export default function About() {
                 </span>
               ))
             )}
+          </p>
+          <p className="font-[var(--font-body)] text-sm md:text-[0.9375rem] text-[var(--color-slate)] leading-relaxed mt-6 pt-6 border-t border-black/[0.06]">
+            Mehr über{" "}
+            <Link to="/leistungen" className="font-semibold text-[var(--color-primary)] underline-offset-2 hover:underline">
+              Leistungen &amp; Region
+            </Link>
+            ,{" "}
+            <Link
+              to="/badrenovation-zuerich"
+              className="font-semibold text-[var(--color-primary)] underline-offset-2 hover:underline"
+            >
+              Badezimmer-Renovation in Zürich
+            </Link>{" "}
+            und{" "}
+            <a href="/#gallery" className="font-semibold text-[var(--color-primary)] underline-offset-2 hover:underline">
+              Referenzbilder in der Galerie
+            </a>
+            . Für eine{" "}
+            <a href="/#contact" className="font-semibold text-[var(--color-primary)] underline-offset-2 hover:underline">
+              Offerte
+            </a>{" "}
+            erreichen Sie uns direkt unterhalb auf dieser Seite.
           </p>
         </div>
       </div>

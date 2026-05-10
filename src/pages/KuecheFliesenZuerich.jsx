@@ -23,12 +23,24 @@ export default function KuecheFliesenZuerich() {
         </p>
         <p className="mt-4 font-[var(--font-body)] text-sm text-[var(--color-slate)] leading-relaxed max-w-3xl">
           Passende Übersicht:{" "}
+          <Link to="/leistungen" className="font-semibold text-[var(--color-primary)] underline-offset-2 hover:underline">
+            Leistungen &amp; Region
+          </Link>
+          {" · "}
           <Link to="/plattenleger-zuerich" className="font-semibold text-[var(--color-primary)] underline-offset-2 hover:underline">
             Plattenleger Zürich
           </Link>
           {" · "}
           <Link to="/badrenovation-zuerich" className="font-semibold text-[var(--color-primary)] underline-offset-2 hover:underline">
             Bad Renovation Zürich
+          </Link>
+          {" · "}
+          <Link to="/#gallery" className="font-semibold text-[var(--color-primary)] underline-offset-2 hover:underline">
+            Galerie
+          </Link>
+          {" · "}
+          <Link to="/#contact" className="font-semibold text-[var(--color-primary)] underline-offset-2 hover:underline">
+            Offerte
           </Link>
         </p>
       </section>

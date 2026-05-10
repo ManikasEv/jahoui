@@ -1,6 +1,7 @@
 import { useEffect, useLayoutEffect, useRef, useState, useCallback } from "react"
 import { gsap } from "gsap"
 import { ScrollTrigger } from "gsap/ScrollTrigger"
+import { Link } from "react-router-dom"
 import { content } from "../../data/content"
 import { usePrefersReducedMotion } from "../../hooks/usePrefersReducedMotion"
 import { useSectionCrossFade } from "../../hooks/useSectionCrossFade"
@@ -279,6 +280,30 @@ export default function Faq() {
             <FaqRow key={item.q} item={item} index={i} reducedMotion={reducedMotion} />
           ))}
         </div>
+
+        <p className="mt-10 font-[var(--font-body)] text-sm md:text-[0.9375rem] text-[var(--color-slate)] leading-relaxed text-center text-safe border-t border-black/[0.06] pt-8">
+          Passend dazu:{" "}
+          <Link to="/leistungen" className="font-semibold text-[var(--color-primary)] underline-offset-2 hover:underline">
+            Leistungen &amp; Region
+          </Link>
+          ,{" "}
+          <Link to="/badrenovation-zuerich" className="font-semibold text-[var(--color-primary)] underline-offset-2 hover:underline">
+            Badezimmer Renovation Zürich
+          </Link>
+          ,{" "}
+          <Link to="/kueche-fliesen-zuerich" className="font-semibold text-[var(--color-primary)] underline-offset-2 hover:underline">
+            Küchen Fliesen Zürich
+          </Link>
+          ,{" "}
+          <a href="/#gallery" className="font-semibold text-[var(--color-primary)] underline-offset-2 hover:underline">
+            Galerie
+          </a>{" "}
+          und{" "}
+          <a href="/#contact" className="font-semibold text-[var(--color-primary)] underline-offset-2 hover:underline">
+            Kontakt für Ihre Offerte
+          </a>
+          .
+        </p>
       </div>
     </section>
   )

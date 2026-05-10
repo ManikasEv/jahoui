@@ -1,6 +1,7 @@
 import { useEffect, useRef } from "react"
 import { gsap } from "gsap"
 import { ScrollTrigger } from "gsap/ScrollTrigger"
+import { Link } from "react-router-dom"
 import { usePrefersReducedMotion } from "../../hooks/usePrefersReducedMotion"
 import { useSectionCrossFade } from "../../hooks/useSectionCrossFade"
 
@@ -128,6 +129,28 @@ export default function TileShowcase() {
                 </span>
               ))
             )}
+          </p>
+          <p className="mt-3 font-[var(--font-body)] text-xs md:text-[0.8125rem] text-[var(--color-slate)]/95 leading-relaxed text-safe max-w-lg mx-auto">
+            Ob{" "}
+            <Link to="/plattenleger-zuerich" className="font-semibold text-[var(--color-primary)] underline-offset-2 hover:underline">
+              Plattenleger Schweiz / Zürich
+            </Link>
+            ,{" "}
+            <Link to="/badrenovation-zuerich" className="font-semibold text-[var(--color-primary)] underline-offset-2 hover:underline">
+              Badezimmer-Sanierung
+            </Link>{" "}
+            oder{" "}
+            <Link to="/kueche-fliesen-zuerich" className="font-semibold text-[var(--color-primary)] underline-offset-2 hover:underline">
+              Keramik &amp; Bodenplatten in der Küche
+            </Link>
+            : Qualität entsteht in jedem Millimeter.{" "}
+            <a href="/#faq" className="font-semibold text-[var(--color-primary)] underline-offset-2 hover:underline">
+              FAQ
+            </a>{" "}
+            ·{" "}
+            <a href="/#contact" className="font-semibold text-[var(--color-primary)] underline-offset-2 hover:underline">
+              Offerte
+            </a>
           </p>
         </div>
 

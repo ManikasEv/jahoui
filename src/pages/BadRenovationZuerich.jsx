@@ -23,12 +23,28 @@ export default function BadRenovationZuerich() {
         </p>
         <p className="mt-4 font-[var(--font-body)] text-sm text-[var(--color-slate)] leading-relaxed max-w-3xl">
           Gesamtleistungen und Region:{" "}
+          <Link to="/leistungen" className="font-semibold text-[var(--color-primary)] underline-offset-2 hover:underline">
+            Leistungen &amp; Region
+          </Link>
+          {" · "}
           <Link to="/plattenleger-zuerich" className="font-semibold text-[var(--color-primary)] underline-offset-2 hover:underline">
             Plattenleger Zürich
           </Link>
           {" · "}
+          <Link to="/kueche-fliesen-zuerich" className="font-semibold text-[var(--color-primary)] underline-offset-2 hover:underline">
+            Küchen Fliesen Zürich
+          </Link>
+          {" · "}
+          <Link to="/#gallery" className="font-semibold text-[var(--color-primary)] underline-offset-2 hover:underline">
+            Galerie
+          </Link>
+          {" · "}
+          <Link to="/#faq" className="font-semibold text-[var(--color-primary)] underline-offset-2 hover:underline">
+            FAQ
+          </Link>
+          {" · "}
           <Link to="/#contact" className="font-semibold text-[var(--color-primary)] underline-offset-2 hover:underline">
-            Kontakt & Offerte
+            Kontakt &amp; Offerte
           </Link>
         </p>
       </section>

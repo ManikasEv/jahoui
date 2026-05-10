@@ -1,6 +1,7 @@
 import { useEffect, useRef } from "react"
 import { gsap } from "gsap"
 import { ScrollTrigger } from "gsap/ScrollTrigger"
+import { Link } from "react-router-dom"
 import { content } from "../../data/content"
 import { usePrefersReducedMotion } from "../../hooks/usePrefersReducedMotion"
 
@@ -128,6 +129,25 @@ export default function Clients() {
             </span>
           ))
         )}
+      </p>
+      <p className="font-[var(--font-body)] text-sm md:text-[0.9375rem] text-[var(--color-slate)] mb-10 max-w-2xl mx-auto text-center leading-relaxed text-safe">
+        Ob{" "}
+        <Link to="/kueche-fliesen-zuerich" className="font-semibold text-[var(--color-primary)] underline-offset-2 hover:underline">
+          Küchenfliesen
+        </Link>
+        ,{" "}
+        <Link to="/badrenovation-zuerich" className="font-semibold text-[var(--color-primary)] underline-offset-2 hover:underline">
+          Bad-Sanierung
+        </Link>{" "}
+        oder{" "}
+        <Link to="/plattenleger-zuerich" className="font-semibold text-[var(--color-primary)] underline-offset-2 hover:underline">
+          Plattenlegerarbeit in Zürich
+        </Link>
+        : Wir passen uns an Ihr Projekt an. Übersicht aller Themen:{" "}
+        <Link to="/leistungen" className="font-semibold text-[var(--color-primary)] underline-offset-2 hover:underline">
+          Dienstleistungen
+        </Link>
+        .
       </p>
 
       <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 md:gap-5">

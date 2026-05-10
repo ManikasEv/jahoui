@@ -1,6 +1,7 @@
 import { useEffect, useMemo, useState, useCallback, useRef } from "react"
 import { gsap } from "gsap"
 import { ScrollTrigger } from "gsap/ScrollTrigger"
+import { Link } from "react-router-dom"
 import ImageLightbox from "../ui/ImageLightbox"
 import { usePrefersReducedMotion } from "../../hooks/usePrefersReducedMotion"
 import { useSectionCrossFade } from "../../hooks/useSectionCrossFade"
@@ -417,6 +418,25 @@ export default function GalleryShowcase({
                     {word}
                   </span>
                 ))}
+          </p>
+          <p className="mt-3 font-[var(--font-body)] text-[11px] md:text-xs text-[var(--color-slate)] leading-relaxed text-safe max-w-md mx-auto">
+            Weitere Eindrücke und Ablauf:{" "}
+            <Link to="/leistungen" className="font-semibold text-[var(--color-primary)] underline-offset-2 hover:underline">
+              Dienstleistungen
+            </Link>
+            ,{" "}
+            <Link to="/badrenovation-zuerich" className="font-semibold text-[var(--color-primary)] underline-offset-2 hover:underline">
+              Bad Renovation
+            </Link>
+            ,{" "}
+            <a href="/#about" className="font-semibold text-[var(--color-primary)] underline-offset-2 hover:underline">
+              Über uns
+            </a>{" "}
+            und{" "}
+            <a href="/#contact" className="font-semibold text-[var(--color-primary)] underline-offset-2 hover:underline">
+              Offerte anfragen
+            </a>
+            .
           </p>
         </div>
 

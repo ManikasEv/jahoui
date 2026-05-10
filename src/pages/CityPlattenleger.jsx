@@ -1,3 +1,4 @@
+import { Link } from "react-router-dom"
 import Seo from "../seo/Seo"
 import BackToHome from "../components/layout/BackToHome"
 import Contact from "../components/sections/Contact"
@@ -25,6 +26,28 @@ export default function CityPlattenleger({ cityId }) {
         <h1 className="hero-title mb-4">{cfg.h1}</h1>
         <p className="font-[var(--font-body)] text-[var(--color-slate)] text-base md:text-lg leading-relaxed max-w-3xl text-safe">
           {cfg.lead}
+        </p>
+        <p className="mt-4 font-[var(--font-body)] text-sm text-[var(--color-slate)] leading-relaxed max-w-3xl text-safe">
+          Verwandte Seiten:{" "}
+          <Link to="/leistungen" className="font-semibold text-[var(--color-primary)] underline-offset-2 hover:underline">
+            Leistungen
+          </Link>
+          {" · "}
+          <Link to="/badrenovation-zuerich" className="font-semibold text-[var(--color-primary)] underline-offset-2 hover:underline">
+            Bad Renovation Zürich
+          </Link>
+          {" · "}
+          <Link to="/kueche-fliesen-zuerich" className="font-semibold text-[var(--color-primary)] underline-offset-2 hover:underline">
+            Küchen Fliesen Zürich
+          </Link>
+          {" · "}
+          <Link to="/#gallery" className="font-semibold text-[var(--color-primary)] underline-offset-2 hover:underline">
+            Galerie
+          </Link>
+          {" · "}
+          <Link to="/#contact" className="font-semibold text-[var(--color-primary)] underline-offset-2 hover:underline">
+            Kontakt
+          </Link>
         </p>
       </section>
 
