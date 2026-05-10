@@ -120,9 +120,27 @@ export function buildHomeJsonLd(content) {
     ],
   }
 
+  /** Standalone URLs — mirrors sitemap; reinforces site structure for search (sitelinks are not guaranteed). */
+  const mainSitePages = {
+    "@type": "ItemList",
+    "@id": `${SITE_URL}/#main-pages`,
+    name: "Wichtige Seiten",
+    numberOfItems: 8,
+    itemListElement: [
+      { "@type": "ListItem", position: 1, name: "Leistungen & Region", url: `${SITE_URL}/leistungen` },
+      { "@type": "ListItem", position: 2, name: "Plattenleger Zürich", url: `${SITE_URL}/plattenleger-zuerich` },
+      { "@type": "ListItem", position: 3, name: "Plattenleger Luzern", url: `${SITE_URL}/plattenleger-luzern` },
+      { "@type": "ListItem", position: 4, name: "Plattenleger Zug", url: `${SITE_URL}/plattenleger-zug` },
+      { "@type": "ListItem", position: 5, name: "Plattenleger Winterthur", url: `${SITE_URL}/plattenleger-winterthur` },
+      { "@type": "ListItem", position: 6, name: "Plattenleger Aargau", url: `${SITE_URL}/plattenleger-aargau` },
+      { "@type": "ListItem", position: 7, name: "Bad Renovation Zürich", url: `${SITE_URL}/badrenovation-zuerich` },
+      { "@type": "ListItem", position: 8, name: "Küchen Fliesen Zürich", url: `${SITE_URL}/kueche-fliesen-zuerich` },
+    ],
+  }
+
   return {
     "@context": "https://schema.org",
-    "@graph": [localBusiness, faqPage, website, homeSectionsNav],
+    "@graph": [localBusiness, faqPage, website, homeSectionsNav, mainSitePages],
   }
 }
 

@@ -3,6 +3,9 @@ export const content = {
     nav: {
       links: [
         { href: "/", label: "Start" },
+        // Real paths (not only hashes) help crawlers and Google sitelinks; Netlify needs SPA `_redirects`.
+        { href: "/leistungen", label: "Leistungen" },
+        { href: "/plattenleger-zuerich", label: "Zürich" },
         // Root-relative hash URLs work from any route and match crawlable anchors on the homepage.
         { href: "/#about", label: "Über uns" },
         { href: "/#clients", label: "Kunden" },

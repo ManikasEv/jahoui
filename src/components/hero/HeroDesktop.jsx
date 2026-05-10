@@ -2,7 +2,7 @@ import logoJaho from "../../assets/logojaho.jpg"
 import { useEffect, useRef } from "react"
 import { gsap } from "gsap"
 
-export default function HeroDesktop({ data, titleRef, subtitleRef, badgeRef, ctaRef }) {
+export default function HeroDesktop({ data, titleRef, subtitleRef, badgeRef, ctaRef, onCtaClick }) {
   const logoRef = useRef(null)
 
   useEffect(() => {
@@ -58,7 +58,7 @@ export default function HeroDesktop({ data, titleRef, subtitleRef, badgeRef, cta
           <button
             ref={ctaRef}
             type="button"
-            onClick={() => (window.location.href = "/#contact")}
+            onClick={onCtaClick}
             className="px-8 py-4 rounded-xl font-[var(--font-body)] font-semibold bg-[var(--color-primary)] text-white text-lg transition-all duration-300 hover:bg-[var(--color-primary)]/92 hover:scale-[1.02] active:scale-[0.98] shadow-lg hover:shadow-xl"
           >
             {data.cta}

@@ -1,5 +1,6 @@
-import { useEffect, useRef } from "react"
+import { useCallback, useEffect, useRef } from "react"
 import { gsap } from "gsap"
+import { useLocation, useNavigate } from "react-router-dom"
 import HeroDesktop from "./HeroDesktop"
 import HeroMobile from "./HeroMobile"
 import { heroInteractive } from "../../animations/heroAnimation"
@@ -9,6 +10,16 @@ import { useMdUp } from "../../hooks/useMdUp"
 export default function Hero() {
   const wrapRef = useRef(null)
   const isMdUp = useMdUp()
+  const navigate = useNavigate()
+  const location = useLocation()
+
+  const goContact = useCallback(() => {
+    if (location.pathname !== "/") {
+      navigate({ pathname: "/", hash: "contact" })
+      return
+    }
+    navigate({ hash: "contact" })
+  }, [location.pathname, navigate])
 
   const titleRef = useRef(null)
   const subtitleRef = useRef(null)
@@ -42,6 +53,7 @@ export default function Hero() {
             subtitleRef={subtitleRef}
             badgeRef={badgeRef}
             ctaRef={ctaRef}
+            onCtaClick={goContact}
           />
         ) : (
           <HeroMobile
@@ -50,6 +62,7 @@ export default function Hero() {
             subtitleRef={subtitleRef}
             badgeRef={badgeRef}
             ctaRef={ctaRef}
+            onCtaClick={goContact}
           />
         )}
       </div>

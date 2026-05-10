@@ -2,7 +2,7 @@ import logoJaho from "../../assets/logojaho.jpg"
 import { useEffect, useRef } from "react"
 import { gsap } from "gsap"
 
-export default function HeroMobile({ data, titleRef, subtitleRef, badgeRef, ctaRef }) {
+export default function HeroMobile({ data, titleRef, subtitleRef, badgeRef, ctaRef, onCtaClick }) {
   const logoRef = useRef(null)
 
   useEffect(() => {
@@ -67,7 +67,7 @@ export default function HeroMobile({ data, titleRef, subtitleRef, badgeRef, ctaR
         <button
           ref={ctaRef}
           type="button"
-          onClick={() => (window.location.href = "/#contact")}
+          onClick={onCtaClick}
           className="w-full px-6 py-3 rounded-xl font-[var(--font-body)] font-semibold bg-[var(--color-primary)] text-white transition-all duration-300 hover:bg-[var(--color-primary)]/92 hover:scale-[1.01] active:scale-[0.99] shadow-md hover:shadow-lg"
         >
           {data.cta}

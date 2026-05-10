@@ -1,4 +1,5 @@
 import { FaWhatsapp } from "react-icons/fa"
+import { Link } from "react-router-dom"
 import { content } from "../../data/content"
 
 export default function Footer() {
@@ -47,51 +48,47 @@ export default function Footer() {
             <div className="text-sm font-semibold text-[var(--color-dark)]">Schnellzugriff</div>
             <ul className="mt-4 space-y-2">
               <li>
-                <a href="/" className="font-[var(--font-body)] text-[var(--color-slate)] hover:text-[var(--color-primary)] transition-colors font-semibold">
+                <Link
+                  to="/"
+                  className="font-[var(--font-body)] text-[var(--color-slate)] hover:text-[var(--color-primary)] transition-colors font-semibold"
+                >
                   Startseite
-                </a>
+                </Link>
               </li>
               {quickLinks.map((l) => (
                 <li key={l.href}>
-                  <a
-                    href={l.href}
-                    className="font-[var(--font-body)] text-[var(--color-slate)] hover:text-[var(--color-primary)] transition-colors"
-                  >
-                    {l.label}
-                  </a>
+                  {l.href.startsWith("/#") || l.href === "/" ? (
+                    <a
+                      href={l.href}
+                      className="font-[var(--font-body)] text-[var(--color-slate)] hover:text-[var(--color-primary)] transition-colors"
+                    >
+                      {l.label}
+                    </a>
+                  ) : (
+                    <Link
+                      to={l.href}
+                      className="font-[var(--font-body)] text-[var(--color-slate)] hover:text-[var(--color-primary)] transition-colors"
+                    >
+                      {l.label}
+                    </Link>
+                  )}
                 </li>
               ))}
               <li>
-                <a
-                  href="/leistungen"
-                  className="font-[var(--font-body)] text-[var(--color-slate)] hover:text-[var(--color-primary)] transition-colors"
-                >
-                  Leistungen &amp; Region
-                </a>
-              </li>
-              <li>
-                <a
-                  href="/plattenleger-zuerich"
-                  className="font-[var(--font-body)] text-[var(--color-slate)] hover:text-[var(--color-primary)] transition-colors"
-                >
-                  Plattenleger Zürich
-                </a>
-              </li>
-              <li>
-                <a
-                  href="/badrenovation-zuerich"
+                <Link
+                  to="/badrenovation-zuerich"
                   className="font-[var(--font-body)] text-[var(--color-slate)] hover:text-[var(--color-primary)] transition-colors"
                 >
                   Bad Renovation Zürich
-                </a>
+                </Link>
               </li>
               <li>
-                <a
-                  href="/kueche-fliesen-zuerich"
+                <Link
+                  to="/kueche-fliesen-zuerich"
                   className="font-[var(--font-body)] text-[var(--color-slate)] hover:text-[var(--color-primary)] transition-colors"
                 >
                   Küchen Fliesen Zürich
-                </a>
+                </Link>
               </li>
             </ul>
           </div>
@@ -100,36 +97,36 @@ export default function Footer() {
             <div className="text-xs font-semibold uppercase tracking-wide text-[var(--color-dark)]/70">Region</div>
             <ul className="mt-4 space-y-2">
               <li>
-                <a
-                  href="/plattenleger-luzern"
+                <Link
+                  to="/plattenleger-luzern"
                   className="font-[var(--font-body)] text-[var(--color-slate)] hover:text-[var(--color-primary)] transition-colors"
                 >
                   Plattenleger Luzern
-                </a>
+                </Link>
               </li>
               <li>
-                <a
-                  href="/plattenleger-zug"
+                <Link
+                  to="/plattenleger-zug"
                   className="font-[var(--font-body)] text-[var(--color-slate)] hover:text-[var(--color-primary)] transition-colors"
                 >
                   Plattenleger Zug
-                </a>
+                </Link>
               </li>
               <li>
-                <a
-                  href="/plattenleger-winterthur"
+                <Link
+                  to="/plattenleger-winterthur"
                   className="font-[var(--font-body)] text-[var(--color-slate)] hover:text-[var(--color-primary)] transition-colors"
                 >
                   Plattenleger Winterthur
-                </a>
+                </Link>
               </li>
               <li>
-                <a
-                  href="/plattenleger-aargau"
+                <Link
+                  to="/plattenleger-aargau"
                   className="font-[var(--font-body)] text-[var(--color-slate)] hover:text-[var(--color-primary)] transition-colors"
                 >
                   Plattenleger Aargau
-                </a>
+                </Link>
               </li>
             </ul>
           </div>
