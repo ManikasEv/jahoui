@@ -1,6 +1,6 @@
 import { useEffect, useMemo, useState } from "react"
 import ImageLightbox from "../ui/ImageLightbox"
-import { filterReferences, references } from "../../data/references"
+import { filterReferences, references, REFERENCE_FILTERS } from "../../data/references"
 import { usePrefersReducedMotion } from "../../hooks/usePrefersReducedMotion"
 
 const DEFAULT_ROTATE_MS = 5500
@@ -54,7 +54,21 @@ export default function ReferenzenGrid({
     <>
       {showFilters ? (
         <div className="flex flex-wrap justify-center gap-2 mb-6 sm:mb-8">
-          {/* Category filters disabled by default — enable with showFilters */}
+          {REFERENCE_FILTERS.map((f) => (
+            <button
+              key={f.id}
+              type="button"
+              onClick={() => setActiveFilter(f.id)}
+              className={[
+                "px-3.5 py-1.5 rounded-full text-xs sm:text-sm font-semibold transition-colors border",
+                activeFilter === f.id
+                  ? "bg-[var(--color-primary)] text-white border-[var(--color-primary)]"
+                  : "bg-white text-[var(--color-slate)] border-black/10 hover:border-[var(--color-primary)]/30 hover:text-[var(--color-dark)]",
+              ].join(" ")}
+            >
+              {f.label}
+            </button>
+          ))}
         </div>
       ) : null}
 

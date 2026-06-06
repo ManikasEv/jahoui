@@ -29,7 +29,7 @@ export default function ReferenzenPage() {
 
       <section className="pb-14 sm:pb-16">
         <div className="content-shell content-shell--article">
-          <ReferenzenGrid showFilters compact={false} />
+          <ReferenzenGrid showFilters={false} compact={false} />
         </div>
       </section>
 

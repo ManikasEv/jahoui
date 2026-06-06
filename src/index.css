@@ -594,6 +594,21 @@
     animation: gallery-autoplay-progress 5s linear forwards;
   }
 
+  @keyframes referenzen-cell-enter {
+    from {
+      opacity: 0;
+      transform: scale(0.96);
+    }
+    to {
+      opacity: 1;
+      transform: scale(1);
+    }
+  }
+
+  .referenzen-cell-enter {
+    animation: referenzen-cell-enter 0.45s ease-out forwards;
+  }
+
   @keyframes hero-frame-drift {
     0%,
     100% {
@@ -662,6 +677,10 @@
     }
 
     .gallery-autoplay-track {
+      animation: none !important;
+    }
+
+    .referenzen-cell-enter {
       animation: none !important;
     }
 

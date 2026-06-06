@@ -25,7 +25,7 @@ export default function GalleryPreview() {
           </Link>
         </div>
 
-        <ReferenzenGrid items={references} showFilters={false} limit={10} compact />
+        <ReferenzenGrid items={references} showFilters={false} limit={10} compact autoRotate />
       </div>
     </section>
   )
