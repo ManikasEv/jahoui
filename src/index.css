@@ -100,9 +100,10 @@
     transform-style: preserve-3d;
   }
 
-  /* Smooth scrolling */
+  /* Smooth scrolling + offset for fixed navbar anchor jumps */
   html {
     scroll-behavior: smooth;
+    scroll-padding-top: 5.5rem;
   }
 
   /* Allow text selection only in specific elements */
@@ -238,6 +239,77 @@
     .content-shell {
       max-width: min(80vw, 80rem);
     }
+  }
+
+  /* Full-width section bands — each homepage block gets a distinct look */
+  .section-band {
+    width: 100%;
+    position: relative;
+  }
+
+  .section-band--paper {
+    background: linear-gradient(180deg, #ffffff 0%, var(--color-bg) 100%);
+    border-block: 1px solid rgba(0, 0, 0, 0.05);
+  }
+
+  .section-band--paper::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+    background: radial-gradient(ellipse 80% 50% at 50% 0%, rgba(214, 178, 124, 0.08), transparent 70%);
+    pointer-events: none;
+  }
+
+  .section-band--cards {
+    background: var(--color-dark);
+    color: #f7f7f5;
+  }
+
+  .section-band--cards .section-title {
+    color: #ffffff;
+  }
+
+  .section-band--cards .font-\[var\(--font-body\)\] {
+    color: rgba(247, 247, 245, 0.82);
+  }
+
+  .section-band--strip {
+    background: linear-gradient(90deg, rgba(196, 30, 58, 0.04) 0%, var(--color-bg) 35%, var(--color-bg) 65%, rgba(214, 178, 124, 0.08) 100%);
+    border-block: 1px solid rgba(0, 0, 0, 0.06);
+  }
+
+  .section-band--gallery {
+    background: linear-gradient(165deg, #fafafa 0%, #f0eeeb 45%, var(--color-bg) 100%);
+    border-block: 1px solid rgba(0, 0, 0, 0.06);
+  }
+
+  .section-band--gallery::after {
+    content: "";
+    position: absolute;
+    inset: 0;
+    background-image: radial-gradient(rgba(196, 30, 58, 0.06) 1px, transparent 1px);
+    background-size: 22px 22px;
+    opacity: 0.35;
+    pointer-events: none;
+  }
+
+  .section-band--plain {
+    background: var(--color-bg);
+  }
+
+  .section-band--faq {
+    background: #ffffff;
+    border-block: 1px solid rgba(0, 0, 0, 0.06);
+  }
+
+  .section-band--contact {
+    background: linear-gradient(135deg, rgba(196, 30, 58, 0.05) 0%, var(--color-bg) 40%, #ffffff 100%);
+    border-top: 1px solid rgba(196, 30, 58, 0.12);
+  }
+
+  .section-band > .content-shell {
+    position: relative;
+    z-index: 1;
   }
 
   /* Inner pages with a fixed readable column width */

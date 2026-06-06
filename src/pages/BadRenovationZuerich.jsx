@@ -1,9 +1,8 @@
-import { Link } from "react-router-dom"
 import Seo from "../seo/Seo"
 import { content } from "../data/content"
 import BackToHome from "../components/layout/BackToHome"
 import Contact from "../components/sections/Contact"
-import GalleryShowcase from "../components/sections/GalleryShowcase"
+import ReferenzenEmbed from "../components/sections/ReferenzenEmbed"
 
 export default function BadRenovationZuerich() {
   return (
@@ -20,32 +19,6 @@ export default function BadRenovationZuerich() {
         <p className="font-[var(--font-body)] text-[var(--color-slate)] text-base md:text-lg leading-relaxed max-w-3xl text-safe">
           Von der Vorbereitung bis zur finalen Fuge: Wir renovieren Badezimmer mit Fokus auf Dichtigkeit, saubere Details und
           hochwertige Optik. Ideal für Duschen, Nasszellen und komplette Badumbauten.
-        </p>
-        <p className="mt-4 font-[var(--font-body)] text-sm text-[var(--color-slate)] leading-relaxed max-w-3xl">
-          Gesamtleistungen und Region:{" "}
-          <Link to="/leistungen" className="font-semibold text-[var(--color-primary)] underline-offset-2 hover:underline">
-            Leistungen &amp; Region
-          </Link>
-          {" · "}
-          <Link to="/plattenleger-zuerich" className="font-semibold text-[var(--color-primary)] underline-offset-2 hover:underline">
-            Plattenleger Zürich
-          </Link>
-          {" · "}
-          <Link to="/kueche-fliesen-zuerich" className="font-semibold text-[var(--color-primary)] underline-offset-2 hover:underline">
-            Küchen Fliesen Zürich
-          </Link>
-          {" · "}
-          <Link to="/#gallery" className="font-semibold text-[var(--color-primary)] underline-offset-2 hover:underline">
-            Galerie
-          </Link>
-          {" · "}
-          <Link to="/#faq" className="font-semibold text-[var(--color-primary)] underline-offset-2 hover:underline">
-            FAQ
-          </Link>
-          {" · "}
-          <Link to="/#contact" className="font-semibold text-[var(--color-primary)] underline-offset-2 hover:underline">
-            Kontakt &amp; Offerte
-          </Link>
         </p>
       </section>
 
@@ -67,10 +40,7 @@ export default function BadRenovationZuerich() {
         </div>
       </section>
 
-      <GalleryShowcase
-        title="Vorher / Nachher & Referenzen"
-        description="„Aus alt wird neu – mit sauberen Details und perfektem Finish.“"
-      />
+      <ReferenzenEmbed title="Bad Referenzen" defaultFilter="bad" limit={8} />
 
       <section className="mx-auto w-full min-w-0 content-shell content-shell--article py-10">
         <h2 className="section-title mb-4">Kosten & Beratung</h2>

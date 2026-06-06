@@ -6,7 +6,7 @@ import About from "../components/sections/About"
 import Clients from "../components/sections/Clients"
 import TileShowcase from "../components/sections/TileShowcase"
 import Contact from "../components/sections/Contact"
-import GalleryShowcase from "../components/sections/GalleryShowcase"
+import GalleryPreview from "../components/sections/GalleryPreview"
 import Faq from "../components/sections/Faq"
 
 export default function Home() {
@@ -22,7 +22,7 @@ export default function Home() {
       <About />
       <Clients />
       <TileShowcase />
-      <GalleryShowcase title="Referenzen" />
+      <GalleryPreview />
       <Faq />
       <Contact />
     </>

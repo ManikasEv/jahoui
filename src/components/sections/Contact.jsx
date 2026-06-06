@@ -1,7 +1,6 @@
 import { useRef, useEffect, useState } from "react"
 import { gsap } from "gsap"
 import { ScrollTrigger } from "gsap/ScrollTrigger"
-import { Link } from "react-router-dom"
 import { content } from "../../data/content"
 import { usePrefersReducedMotion } from "../../hooks/usePrefersReducedMotion"
 import { useSectionCrossFade, useSectionHeadingSoftReveal } from "../../hooks/useSectionCrossFade"
@@ -168,8 +167,9 @@ export default function Contact() {
     <section
       id="contact"
       ref={sectionRef}
-      className="mx-auto w-full min-w-0 content-shell py-16 sm:py-20 perspective-[1100px]"
+      className="section-band section-band--contact py-16 sm:py-20 perspective-[1100px]"
     >
+      <div className="content-shell">
       <h2 ref={titleRef} className="section-title mb-4 [transform-style:preserve-3d]">
         {content.sections.contact.title.split("").map((char, i) => (
           <span key={i} className="inline-block" data-char>
@@ -183,25 +183,6 @@ export default function Contact() {
             {word}
           </span>
         ))}
-      </p>
-      <p className="font-[var(--font-body)] text-base text-[var(--color-slate)] mb-12 max-w-2xl leading-relaxed">
-        Für eine{" "}
-        <Link to="/leistungen" className="font-semibold text-[var(--color-primary)] underline-offset-2 hover:underline">
-          Plattenleger-Offerte
-        </Link>{" "}
-        genügen oft schon Fotos und grobe Massen. Antworten zu Ablauf und Material finden Sie in der{" "}
-        <a href="/#faq" className="font-semibold text-[var(--color-primary)] underline-offset-2 hover:underline">
-          FAQ
-        </a>
-        ; Inspiration liefert unsere{" "}
-        <a href="/#gallery" className="font-semibold text-[var(--color-primary)] underline-offset-2 hover:underline">
-          Galerie
-        </a>
-        . Speziell Zürich:{" "}
-        <Link to="/plattenleger-zuerich" className="font-semibold text-[var(--color-primary)] underline-offset-2 hover:underline">
-          Plattenleger Zürich
-        </Link>
-        .
       </p>
 
       <div className="grid min-w-0 grid-cols-1 md:grid-cols-2 gap-8">
@@ -364,6 +345,7 @@ export default function Contact() {
             </div>
           </button>
         </div>
+      </div>
       </div>
     </section>
   )

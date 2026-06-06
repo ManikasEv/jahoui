@@ -1,9 +1,8 @@
-import { Link } from "react-router-dom"
 import Seo from "../seo/Seo"
 import { content } from "../data/content"
 import BackToHome from "../components/layout/BackToHome"
 import Contact from "../components/sections/Contact"
-import GalleryShowcase from "../components/sections/GalleryShowcase"
+import ReferenzenEmbed from "../components/sections/ReferenzenEmbed"
 
 export default function KuecheFliesenZuerich() {
   return (
@@ -20,28 +19,6 @@ export default function KuecheFliesenZuerich() {
         <p className="font-[var(--font-body)] text-[var(--color-slate)] text-base md:text-lg leading-relaxed max-w-3xl text-safe">
           Ob Rückwand, Wand oder Boden: Küchenfliesen müssen robust, pflegeleicht und optisch stimmig sein. Wir beraten zu Material,
           Format und Übergängen – und verlegen sauber bis ins Detail.
-        </p>
-        <p className="mt-4 font-[var(--font-body)] text-sm text-[var(--color-slate)] leading-relaxed max-w-3xl">
-          Passende Übersicht:{" "}
-          <Link to="/leistungen" className="font-semibold text-[var(--color-primary)] underline-offset-2 hover:underline">
-            Leistungen &amp; Region
-          </Link>
-          {" · "}
-          <Link to="/plattenleger-zuerich" className="font-semibold text-[var(--color-primary)] underline-offset-2 hover:underline">
-            Plattenleger Zürich
-          </Link>
-          {" · "}
-          <Link to="/badrenovation-zuerich" className="font-semibold text-[var(--color-primary)] underline-offset-2 hover:underline">
-            Bad Renovation Zürich
-          </Link>
-          {" · "}
-          <Link to="/#gallery" className="font-semibold text-[var(--color-primary)] underline-offset-2 hover:underline">
-            Galerie
-          </Link>
-          {" · "}
-          <Link to="/#contact" className="font-semibold text-[var(--color-primary)] underline-offset-2 hover:underline">
-            Offerte
-          </Link>
         </p>
       </section>
 
@@ -64,7 +41,7 @@ export default function KuecheFliesenZuerich() {
         </div>
       </section>
 
-      <GalleryShowcase title="Küchen Referenzen" />
+      <ReferenzenEmbed title="Küchen Referenzen" defaultFilter="kueche" limit={8} />
 
       <section className="mx-auto w-full min-w-0 content-shell content-shell--article py-10">
         <h2 className="section-title mb-4">FAQ</h2>

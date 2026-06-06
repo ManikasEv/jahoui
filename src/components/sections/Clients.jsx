@@ -1,7 +1,6 @@
 import { useEffect, useRef } from "react"
 import { gsap } from "gsap"
 import { ScrollTrigger } from "gsap/ScrollTrigger"
-import { Link } from "react-router-dom"
 import { content } from "../../data/content"
 import { usePrefersReducedMotion } from "../../hooks/usePrefersReducedMotion"
 
@@ -107,7 +106,8 @@ export default function Clients() {
   }, [reducedMotion])
 
   return (
-    <section id="clients" ref={sectionRef} className="mx-auto w-full min-w-0 content-shell py-12 sm:py-14 perspective-[1100px]">
+    <section id="clients" ref={sectionRef} className="section-band section-band--cards py-14 sm:py-16 perspective-[1100px]">
+      <div className="content-shell">
       <h2 className="section-title mb-3 text-center [transform-style:preserve-3d]">
         {reducedMotion ? (
           clients.title
@@ -119,7 +119,7 @@ export default function Clients() {
           ))
         )}
       </h2>
-      <p className="font-[var(--font-body)] text-base md:text-[0.9375rem] text-[var(--color-slate)] mb-10 max-w-xl mx-auto text-center leading-relaxed text-safe perspective-[880px]">
+      <p className="font-[var(--font-body)] text-base md:text-[0.9375rem] text-white/75 mb-10 max-w-xl mx-auto text-center leading-relaxed text-safe perspective-[880px]">
         {reducedMotion ? (
           clients.text
         ) : (
@@ -130,32 +130,13 @@ export default function Clients() {
           ))
         )}
       </p>
-      <p className="font-[var(--font-body)] text-sm md:text-[0.9375rem] text-[var(--color-slate)] mb-10 max-w-2xl mx-auto text-center leading-relaxed text-safe">
-        Ob{" "}
-        <Link to="/kueche-fliesen-zuerich" className="font-semibold text-[var(--color-primary)] underline-offset-2 hover:underline">
-          Küchenfliesen
-        </Link>
-        ,{" "}
-        <Link to="/badrenovation-zuerich" className="font-semibold text-[var(--color-primary)] underline-offset-2 hover:underline">
-          Bad-Sanierung
-        </Link>{" "}
-        oder{" "}
-        <Link to="/plattenleger-zuerich" className="font-semibold text-[var(--color-primary)] underline-offset-2 hover:underline">
-          Plattenlegerarbeit in Zürich
-        </Link>
-        : Wir passen uns an Ihr Projekt an. Übersicht aller Themen:{" "}
-        <Link to="/leistungen" className="font-semibold text-[var(--color-primary)] underline-offset-2 hover:underline">
-          Dienstleistungen
-        </Link>
-        .
-      </p>
 
       <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 md:gap-5">
         {clients.items.map((item, index) => (
           <div
             key={index}
             data-client-card
-            className="group rounded-2xl border border-black/10 bg-white px-6 py-5 shadow-sm hover:shadow-[0_8px_24px_-12px_rgba(0,0,0,0.14)] transition-all duration-300 hover:-translate-y-0.5 [transform-style:preserve-3d]"
+            className="group rounded-2xl border border-white/15 bg-white/10 px-6 py-5 shadow-sm hover:shadow-[0_8px_24px_-12px_rgba(0,0,0,0.35)] transition-all duration-300 hover:-translate-y-0.5 [transform-style:preserve-3d]"
           >
             <div className="flex items-start gap-4">
               <div
@@ -167,13 +148,13 @@ export default function Clients() {
               <div className="min-w-0">
                 <h3
                   data-client-card-title
-                  className="font-[var(--font-heading)] text-lg text-[var(--color-dark)] mb-1"
+                  className="font-[var(--font-heading)] text-lg text-white mb-1"
                 >
                   {item.title}
                 </h3>
                 <p
                   data-client-card-body
-                  className="font-[var(--font-body)] text-sm text-[var(--color-slate)] leading-relaxed text-safe"
+                  className="font-[var(--font-body)] text-sm text-white/75 leading-relaxed text-safe"
                 >
                   {item.description}
                 </p>
@@ -181,6 +162,7 @@ export default function Clients() {
             </div>
           </div>
         ))}
+      </div>
       </div>
     </section>
   )

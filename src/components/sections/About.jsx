@@ -1,7 +1,6 @@
 import { useEffect, useRef } from "react"
 import { gsap } from "gsap"
 import { ScrollTrigger } from "gsap/ScrollTrigger"
-import { Link } from "react-router-dom"
 import profilePhoto from "../../assets/profile.jpg"
 import { content } from "../../data/content"
 import { usePrefersReducedMotion } from "../../hooks/usePrefersReducedMotion"
@@ -87,7 +86,8 @@ export default function About() {
   }, [reducedMotion])
 
   return (
-    <section id="about" ref={sectionRef} className="mx-auto w-full min-w-0 content-shell py-12 sm:py-14 perspective-[1200px]">
+    <section id="about" ref={sectionRef} className="section-band section-band--paper py-14 sm:py-16 perspective-[1200px]">
+      <div className="content-shell">
       <h2 className="section-title mb-8 md:mb-10 text-center [transform-style:preserve-3d]">
         {reducedMotion ? (
           about.title
@@ -138,29 +138,8 @@ export default function About() {
               ))
             )}
           </p>
-          <p className="font-[var(--font-body)] text-sm md:text-[0.9375rem] text-[var(--color-slate)] leading-relaxed mt-6 pt-6 border-t border-black/[0.06]">
-            Mehr über{" "}
-            <Link to="/leistungen" className="font-semibold text-[var(--color-primary)] underline-offset-2 hover:underline">
-              Leistungen &amp; Region
-            </Link>
-            ,{" "}
-            <Link
-              to="/badrenovation-zuerich"
-              className="font-semibold text-[var(--color-primary)] underline-offset-2 hover:underline"
-            >
-              Badezimmer-Renovation in Zürich
-            </Link>{" "}
-            und{" "}
-            <a href="/#gallery" className="font-semibold text-[var(--color-primary)] underline-offset-2 hover:underline">
-              Referenzbilder in der Galerie
-            </a>
-            . Für eine{" "}
-            <a href="/#contact" className="font-semibold text-[var(--color-primary)] underline-offset-2 hover:underline">
-              Offerte
-            </a>{" "}
-            erreichen Sie uns direkt unterhalb auf dieser Seite.
-          </p>
         </div>
+      </div>
       </div>
     </section>
   )

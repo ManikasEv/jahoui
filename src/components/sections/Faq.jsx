@@ -1,7 +1,6 @@
 import { useEffect, useLayoutEffect, useRef, useState, useCallback } from "react"
 import { gsap } from "gsap"
 import { ScrollTrigger } from "gsap/ScrollTrigger"
-import { Link } from "react-router-dom"
 import { content } from "../../data/content"
 import { usePrefersReducedMotion } from "../../hooks/usePrefersReducedMotion"
 import { useSectionCrossFade } from "../../hooks/useSectionCrossFade"
@@ -246,9 +245,10 @@ export default function Faq() {
     <section
       id="faq"
       ref={sectionRef}
-      className="mx-auto w-full min-w-0 content-shell py-12 sm:py-14 reveal-group perspective-[1200px]"
+      className="section-band section-band--faq py-14 sm:py-16 reveal-group perspective-[1200px]"
     >
-      <div className="max-w-3xl mx-auto">
+      <div className="content-shell">
+      <div className="max-w-3xl mx-auto rounded-2xl border border-black/[0.07] bg-[var(--color-bg)]/50 backdrop-blur-sm px-5 py-8 sm:px-8 sm:py-10 shadow-[0_8px_30px_-18px_rgba(0,0,0,0.1)]">
         <h2 ref={titleRef} className="section-title mb-3 text-center [transform-style:preserve-3d]">
           {reducedMotion ? (
             faq.title
@@ -280,30 +280,7 @@ export default function Faq() {
             <FaqRow key={item.q} item={item} index={i} reducedMotion={reducedMotion} />
           ))}
         </div>
-
-        <p className="mt-10 font-[var(--font-body)] text-sm md:text-[0.9375rem] text-[var(--color-slate)] leading-relaxed text-center text-safe border-t border-black/[0.06] pt-8">
-          Passend dazu:{" "}
-          <Link to="/leistungen" className="font-semibold text-[var(--color-primary)] underline-offset-2 hover:underline">
-            Leistungen &amp; Region
-          </Link>
-          ,{" "}
-          <Link to="/badrenovation-zuerich" className="font-semibold text-[var(--color-primary)] underline-offset-2 hover:underline">
-            Badezimmer Renovation Zürich
-          </Link>
-          ,{" "}
-          <Link to="/kueche-fliesen-zuerich" className="font-semibold text-[var(--color-primary)] underline-offset-2 hover:underline">
-            Küchen Fliesen Zürich
-          </Link>
-          ,{" "}
-          <a href="/#gallery" className="font-semibold text-[var(--color-primary)] underline-offset-2 hover:underline">
-            Galerie
-          </a>{" "}
-          und{" "}
-          <a href="/#contact" className="font-semibold text-[var(--color-primary)] underline-offset-2 hover:underline">
-            Kontakt für Ihre Offerte
-          </a>
-          .
-        </p>
+      </div>
       </div>
     </section>
   )

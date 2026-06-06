@@ -1,7 +1,5 @@
-import { Link } from "react-router-dom"
-
 /**
- * SEO copy: Leistungen & Region (standalone page `/leistungen`, linked from footer).
+ * SEO copy: Leistungen & Region (standalone page `/leistungen`).
  */
 export default function HomeSeoContent() {
   return (
@@ -24,28 +22,7 @@ export default function HomeSeoContent() {
             <strong className="font-semibold text-[var(--color-dark)]">Küche</strong> oder{" "}
             <strong className="font-semibold text-[var(--color-dark)]">Boden</strong> – wir legen Feinsteinzeug,
             Keramik und Grossformat so, dass Fugen ruhig wirken, Übergänge sauber sitzen und die Fläche im Alltag
-            mitmacht. Hier erläutern wir{" "}
-            <strong className="font-semibold text-[var(--color-dark)]">Plattenleger- und Fliesenleger-Dienstleistungen</strong>{" "}
-            von Bad bis Boden; als{" "}
-            <Link
-              to="/plattenleger-zuerich"
-              className="font-semibold text-[var(--color-primary)] underline-offset-2 hover:underline"
-            >
-              Plattenleger Zürich
-            </Link>{" "}
-            sind wir regional nah dran. Auf der Startseite finden Sie unsere{" "}
-            <a href="/#gallery" className="font-semibold text-[var(--color-primary)] underline-offset-2 hover:underline">
-              Referenzprojekte
-            </a>
-            , Antworten in der{" "}
-            <a href="/#faq" className="font-semibold text-[var(--color-primary)] underline-offset-2 hover:underline">
-              FAQ
-            </a>{" "}
-            und die Möglichkeit, direkt{" "}
-            <a href="/#contact" className="font-semibold text-[var(--color-primary)] underline-offset-2 hover:underline">
-              Kontakt
-            </a>{" "}
-            aufzunehmen.
+            mitmacht.
           </p>
         </header>
 
@@ -56,15 +33,7 @@ export default function HomeSeoContent() {
           <p>
             Im Bad entscheiden oft unsichtbare Details: Abdichtung, Gefälle in der Dusche, saubere Kanten an
             Ecken und Einstiegen. Wir renovieren Nasszellen so, dass Technik stimmt und das Erscheinungsbild ruhig
-            bleibt – von der klassischen Keramik bis zu Grossformat-Platten. Für eine gezielte Ausführung in der Stadt
-            und Region finden Sie auch unsere Seite{" "}
-            <Link
-              to="/badrenovation-zuerich"
-              className="font-semibold text-[var(--color-primary)] underline-offset-2 hover:underline"
-            >
-              Bad Renovation Zürich
-            </Link>
-            .
+            bleibt – von der klassischen Keramik bis zu Grossformat-Platten.
           </p>
           <p>
             Typische Materialien sind strapazierfähiges{" "}
@@ -83,14 +52,7 @@ export default function HomeSeoContent() {
             widerstandsfähige Platten, saubere Schnitte an Steckdosen und Ausschnitten sowie durchdachte Übergänge zum
             Boden. Ob{" "}
             <strong className="text-[var(--color-dark)]">Küchenrückwand</strong>, Wand bis zur Unterschrankkante oder
-            durchgehender Boden – wir beraten zu Format und Stossverband, damit das Raumbild stimmig wirkt. Mehr dazu:{" "}
-            <Link
-              to="/kueche-fliesen-zuerich"
-              className="font-semibold text-[var(--color-primary)] underline-offset-2 hover:underline"
-            >
-              Küchen Fliesen Zürich
-            </Link>
-            .
+            durchgehender Boden – wir beraten zu Format und Stossverband, damit das Raumbild stimmig wirkt.
           </p>
         </article>
 
@@ -102,18 +64,7 @@ export default function HomeSeoContent() {
             Bodenfliesen müssen nicht nur gut aussehen, sondern auch Belastung, Stösse und punktuelle Feuchtigkeit
             aushalten. Wir achten auf ebenen Untergrund, passende Verlegesysteme und ruhige Dehnungsbereiche – besonders
             bei grossen Formaten. Treppen, Eingänge und offene Wohnbereiche profitieren von einer klaren
-            Linienführung und stabilen Übergängen zu anderen Belägen. Mehr zu{" "}
-            <a href="#leistungen-text" className="font-semibold text-[var(--color-primary)] underline-offset-2 hover:underline">
-              Bodenplatten, Wandplatten und Fugenarbeiten
-            </a>{" "}
-            finden Sie in den folgenden Abschnitten; für Zürich lohnt sich auch ein Blick auf{" "}
-            <Link
-              to="/plattenleger-zuerich"
-              className="font-semibold text-[var(--color-primary)] underline-offset-2 hover:underline"
-            >
-              Plattenleger Zürich
-            </Link>
-            .
+            Linienführung und stabilen Übergängen zu anderen Belägen.
           </p>
         </article>
 
@@ -124,22 +75,10 @@ export default function HomeSeoContent() {
           <p>
             Unser Ablauf beginnt mit Ihrer Anfrage und einer realistischen Ersteinschätzung. Wo sinnvoll, klären wir
             Untergrund, bestehende Schichten und Details vor Ort. Danach folgen Vorbereitung, Verlegung und Finish –
-            inklusive sauberer Silikonfugen und Abnahme im gemeinsamen Blick. Als Materialien kommen je nach Projekt
-            <strong className="text-[var(--color-dark)]"> Feinsteinzeug</strong>,{" "}
+            inklusive sauberer Silikonfugen und Abnahme im gemeinsamen Blick. Als Materialien kommen je nach Projekt{" "}
+            <strong className="text-[var(--color-dark)]">Feinsteinzeug</strong>,{" "}
             <strong className="text-[var(--color-dark)]">Keramik</strong>, Steinoptik oder Grossformat zum Einsatz; wir
-            erklären Vor- und Nachteile verständlich, ohne unnötige Upgrades zu verkaufen. Für eine{" "}
-            <a href="/#contact" className="font-semibold text-[var(--color-primary)] underline-offset-2 hover:underline">
-              unverbindliche Offerte
-            </a>{" "}
-            oder Ablauf-Fragen nutzen Sie den{" "}
-            <a href="/#contact" className="font-semibold text-[var(--color-primary)] underline-offset-2 hover:underline">
-              Kontakt
-            </a>{" "}
-            oder die{" "}
-            <a href="/#faq" className="font-semibold text-[var(--color-primary)] underline-offset-2 hover:underline">
-              FAQ
-            </a>
-            .
+            erklären Vor- und Nachteile verständlich, ohne unnötige Upgrades zu verkaufen.
           </p>
         </article>
 
@@ -152,25 +91,7 @@ export default function HomeSeoContent() {
             messbare Qualität: gleichmässige Fugen, präzise Schnitte und ein Ergebnis, das auch nach Jahren noch
             überzeugt. Unsere Kunden schätzen transparente Offerten, termintreue Umsetzung und eine Kommunikation, die
             zum Projekt passt – vom Einfamilienhaus bis zur partnerschaftlichen Zusammenarbeit mit Architektur und
-            Gewerken. In der{" "}
-            <a href="/#gallery" className="font-semibold text-[var(--color-primary)] underline-offset-2 hover:underline">
-              Galerie
-            </a>{" "}
-            sehen Sie realisierte Arbeiten; zur{" "}
-            <Link
-              to="/badrenovation-zuerich"
-              className="font-semibold text-[var(--color-primary)] underline-offset-2 hover:underline"
-            >
-              Badezimmer-Renovation
-            </Link>{" "}
-            und{" "}
-            <Link
-              to="/kueche-fliesen-zuerich"
-              className="font-semibold text-[var(--color-primary)] underline-offset-2 hover:underline"
-            >
-              Küchenfliesen
-            </Link>{" "}
-            finden Sie gezielte Zürich-Seiten.
+            Gewerken.
           </p>
         </article>
 
@@ -184,51 +105,15 @@ export default function HomeSeoContent() {
             Gefühl für Fugenbild, Licht und Struktur. Kombiniert mit einer persönlichen Beratung finden wir die Lösung,
             die zu Budget und Nutzung passt – ob minimalistisch, klassisch oder mit Akzentflächen.
           </p>
-          <p>
-            Für Inspiration scrollen Sie zum Bereich{" "}
-            <a href="/#gallery" className="font-semibold text-[var(--color-primary)] underline-offset-2 hover:underline">
-              Referenzen
-            </a>
-            ; dort können Sie einzelne Bilder vergrössern und sich einen Eindruck von Kanten, Übergängen und
-            Oberflächen verschaffen.
-          </p>
         </article>
 
         <article className="space-y-6">
           <h2 className="font-[var(--font-heading)] text-xl md:text-2xl text-[var(--color-dark)]">
-            Region & lokale Seiten
+            Region
           </h2>
           <p>
-            Wir sind in mehreren Regionen für Sie da und unterhalten eigene Landingpages für lokale Suchanfragen –
-            inklusive{" "}
-            <Link to="/plattenleger-zuerich" className="font-semibold text-[var(--color-primary)] underline-offset-2 hover:underline">
-              Plattenleger Zürich
-            </Link>
-            ,{" "}
-            <Link to="/plattenleger-luzern" className="font-semibold text-[var(--color-primary)] underline-offset-2 hover:underline">
-              Luzern
-            </Link>
-            ,{" "}
-            <Link to="/plattenleger-zug" className="font-semibold text-[var(--color-primary)] underline-offset-2 hover:underline">
-              Zug
-            </Link>
-            ,{" "}
-            <Link
-              to="/plattenleger-winterthur"
-              className="font-semibold text-[var(--color-primary)] underline-offset-2 hover:underline"
-            >
-              Winterthur
-            </Link>{" "}
-            und{" "}
-            <Link to="/plattenleger-aargau" className="font-semibold text-[var(--color-primary)] underline-offset-2 hover:underline">
-              Aargau
-            </Link>
-            . So finden Sie gezielt Informationen zu <strong className="text-[var(--color-dark)]">Fliesenleger</strong>
-            -Services in Ihrer Gegend und können uns direkt für eine{" "}
-            <a href="/#contact" className="font-semibold text-[var(--color-primary)] underline-offset-2 hover:underline">
-              Offerte
-            </a>{" "}
-            erreichen.
+            Schwerpunkt Zürich und Umgebung. Bei grösseren Projekten oder weiter entfernten Objekten klären wir Anfahrt
+            und Termine individuell – auch in Luzern, Zug, Winterthur und im Aargau.
           </p>
         </article>
 
@@ -237,23 +122,8 @@ export default function HomeSeoContent() {
             Vertrauen & nächste Schritte
           </h3>
           <p className="mb-4">
-            Überzeugen Sie sich von unserer Arbeit in der{" "}
-            <a href="/#gallery" className="font-semibold text-[var(--color-primary)] underline-offset-2 hover:underline">
-              Galerie
-            </a>{" "}
-            und lesen Sie häufige Fragen zur{" "}
-            <a href="/#faq" className="font-semibold text-[var(--color-primary)] underline-offset-2 hover:underline">
-              Offerte, Region und Materialien
-            </a>
-            . Zu{" "}
-            <a href="#leistungen-text" className="font-semibold text-[var(--color-primary)] underline-offset-2 hover:underline">
-              Terrassenplatten, Naturstein-Optik und Badezimmer-Sanierung
-            </a>{" "}
-            finden Sie zusätzliche Erläuterungen in den Abschnitten oben. Wenn Sie ein konkretes Projekt planen,{" "}
-            <a href="/#contact" className="font-semibold text-[var(--color-primary)] underline-offset-2 hover:underline">
-              kontaktieren Sie uns für eine Offerte
-            </a>{" "}
-            – inklusive Fotos und groben Massen, damit wir Sie effizient beraten können.
+            Wenn Sie ein konkretes Projekt planen, freuen wir uns auf Ihre Nachricht – inklusive Fotos und groben
+            Massen, damit wir Sie effizient beraten können.
           </p>
           <p className="text-sm text-[var(--color-slate)]/90">
             Hinweis: Leistungsumfang und Preise hängen vom Objekt ab; alle Angaben auf dieser Seite ersetzen keine

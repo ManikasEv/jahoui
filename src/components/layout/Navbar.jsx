@@ -4,6 +4,7 @@ import NavbarDesktop from "./NavbarDesktop"
 import NavbarMobile from "./NavbarMobile"
 import { navbarAnimation, mobileMenuAnimation } from "../../animations/navbarAnimation"
 import { content } from "../../data/content"
+import { useScrollDirection } from "../../hooks/useScrollDirection"
 
 export default function Navbar() {
   const navRef = useRef(null)
@@ -13,10 +14,11 @@ export default function Navbar() {
   const location = useLocation()
 
   const [isOpen, setIsOpen] = useState(false)
-  const [isScrolled, setIsScrolled] = useState(false)
+  const { visible: scrollVisible, scrolled: isScrolled } = useScrollDirection()
   const panelRef = useRef(null)
   const itemRefs = useRef([])
 
+  const navVisible = isOpen || scrollVisible
   useEffect(() => {
     // Run after paint so refs are definitely populated (prevents "stuck at opacity 0").
     const id = window.requestAnimationFrame(() => {
@@ -29,18 +31,6 @@ export default function Navbar() {
   useEffect(() => {
     mobileMenuAnimation({ panel: panelRef.current, items: itemRefs.current, isOpen })
   }, [isOpen])
-
-  useEffect(() => {
-    const onScroll = () => {
-      const y = window.scrollY || 0
-      setIsScrolled(y > 8)
-    }
-
-    onScroll()
-
-    window.addEventListener("scroll", onScroll, { passive: true })
-    return () => window.removeEventListener("scroll", onScroll)
-  }, [])
 
   const closeMobile = () => setIsOpen(false)
 
@@ -95,10 +85,11 @@ export default function Navbar() {
     <nav
       ref={navRef}
       className={[
-        "w-full sticky top-0 z-50 transition-all duration-300",
+        "fixed top-0 left-0 right-0 z-50 transition-[transform,background-color,box-shadow,border-color] duration-300 ease-out",
+        navVisible ? "translate-y-0" : "-translate-y-full",
         isScrolled
-          ? "bg-[var(--color-bg)]/82 backdrop-blur-lg border-b border-black/10 shadow-[0_10px_30px_-20px_rgba(0,0,0,0.35)]"
-          : "bg-transparent border-b border-transparent",
+          ? "bg-[var(--color-bg)]/90 backdrop-blur-lg border-b border-black/10 shadow-[0_10px_30px_-20px_rgba(0,0,0,0.35)]"
+          : "bg-[var(--color-bg)]/70 backdrop-blur-md border-b border-black/[0.06]",
       ].join(" ")}
     >
       <div className="w-full px-4 md:px-8 xl:px-10 py-4">

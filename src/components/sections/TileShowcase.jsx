@@ -1,7 +1,6 @@
 import { useEffect, useRef } from "react"
 import { gsap } from "gsap"
 import { ScrollTrigger } from "gsap/ScrollTrigger"
-import { Link } from "react-router-dom"
 import { usePrefersReducedMotion } from "../../hooks/usePrefersReducedMotion"
 import { useSectionCrossFade } from "../../hooks/useSectionCrossFade"
 
@@ -105,7 +104,7 @@ export default function TileShowcase() {
   }, [reducedMotion])
 
   return (
-    <section ref={sectionRef} className="relative py-10 md:py-11 bg-[var(--color-bg)] border-y border-black/[0.05] perspective-[1100px]">
+    <section ref={sectionRef} className="section-band section-band--strip py-12 md:py-14 perspective-[1100px]">
       <div className="mx-auto w-full min-w-0 content-shell">
         <div data-tile-intro className="w-full min-w-0 max-w-xl mx-auto text-center mb-5 md:mb-6 px-0">
           <h2 className="section-title font-bold mb-2 [transform-style:preserve-3d]">
@@ -129,28 +128,6 @@ export default function TileShowcase() {
                 </span>
               ))
             )}
-          </p>
-          <p className="mt-3 font-[var(--font-body)] text-xs md:text-[0.8125rem] text-[var(--color-slate)]/95 leading-relaxed text-safe max-w-lg mx-auto">
-            Ob{" "}
-            <Link to="/plattenleger-zuerich" className="font-semibold text-[var(--color-primary)] underline-offset-2 hover:underline">
-              Plattenleger Schweiz / Zürich
-            </Link>
-            ,{" "}
-            <Link to="/badrenovation-zuerich" className="font-semibold text-[var(--color-primary)] underline-offset-2 hover:underline">
-              Badezimmer-Sanierung
-            </Link>{" "}
-            oder{" "}
-            <Link to="/kueche-fliesen-zuerich" className="font-semibold text-[var(--color-primary)] underline-offset-2 hover:underline">
-              Keramik &amp; Bodenplatten in der Küche
-            </Link>
-            : Qualität entsteht in jedem Millimeter.{" "}
-            <a href="/#faq" className="font-semibold text-[var(--color-primary)] underline-offset-2 hover:underline">
-              FAQ
-            </a>{" "}
-            ·{" "}
-            <a href="/#contact" className="font-semibold text-[var(--color-primary)] underline-offset-2 hover:underline">
-              Offerte
-            </a>
           </p>
         </div>
 

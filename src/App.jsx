@@ -10,6 +10,7 @@ import CityPlattenleger from "./pages/CityPlattenleger"
 import BadRenovationZuerich from "./pages/BadRenovationZuerich"
 import KuecheFliesenZuerich from "./pages/KuecheFliesenZuerich"
 import LeistungenPage from "./pages/LeistungenPage"
+import ReferenzenPage from "./pages/ReferenzenPage"
 
 gsap.registerPlugin(ScrollTrigger)
 
@@ -65,6 +66,7 @@ export default function App() {
           <Route path="/badrenovation-zuerich" element={<BadRenovationZuerich />} />
           <Route path="/kueche-fliesen-zuerich" element={<KuecheFliesenZuerich />} />
           <Route path="/leistungen" element={<LeistungenPage />} />
+          <Route path="/referenzen" element={<ReferenzenPage />} />
           <Route path="*" element={<Home />} />
         </Routes>
         <Footer />

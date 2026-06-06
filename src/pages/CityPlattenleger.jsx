@@ -1,8 +1,7 @@
-import { Link } from "react-router-dom"
 import Seo from "../seo/Seo"
 import BackToHome from "../components/layout/BackToHome"
 import Contact from "../components/sections/Contact"
-import GalleryShowcase from "../components/sections/GalleryShowcase"
+import ReferenzenEmbed from "../components/sections/ReferenzenEmbed"
 import { cityLandings } from "../data/cityLandings"
 import { buildCityLandingJsonLd } from "../seo/jsonLd"
 
@@ -26,28 +25,6 @@ export default function CityPlattenleger({ cityId }) {
         <h1 className="hero-title mb-4">{cfg.h1}</h1>
         <p className="font-[var(--font-body)] text-[var(--color-slate)] text-base md:text-lg leading-relaxed max-w-3xl text-safe">
           {cfg.lead}
-        </p>
-        <p className="mt-4 font-[var(--font-body)] text-sm text-[var(--color-slate)] leading-relaxed max-w-3xl text-safe">
-          Verwandte Seiten:{" "}
-          <Link to="/leistungen" className="font-semibold text-[var(--color-primary)] underline-offset-2 hover:underline">
-            Leistungen
-          </Link>
-          {" · "}
-          <Link to="/badrenovation-zuerich" className="font-semibold text-[var(--color-primary)] underline-offset-2 hover:underline">
-            Bad Renovation Zürich
-          </Link>
-          {" · "}
-          <Link to="/kueche-fliesen-zuerich" className="font-semibold text-[var(--color-primary)] underline-offset-2 hover:underline">
-            Küchen Fliesen Zürich
-          </Link>
-          {" · "}
-          <Link to="/#gallery" className="font-semibold text-[var(--color-primary)] underline-offset-2 hover:underline">
-            Galerie
-          </Link>
-          {" · "}
-          <Link to="/#contact" className="font-semibold text-[var(--color-primary)] underline-offset-2 hover:underline">
-            Kontakt
-          </Link>
         </p>
       </section>
 
@@ -82,7 +59,7 @@ export default function CityPlattenleger({ cityId }) {
         <p className="font-[var(--font-body)] text-[var(--color-slate)] leading-relaxed max-w-3xl text-safe">{cfg.costText}</p>
       </section>
 
-      <GalleryShowcase title={cfg.galleryTitle} />
+      <ReferenzenEmbed title={cfg.galleryTitle} limit={8} />
 
       <section className="mx-auto w-full min-w-0 content-shell content-shell--article py-10">
         <h2 className="section-title mb-4">FAQ</h2>
