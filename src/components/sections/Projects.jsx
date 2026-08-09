@@ -355,7 +355,7 @@ export default function Projects() {
                   <div 
                     className="absolute inset-0 opacity-0 group-hover:opacity-100 transition-opacity duration-500" 
                     style={{ 
-                      boxShadow: `inset 0 0 60px rgba(196, 30, 58, 0.2)` 
+                      boxShadow: `inset 0 0 60px rgba(155, 18, 53, 0.2)` 
                     }} 
                   />
 

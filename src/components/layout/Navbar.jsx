@@ -2,7 +2,7 @@ import { useCallback, useEffect, useRef, useState } from "react"
 import { useLocation, useNavigate } from "react-router-dom"
 import NavbarDesktop from "./NavbarDesktop"
 import NavbarMobile from "./NavbarMobile"
-import { navbarAnimation, mobileMenuAnimation } from "../../animations/navbarAnimation"
+import { navbarAnimation, navbarReveal, mobileMenuAnimation } from "../../animations/navbarAnimation"
 import { content } from "../../data/content"
 import { useScrollDirection } from "../../hooks/useScrollDirection"
 
@@ -27,6 +27,20 @@ export default function Navbar() {
     })
     return () => window.cancelAnimationFrame(id)
   }, [])
+
+  // Replay the item reveal every time the navbar reappears after being hidden.
+  const wasVisible = useRef(true)
+  useEffect(() => {
+    if (navVisible && !wasVisible.current) {
+      // Wait a beat so the CSS slide-in has started before items drop in.
+      const id = window.setTimeout(() => {
+        navbarReveal({ nav: navRef.current })
+      }, 80)
+      wasVisible.current = true
+      return () => window.clearTimeout(id)
+    }
+    wasVisible.current = navVisible
+  }, [navVisible])
 
   useEffect(() => {
     mobileMenuAnimation({ panel: panelRef.current, items: itemRefs.current, isOpen })
@@ -88,11 +102,11 @@ export default function Navbar() {
         "fixed top-0 left-0 right-0 z-50 transition-[transform,background-color,box-shadow,border-color] duration-300 ease-out",
         navVisible ? "translate-y-0" : "-translate-y-full",
         isScrolled
-          ? "bg-[var(--color-bg)]/90 backdrop-blur-lg border-b border-black/10 shadow-[0_10px_30px_-20px_rgba(0,0,0,0.35)]"
-          : "bg-[var(--color-bg)]/70 backdrop-blur-md border-b border-black/[0.06]",
+          ? "bg-white/90 backdrop-blur-lg border-b border-black/[0.08] shadow-[0_12px_32px_-24px_rgba(18,20,23,0.35)]"
+          : "bg-white/60 backdrop-blur-md border-b border-transparent",
       ].join(" ")}
     >
-      <div className="w-full px-4 md:px-8 xl:px-10 py-4">
+      <div className="content-shell py-3.5">
         <NavbarDesktop
           links={content.nav.links}
           onCtaClick={goContact}

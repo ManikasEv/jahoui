@@ -1,9 +1,14 @@
-import { useEffect, useMemo, useState } from "react"
+import { useEffect, useMemo, useRef, useState } from "react"
 import ImageLightbox from "../ui/ImageLightbox"
 import { filterReferences, references, REFERENCE_FILTERS } from "../../data/references"
 import { usePrefersReducedMotion } from "../../hooks/usePrefersReducedMotion"
+import {
+  pickInitialGalleryFrame,
+  pickNextGalleryFrame,
+  shuffleItems,
+} from "../../utils/galleryRotation"
 
-const DEFAULT_ROTATE_MS = 5500
+const DEFAULT_ROTATE_MS = 5000
 
 /**
  * Clean portfolio grid — uniform tiles, optional category filter.
@@ -22,28 +27,52 @@ export default function ReferenzenGrid({
   const reducedMotion = usePrefersReducedMotion()
   const [activeFilter, setActiveFilter] = useState(defaultFilter)
   const [lightbox, setLightbox] = useState(null)
-  const [offset, setOffset] = useState(0)
+  const [rotatingVisible, setRotatingVisible] = useState(null)
+  const [frameKey, setFrameKey] = useState(0)
   const [paused, setPaused] = useState(false)
+  const cycleRef = useRef({ deck: [], deckIndex: 0 })
+  const lastFrameRef = useRef(null)
 
   const filtered = useMemo(() => filterReferences(items, activeFilter), [items, activeFilter])
   const n = filtered.length
+  const canRotate = autoRotate && limit && n > limit
 
   useEffect(() => {
-    if (!autoRotate || !limit || reducedMotion || paused || n <= limit) return
+    if (!canRotate) {
+      setRotatingVisible(null)
+      return
+    }
+
+    const deck = shuffleItems(filtered)
+    cycleRef.current = { deck, deckIndex: 0 }
+    const initial = pickInitialGalleryFrame(filtered, limit)
+    lastFrameRef.current = initial
+    setRotatingVisible(initial)
+    setFrameKey((k) => k + 1)
+  }, [filtered, canRotate, limit])
+
+  useEffect(() => {
+    if (!canRotate || reducedMotion || paused) return
+
     const id = window.setInterval(() => {
-      setOffset((o) => (o + 1) % n)
+      const previous = lastFrameRef.current ?? pickInitialGalleryFrame(filtered, limit)
+      const next = pickNextGalleryFrame(filtered, previous, limit, cycleRef.current)
+      lastFrameRef.current = next
+      setRotatingVisible(next)
+      setFrameKey((k) => k + 1)
     }, rotateIntervalMs)
+
     return () => window.clearInterval(id)
-  }, [autoRotate, limit, reducedMotion, paused, n, rotateIntervalMs])
+  }, [canRotate, filtered, limit, reducedMotion, paused, rotateIntervalMs])
 
   const visible = useMemo(() => {
     if (!limit) return filtered
-    if (!autoRotate || n <= limit) return filtered.slice(0, limit)
-    return Array.from({ length: limit }, (_, i) => filtered[(offset + i) % n])
-  }, [filtered, limit, autoRotate, offset, n])
+    if (!canRotate) return filtered.slice(0, limit)
+    return rotatingVisible ?? filtered.slice(0, limit)
+  }, [filtered, limit, canRotate, rotatingVisible])
 
   const cellClass = compact
-    ? "aspect-[4/3] rounded-lg"
+    ? "aspect-[4/3] rounded-xl"
     : "aspect-[4/3] sm:aspect-[5/4] rounded-xl"
 
   const gridClass = compact
@@ -83,13 +112,13 @@ export default function ReferenzenGrid({
       >
         {visible.map((item, i) => (
           <button
-            key={autoRotate ? `${item.id}-${offset}-${i}` : item.id}
+            key={canRotate ? `${item.id}-${frameKey}-${i}` : item.id}
             type="button"
             onClick={() => setLightbox({ src: item.src, alt: item.title })}
             className={[
-              "group relative overflow-hidden border border-black/10 bg-[var(--color-dark)] shadow-sm text-left",
+              "group relative overflow-hidden border border-black/[0.06] bg-[var(--color-dark)] shadow-[var(--shadow-card)] text-left",
               "focus:outline-none focus-visible:ring-2 focus-visible:ring-[var(--color-primary)]/50 focus-visible:ring-offset-2",
-              autoRotate ? "referenzen-cell-enter" : "",
+              canRotate ? "referenzen-cell-enter" : "",
               cellClass,
             ].join(" ")}
             aria-label={`${item.title} vergrössern`}

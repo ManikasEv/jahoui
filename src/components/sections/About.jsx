@@ -1,145 +1,61 @@
-import { useEffect, useRef } from "react"
-import { gsap } from "gsap"
-import { ScrollTrigger } from "gsap/ScrollTrigger"
+import { useRef } from "react"
 import profilePhoto from "../../assets/profile.jpg"
 import { content } from "../../data/content"
-import { usePrefersReducedMotion } from "../../hooks/usePrefersReducedMotion"
-import { useSectionCrossFade } from "../../hooks/useSectionCrossFade"
-
-gsap.registerPlugin(ScrollTrigger)
+import { useReveal } from "../../hooks/useReveal"
 
 export default function About() {
-  const reducedMotion = usePrefersReducedMotion()
   const sectionRef = useRef(null)
-  const photoWrapRef = useRef(null)
-
   const about = content.sections.about
 
-  useSectionCrossFade(sectionRef, reducedMotion)
-
-  useEffect(() => {
-    if (!sectionRef.current || reducedMotion) return
-
-    const root = sectionRef.current
-    const ctx = gsap.context(() => {
-      const st = {
-        trigger: root,
-        start: "top 78%",
-        once: true,
-      }
-
-      const titleChars = root.querySelectorAll("[data-about-title-char]")
-      if (titleChars.length) {
-        gsap.from(titleChars, {
-          scrollTrigger: st,
-          opacity: 0,
-          y: (i) => (i % 2 === 0 ? -22 : 22),
-          rotateZ: (i) => (i % 3 === 0 ? -10 : i % 3 === 1 ? 8 : 0),
-          stagger: 0.012,
-          duration: 0.38,
-          ease: "back.out(1.35)",
-        })
-      }
-
-      const bioWords = root.querySelectorAll("[data-about-word]")
-      if (bioWords.length) {
-        gsap.from(bioWords, {
-          scrollTrigger: st,
-          opacity: 0,
-          y: 14,
-          skewX: -4,
-          stagger: 0.008,
-          duration: 0.32,
-          ease: "power2.out",
-          delay: 0.05,
-        })
-      }
-
-      const nameChars = root.querySelectorAll("[data-about-name-char]")
-      if (nameChars.length) {
-        gsap.from(nameChars, {
-          scrollTrigger: st,
-          opacity: 0,
-          x: -12,
-          stagger: 0.018,
-          duration: 0.32,
-          ease: "power2.out",
-          delay: 0.18,
-        })
-      }
-
-      const pw = photoWrapRef.current
-      if (pw) {
-        gsap.from(pw, {
-          scrollTrigger: st,
-          opacity: 0,
-          scale: 0.88,
-          rotate: -6,
-          duration: 0.75,
-          ease: "power3.out",
-          delay: 0.05,
-        })
-      }
-    }, sectionRef)
-
-    return () => ctx.revert()
-  }, [reducedMotion])
+  useReveal(sectionRef)
 
   return (
-    <section id="about" ref={sectionRef} className="section-band section-band--paper py-14 sm:py-16 perspective-[1200px]">
+    <section id="about" ref={sectionRef} className="section-band py-16 sm:py-20 lg:py-24">
       <div className="content-shell">
-      <h2 className="section-title mb-8 md:mb-10 text-center [transform-style:preserve-3d]">
-        {reducedMotion ? (
-          about.title
-        ) : (
-          about.title.split("").map((char, i) => (
-            <span key={`ab-t-${i}`} data-about-title-char className="inline-block">
-              {char === " " ? "\u00A0" : char}
-            </span>
-          ))
-        )}
-      </h2>
+        <div className="grid grid-cols-1 items-start gap-12 lg:grid-cols-12 lg:gap-16">
+          {/* Portrait */}
+          <div data-reveal className="lg:col-span-4">
+            <div className="img-frame mx-auto max-w-sm rounded-2xl lg:mx-0">
+              <div className="relative aspect-[4/5] w-full overflow-hidden rounded-2xl bg-gray-100 shadow-[var(--shadow-card)]">
+                <img
+                  src={profilePhoto}
+                  alt={`${about.name}, Plattenleger und Fliesenleger Schweiz`}
+                  className="h-full w-full object-cover object-top"
+                  loading="lazy"
+                  decoding="async"
+                />
+              </div>
+            </div>
 
-      <div className="grid grid-cols-1 md:grid-cols-3 gap-8 items-start">
-        <div ref={photoWrapRef} className="flex justify-center md:justify-start">
-          <div className="relative w-48 h-48 md:w-56 md:h-56 rounded-full overflow-hidden border-4 border-[var(--color-primary)] bg-gray-200 shadow-[0_14px_30px_-12px_rgba(0,0,0,0.2)] transition-transform duration-500 hover:scale-[1.03]">
-            <img
-              src={profilePhoto}
-              alt={`${about.name}, Plattenleger und Fliesenleger Schweiz`}
-              className="w-full h-full object-cover object-top"
-              loading="lazy"
-              decoding="async"
-            />
+            <div className="mt-7 text-center lg:text-left">
+              <p className="font-[var(--font-heading)] text-xl font-bold text-[var(--color-dark)]">
+                {about.name}
+              </p>
+              <span className="title-rule mx-auto mt-3 !mb-0 lg:mx-0" aria-hidden />
+            </div>
+          </div>
+
+          {/* Bio */}
+          <div className="min-w-0 lg:col-span-8">
+            <div data-reveal>
+              <span className="title-rule" aria-hidden />
+              <h2 className="section-title mb-8">{about.title}</h2>
+            </div>
+
+            <div className="space-y-5">
+              {about.bio.map((paragraph, pi) => (
+                <p
+                  key={pi}
+                  data-bio
+                  data-reveal
+                  className="font-[var(--font-body)] text-[0.98rem] leading-[1.85] text-[var(--color-slate)] sm:text-base text-safe"
+                >
+                  {paragraph}
+                </p>
+              ))}
+            </div>
           </div>
         </div>
-
-        <div className="md:col-span-2 space-y-4">
-          {about.bio.map((paragraph, pi) => (
-            <p key={pi} className="font-[var(--font-body)] text-[var(--color-slate)] leading-relaxed">
-              {reducedMotion ? (
-                paragraph
-              ) : (
-                paragraph.split(/\s+/).filter(Boolean).map((word, wi) => (
-                  <span key={`${pi}-w-${wi}`} data-about-word className="inline-block mr-[0.28em]">
-                    {word}
-                  </span>
-                ))
-              )}
-            </p>
-          ))}
-          <p className="font-[var(--font-heading)] text-lg text-[var(--color-dark)] mt-6">
-            {reducedMotion ? (
-              about.name
-            ) : (
-              about.name.split("").map((char, i) => (
-                <span key={`ab-n-${i}`} data-about-name-char className="inline-block">
-                  {char === " " ? "\u00A0" : char}
-                </span>
-              ))
-            )}
-          </p>
-        </div>
-      </div>
       </div>
     </section>
   )

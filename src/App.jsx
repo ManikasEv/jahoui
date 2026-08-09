@@ -49,11 +49,6 @@ export default function App() {
 
   return (
     <div className="min-h-screen bg-[var(--color-bg)] overflow-x-hidden relative">
-      <div
-        aria-hidden="true"
-        className="app-bg-wash pointer-events-none fixed inset-0 z-0 bg-[radial-gradient(120%_80%_at_50%_-10%,rgba(196,30,58,0.06),transparent_55%)]"
-      />
-
       <div className="relative z-10">
         <Navbar />
         <Routes>

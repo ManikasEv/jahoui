@@ -1,10 +1,5 @@
-import { useEffect, useRef } from "react"
-import { gsap } from "gsap"
-import { ScrollTrigger } from "gsap/ScrollTrigger"
-import { usePrefersReducedMotion } from "../../hooks/usePrefersReducedMotion"
-import { useSectionCrossFade } from "../../hooks/useSectionCrossFade"
-
-gsap.registerPlugin(ScrollTrigger)
+import { useRef } from "react"
+import { useReveal, useCountUp } from "../../hooks/useReveal"
 
 const PRAISES = [
   "Perfekte Verarbeitung",
@@ -20,9 +15,9 @@ const PRAISES = [
 ]
 
 const STATS = [
-  { value: "25+", label: "Jahre Erfahrung" },
-  { value: "500+", label: "Projekte" },
-  { value: "100%", label: "Engagement" },
+  { to: 25, suffix: "+", label: "Jahre Erfahrung" },
+  { to: 500, suffix: "+", label: "Projekte" },
+  { to: 100, suffix: "%", label: "Engagement" },
 ]
 
 const TILE_TITLE = "Qualität im Detail"
@@ -30,135 +25,55 @@ const TILE_BODY =
   "Präzise Verlegung, saubere Übergänge und Arbeit, die im Alltag überzeugt — ohne Schnickschnack."
 
 export default function TileShowcase() {
-  const reducedMotion = usePrefersReducedMotion()
   const sectionRef = useRef(null)
   const row = [...PRAISES, ...PRAISES]
 
-  useSectionCrossFade(sectionRef, reducedMotion)
-
-  useEffect(() => {
-    if (!sectionRef.current || reducedMotion) return
-
-    const root = sectionRef.current
-
-    const ctx = gsap.context(() => {
-      const stMain = { trigger: root, start: "top 84%", once: true }
-
-      const titleChars = root.querySelectorAll("[data-tile-title-char]")
-      if (titleChars.length) {
-        gsap.from(titleChars, {
-          scrollTrigger: stMain,
-          opacity: 0,
-          y: (i) => (i % 2 === 0 ? -18 : 18),
-          rotateZ: (i) => (i % 3 === 0 ? -12 : i % 3 === 1 ? 10 : 0),
-          stagger: 0.03,
-          duration: 0.58,
-          ease: "back.out(1.4)",
-        })
-      }
-
-      const introWords = root.querySelectorAll("[data-tile-intro-word]")
-      if (introWords.length) {
-        gsap.from(introWords, {
-          scrollTrigger: stMain,
-          opacity: 0,
-          y: 14,
-          skewX: -5,
-          stagger: 0.022,
-          duration: 0.42,
-          ease: "power2.out",
-          delay: 0.1,
-        })
-      }
-
-      const marqueeWrap = root.querySelector("[data-tile-marquee-wrap]")
-      if (marqueeWrap) {
-        gsap.from(marqueeWrap, {
-          scrollTrigger: { trigger: root, start: "top 82%", once: true },
-          opacity: 0,
-          y: 22,
-          scale: 0.97,
-          duration: 0.55,
-          ease: "power3.out",
-          delay: 0.14,
-        })
-      }
-
-      const stats = root.querySelectorAll("[data-stat]")
-      if (stats.length) {
-        gsap.from(stats, {
-          scrollTrigger: { trigger: root, start: "top 78%", once: true },
-          opacity: 0,
-          y: 22,
-          rotateX: -18,
-          transformOrigin: "50% 50%",
-          stagger: 0.09,
-          duration: 0.52,
-          ease: "power3.out",
-          delay: 0.2,
-        })
-      }
-    }, sectionRef)
-
-    return () => ctx.revert()
-  }, [reducedMotion])
+  useReveal(sectionRef)
+  useCountUp(sectionRef)
 
   return (
-    <section ref={sectionRef} className="section-band section-band--strip py-12 md:py-14 perspective-[1100px]">
-      <div className="mx-auto w-full min-w-0 content-shell">
-        <div data-tile-intro className="w-full min-w-0 max-w-xl mx-auto text-center mb-5 md:mb-6 px-0">
-          <h2 className="section-title font-bold mb-2 [transform-style:preserve-3d]">
-            {reducedMotion ? (
-              TILE_TITLE
-            ) : (
-              TILE_TITLE.split("").map((char, i) => (
-                <span key={`tt-${i}`} data-tile-title-char className="inline-block">
-                  {char === " " ? "\u00A0" : char}
-                </span>
-              ))
-            )}
-          </h2>
-          <p className="font-[var(--font-body)] text-sm md:text-[0.9375rem] text-[var(--color-slate)] leading-relaxed text-safe">
-            {reducedMotion ? (
-              TILE_BODY
-            ) : (
-              TILE_BODY.split(/\s+/).filter(Boolean).map((word, i) => (
-                <span key={`tb-${i}`} data-tile-intro-word className="inline-block mr-[0.22em]">
-                  {word}
-                </span>
-              ))
-            )}
+    <section ref={sectionRef} className="section-band py-16 sm:py-20">
+      <div className="content-shell">
+        <div data-reveal className="mx-auto mb-10 max-w-xl text-center">
+          <span className="title-rule title-rule--center" aria-hidden />
+          <h2 className="section-title mb-3">{TILE_TITLE}</h2>
+          <p className="font-[var(--font-body)] text-sm leading-relaxed text-[var(--color-slate)] sm:text-base text-safe">
+            {TILE_BODY}
           </p>
         </div>
 
-        <div className="relative rounded-xl border border-black/10 bg-white/70 backdrop-blur overflow-hidden mb-5 md:mb-6 shadow-sm" data-tile-marquee-wrap>
-          <div
-            className="pointer-events-none absolute inset-y-0 left-0 w-10 z-[1] bg-gradient-to-r from-[var(--color-bg)] to-transparent"
-            aria-hidden
-          />
-          <div
-            className="pointer-events-none absolute inset-y-0 right-0 w-10 z-[1] bg-gradient-to-l from-[var(--color-bg)] to-transparent"
-            aria-hidden
-          />
-          <div className="py-3 md:py-3.5 overflow-hidden">
-            <div className="tile-showcase__track">
-              {row.map((text, i) => (
-                <span
-                  key={`${text}-${i}`}
-                  className="inline-flex shrink-0 items-center rounded-full border border-black/10 bg-[var(--color-bg)] px-3 py-1.5 font-[var(--font-body)] text-xs font-semibold text-[var(--color-dark)] whitespace-nowrap shadow-sm"
-                >
-                  {text}
-                </span>
-              ))}
-            </div>
+        <div data-reveal className="ticker mb-12 border-y border-black/[0.07] py-4">
+          <div className="ticker__track" aria-hidden="true">
+            {row.map((text, i) => (
+              <span
+                key={`${text}-${i}`}
+                className="inline-flex shrink-0 items-center font-[var(--font-body)] text-xs font-semibold uppercase tracking-[0.18em] text-[var(--color-slate)]/80"
+              >
+                {text}
+                <span className="mx-6 inline-block h-1 w-1 rounded-full bg-[var(--color-primary)]/60" />
+              </span>
+            ))}
           </div>
+          <span className="sr-only">{PRAISES.join(", ")}</span>
         </div>
 
-        <div className="flex flex-wrap items-center justify-center gap-x-8 gap-y-3 md:gap-x-14 [transform-style:preserve-3d]">
-          {STATS.map((s) => (
-            <div key={s.label} data-stat className="text-center px-2">
-              <div className="text-xl md:text-2xl font-bold text-[var(--color-primary)] tabular-nums">{s.value}</div>
-              <div className="font-[var(--font-body)] text-xs text-[var(--color-slate)] mt-0.5">{s.label}</div>
+        <div data-reveal className="mx-auto grid max-w-3xl grid-cols-3">
+          {STATS.map((s, i) => (
+            <div
+              key={s.label}
+              className={[
+                "px-3 text-center sm:px-6",
+                i > 0 ? "border-l border-black/[0.08]" : "",
+              ].join(" ")}
+            >
+              <div className="font-[var(--font-heading)] text-3xl font-bold tabular-nums text-[var(--color-dark)] sm:text-4xl lg:text-[2.75rem]">
+                <span data-count-to={s.to} data-count-suffix={s.suffix}>
+                  {`${s.to}${s.suffix}`}
+                </span>
+              </div>
+              <div className="mt-1.5 font-[var(--font-body)] text-xs font-medium text-[var(--color-slate)] sm:text-sm">
+                {s.label}
+              </div>
             </div>
           ))}
         </div>

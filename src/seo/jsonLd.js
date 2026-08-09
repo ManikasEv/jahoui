@@ -17,13 +17,16 @@ export function buildHomeJsonLd(content) {
     priceRange: "$$",
     address: {
       "@type": "PostalAddress",
+      streetAddress: content?.sections?.contact?.info?.street || "Winznauerstrasse 8",
+      postalCode: content?.sections?.contact?.info?.postalCode || "4632",
+      addressLocality: content?.sections?.contact?.info?.city || "Trimbach",
+      addressRegion: "Solothurn",
       addressCountry: "CH",
-      addressRegion: "Schweiz",
     },
     geo: {
       "@type": "GeoCoordinates",
-      latitude: 47.3769,
-      longitude: 8.5417,
+      latitude: 47.3636,
+      longitude: 7.8833,
     },
     openingHoursSpecification: [
       {

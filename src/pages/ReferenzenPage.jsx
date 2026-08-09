@@ -13,7 +13,7 @@ export default function ReferenzenPage() {
         path="/referenzen"
       />
 
-      <section className="section-band section-band--paper pt-24 sm:pt-28 pb-10 sm:pb-12">
+      <section className="section-band pt-24 sm:pt-28 pb-10 sm:pb-12">
         <div className="content-shell content-shell--article">
           <BackToHome className="mb-6" />
           <p className="text-xs font-semibold uppercase tracking-[0.14em] text-[var(--color-primary)] mb-2">

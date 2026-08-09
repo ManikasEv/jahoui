@@ -1,119 +1,15 @@
-import { useRef, useEffect, useState } from "react"
-import { gsap } from "gsap"
-import { ScrollTrigger } from "gsap/ScrollTrigger"
+import { useRef, useState } from "react"
+import { FiPhone, FiMail, FiMapPin } from "react-icons/fi"
+import { FaWhatsapp } from "react-icons/fa"
 import { content } from "../../data/content"
-import { usePrefersReducedMotion } from "../../hooks/usePrefersReducedMotion"
-import { useSectionCrossFade, useSectionHeadingSoftReveal } from "../../hooks/useSectionCrossFade"
-
-gsap.registerPlugin(ScrollTrigger)
+import { useReveal } from "../../hooks/useReveal"
 
 export default function Contact() {
-  const reducedMotion = usePrefersReducedMotion()
   const sectionRef = useRef(null)
-  const formRef = useRef(null)
-  const infoRef = useRef(null)
-  const titleRef = useRef(null)
-  const textRef = useRef(null)
   const [result, setResult] = useState("")
   const [isSubmitting, setIsSubmitting] = useState(false)
 
-  useSectionCrossFade(sectionRef, reducedMotion)
-  useSectionHeadingSoftReveal(sectionRef, reducedMotion)
-
-  useEffect(() => {
-    if (!sectionRef.current) return
-
-    if (reducedMotion) {
-      const titleChars = titleRef.current?.querySelectorAll("[data-char]")
-      const words = textRef.current?.querySelectorAll("[data-word]")
-      const formBits = formRef.current?.querySelectorAll("[data-contact-anim]")
-      const infoBits = infoRef.current?.querySelectorAll("[data-contact-anim]")
-      gsap.set(titleChars || [], { opacity: 1, y: 0, rotateZ: 0 })
-      gsap.set(words || [], { opacity: 1, y: 0 })
-      gsap.set([formRef.current, infoRef.current].filter(Boolean), { opacity: 1, x: 0, y: 0, rotateY: 0, scale: 1 })
-      gsap.set([...(formBits || []), ...(infoBits || [])], { opacity: 1, x: 0, y: 0 })
-      return
-    }
-
-    const ctx = gsap.context(() => {
-      const st = {
-        trigger: sectionRef.current,
-        start: "top 80%",
-        once: true,
-      }
-
-      const titleChars = titleRef.current.querySelectorAll("[data-char]")
-      gsap.from(titleChars, {
-        scrollTrigger: st,
-        opacity: 0,
-        y: (i) => (i % 2 === 0 ? -48 : 48),
-        rotateZ: (i) => (i % 2 === 0 ? -18 : 18),
-        stagger: 0.038,
-        duration: 0.75,
-        ease: "back.out(1.55)",
-      })
-
-      const words = textRef.current.querySelectorAll("[data-word]")
-      gsap.from(words, {
-        scrollTrigger: st,
-        opacity: 0,
-        y: (i) => Math.sin(i * 0.55) * 24,
-        rotateX: -28,
-        stagger: 0.028,
-        duration: 0.58,
-        ease: "power3.out",
-        delay: 0.1,
-      })
-
-      gsap.from(formRef.current, {
-        scrollTrigger: st,
-        opacity: 0,
-        x: -90,
-        rotateY: -34,
-        duration: 0.82,
-        ease: "power3.out",
-        delay: 0.08,
-      })
-
-      gsap.from(infoRef.current, {
-        scrollTrigger: st,
-        opacity: 0,
-        x: 90,
-        rotateY: 34,
-        duration: 0.82,
-        delay: 0.18,
-        ease: "power3.out",
-      })
-
-      const formPieces = formRef.current?.querySelectorAll("[data-contact-anim]")
-      if (formPieces?.length) {
-        gsap.from(formPieces, {
-          scrollTrigger: st,
-          opacity: 0,
-          y: 26,
-          stagger: 0.07,
-          duration: 0.48,
-          ease: "power2.out",
-          delay: 0.28,
-        })
-      }
-
-      const infoPieces = infoRef.current?.querySelectorAll("[data-contact-anim]")
-      if (infoPieces?.length) {
-        gsap.from(infoPieces, {
-          scrollTrigger: st,
-          opacity: 0,
-          y: 20,
-          stagger: 0.08,
-          duration: 0.46,
-          ease: "power2.out",
-          delay: 0.34,
-        })
-      }
-    }, sectionRef)
-
-    return () => ctx.revert()
-  }, [reducedMotion])
+  useReveal(sectionRef)
 
   const handleWhatsAppClick = () => {
     const phone = content.footer.whatsappPhone
@@ -121,7 +17,8 @@ export default function Contact() {
     window.open(`https://wa.me/${phone}?text=${message}`, "_blank")
   }
 
-  const phoneDigits = content.sections.contact.info.phone.replace(/\D/g, "")
+  const info = content.sections.contact.info
+  const phoneDigits = info.phone.replace(/\D/g, "")
   const phoneHref = phoneDigits ? `tel:+${phoneDigits.replace(/^\+?/, "")}` : ""
 
   const onSubmit = async (event) => {
@@ -131,7 +28,7 @@ export default function Contact() {
 
     const formData = new FormData(event.target)
     formData.append("access_key", "9820c027-9975-44d9-a6cb-36a5b5fa711f")
-    
+
     // Add custom subject and formatting
     formData.append("subject", "Neue Anfrage – Plattenleger Jaho GmbH (jaho-plattenleger.ch)")
     formData.append("from_name", "Plattenleger Jaho GmbH Website")
@@ -140,7 +37,7 @@ export default function Contact() {
     try {
       const response = await fetch("https://api.web3forms.com/submit", {
         method: "POST",
-        body: formData
+        body: formData,
       })
 
       const data = await response.json()
@@ -148,7 +45,7 @@ export default function Contact() {
       if (data.success) {
         setResult("success")
         event.target.reset()
-        
+
         // Hide success message after 5 seconds
         setTimeout(() => {
           setResult("")
@@ -156,196 +53,148 @@ export default function Contact() {
       } else {
         setResult("error")
       }
-    } catch (error) {
+    } catch {
       setResult("error")
     } finally {
       setIsSubmitting(false)
     }
   }
 
+  const contactRows = [
+    { icon: FiPhone, label: "Telefon", value: info.phone, href: phoneHref },
+    { icon: FiMail, label: "E-Mail", value: info.email, href: `mailto:${info.email}` },
+    { icon: FiMapPin, label: "Standort", value: info.address },
+  ]
+
   return (
-    <section
-      id="contact"
-      ref={sectionRef}
-      className="section-band section-band--contact py-16 sm:py-20 perspective-[1100px]"
-    >
+    <section id="contact" ref={sectionRef} className="section-band py-16 sm:py-20 lg:py-24">
       <div className="content-shell">
-      <h2 ref={titleRef} className="section-title mb-4 [transform-style:preserve-3d]">
-        {content.sections.contact.title.split("").map((char, i) => (
-          <span key={i} className="inline-block" data-char>
-            {char === " " ? "\u00A0" : char}
-          </span>
-        ))}
-      </h2>
-      <p ref={textRef} className="font-[var(--font-body)] text-lg text-[var(--color-slate)] mb-12 max-w-2xl perspective-[760px]">
-        {content.sections.contact.text.split(" ").map((word, i) => (
-          <span key={i} className="inline-block mr-[0.18em]" data-word>
-            {word}
-          </span>
-        ))}
-      </p>
+        <div className="grid grid-cols-1 gap-12 lg:grid-cols-12 lg:gap-16">
+          {/* Copy + direct contact */}
+          <div className="min-w-0 lg:col-span-5">
+            <div data-reveal>
+              <span className="title-rule" aria-hidden />
+              <h2 className="section-title mb-4">{content.sections.contact.title}</h2>
+              <p className="mb-10 max-w-md font-[var(--font-body)] text-base leading-relaxed text-[var(--color-slate)] text-safe">
+                {content.sections.contact.text}
+              </p>
+            </div>
 
-      <div className="grid min-w-0 grid-cols-1 md:grid-cols-2 gap-8">
-        {/* Contact Form */}
-        <div
-          ref={formRef}
-          className="rounded-2xl border border-black/10 bg-white/70 backdrop-blur p-8"
-        >
-          <h3 className="section-heading-soft font-[var(--font-heading)] text-xl md:text-2xl leading-snug text-[var(--color-dark)] mb-6">
-            Nachricht senden
-          </h3>
-          <form onSubmit={onSubmit} className="space-y-4">
-            <div data-contact-anim>
-              <label className="block text-sm font-semibold text-[var(--color-dark)] mb-2">
-                Name
-              </label>
-              <input
-                type="text"
-                name="name"
-                required
-                className="w-full px-4 py-3 rounded-xl border border-black/10 bg-white focus:outline-none focus:ring-2 focus:ring-[var(--color-primary)]/50"
-                placeholder="Ihr Name"
-              />
-            </div>
-            <div data-contact-anim>
-              <label className="block text-sm font-semibold text-[var(--color-dark)] mb-2">
-                E-Mail
-              </label>
-              <input
-                type="email"
-                name="email"
-                required
-                className="w-full px-4 py-3 rounded-xl border border-black/10 bg-white focus:outline-none focus:ring-2 focus:ring-[var(--color-primary)]/50"
-                placeholder="ihre@email.com"
-              />
-            </div>
-            <div data-contact-anim>
-              <label className="block text-sm font-semibold text-[var(--color-dark)] mb-2">
-                Nachricht
-              </label>
-              <textarea
-                name="message"
-                rows="4"
-                required
-                className="w-full px-4 py-3 rounded-xl border border-black/10 bg-white focus:outline-none focus:ring-2 focus:ring-[var(--color-primary)]/50 resize-none"
-                placeholder="Beschreiben Sie Ihr Projekt..."
-              />
-            </div>
-            
-            {/* Success/Error Messages */}
-            {result === "success" && (
-              <div className="p-4 rounded-xl bg-green-50 border border-green-200 text-green-800 font-semibold text-center animate-pulse">
-                ✅ Nachricht erfolgreich gesendet!
-              </div>
-            )}
-            {result === "error" && (
-              <div className="p-4 rounded-xl bg-red-50 border border-red-200 text-red-800 font-semibold text-center">
-                ❌ Fehler beim Senden. Bitte versuchen Sie es erneut.
-              </div>
-            )}
-            
-            <button
-              data-contact-anim
-              type="submit"
-              disabled={isSubmitting}
-              className="group relative w-full px-6 py-3 rounded-xl font-[var(--font-body)] font-semibold bg-[var(--color-primary)] text-white overflow-visible disabled:opacity-50 disabled:cursor-not-allowed"
-            >
-              {/* Shine effect */}
-              <span className="absolute inset-0 rounded-xl overflow-hidden">
-                <span className="absolute inset-0 translate-x-[-100%] group-hover:translate-x-[100%] transition-transform duration-700 bg-gradient-to-r from-transparent via-white/30 to-transparent" />
-              </span>
-              
-              {/* Particle dots */}
-              <span className="absolute -top-1 -right-1 w-2 h-2 bg-white rounded-full opacity-0 group-hover:opacity-100 group-hover:animate-ping" />
-              <span className="absolute -bottom-1 -left-1 w-2 h-2 bg-white rounded-full opacity-0 group-hover:opacity-100 group-hover:animate-ping" style={{ animationDelay: "0.1s" }} />
-              
-              {/* Email icon - appears on hover, flies away on click */}
-              <span className="absolute left-4 top-1/2 -translate-y-1/2 text-xl opacity-0 scale-0 group-hover:opacity-100 group-hover:scale-100 transition-all duration-300 group-active:translate-x-[200px] group-active:-translate-y-[100px] group-active:opacity-0 group-active:scale-150 group-active:rotate-45">
-                ✉️
-              </span>
-              
-              <span className="relative z-10 group-hover:translate-x-3 transition-transform duration-300">
-                {isSubmitting ? "Wird gesendet..." : "Nachricht senden"}
-              </span>
-            </button>
-          </form>
-        </div>
+            <div className="space-y-2.5">
+              {contactRows.map((row) => {
+                const Icon = row.icon
+                const inner = (
+                  <>
+                    <span className="flex h-11 w-11 shrink-0 items-center justify-center rounded-xl bg-[var(--color-primary)]/10 text-[var(--color-primary)] transition-colors duration-300 group-hover:bg-[var(--color-primary)] group-hover:text-white">
+                      <Icon size={19} aria-hidden />
+                    </span>
+                    <span className="min-w-0">
+                      <span className="block font-[var(--font-body)] text-xs font-semibold uppercase tracking-[0.12em] text-[var(--color-slate)]/70">
+                        {row.label}
+                      </span>
+                      <span className="block truncate font-[var(--font-body)] font-semibold text-[var(--color-dark)]">
+                        {row.value}
+                      </span>
+                    </span>
+                  </>
+                )
 
-        {/* Contact Info */}
-        <div ref={infoRef} className="space-y-6">
-          <div data-contact-anim className="rounded-2xl border border-black/10 bg-white/70 backdrop-blur p-8">
-            <h3 className="font-[var(--font-heading)] text-xl md:text-2xl leading-snug text-[var(--color-dark)] mb-6">
-              Kontaktinformationen
-            </h3>
-            <div className="space-y-4">
-              <div className="flex items-start gap-4">
-                <div className="flex-shrink-0 w-12 h-12 rounded-xl bg-[var(--color-primary)]/10 flex items-center justify-center">
-                  <span className="text-xl">📞</span>
-                </div>
-                <div>
-                  <div className="font-semibold text-[var(--color-dark)]">Telefon</div>
+                return row.href ? (
                   <a
-                    href={phoneHref}
-                    className="text-[var(--color-slate)] hover:text-[var(--color-primary)] transition-colors"
+                    key={row.label}
+                    data-reveal
+                    href={row.href}
+                    className="group flex items-center gap-4 rounded-2xl px-3 py-3 transition-colors duration-200 hover:bg-white"
                   >
-                    {content.sections.contact.info.phone}
+                    {inner}
                   </a>
-                </div>
-              </div>
-
-              <div className="flex items-start gap-4">
-                <div className="flex-shrink-0 w-12 h-12 rounded-xl bg-[var(--color-primary)]/10 flex items-center justify-center">
-                  <span className="text-xl">✉️</span>
-                </div>
-                <div>
-                  <div className="font-semibold text-[var(--color-dark)]">E-Mail</div>
-                  <a
-                    href={`mailto:${content.sections.contact.info.email}`}
-                    className="text-[var(--color-slate)] hover:text-[var(--color-primary)] transition-colors"
-                  >
-                    {content.sections.contact.info.email}
-                  </a>
-                </div>
-              </div>
-
-              <div className="flex items-start gap-4">
-                <div className="flex-shrink-0 w-12 h-12 rounded-xl bg-[var(--color-primary)]/10 flex items-center justify-center">
-                  <span className="text-xl">📍</span>
-                </div>
-                <div>
-                  <div className="font-semibold text-[var(--color-dark)]">Standort</div>
-                  <div className="text-[var(--color-slate)]">
-                    {content.sections.contact.info.address}
+                ) : (
+                  <div key={row.label} data-reveal className="group flex items-center gap-4 rounded-2xl px-3 py-3">
+                    {inner}
                   </div>
-                </div>
-              </div>
+                )
+              })}
+            </div>
+
+            <div data-reveal className="mt-8">
+              <button
+                type="button"
+                onClick={handleWhatsAppClick}
+                className="btn btn--whatsapp btn--lg w-full sm:w-auto"
+              >
+                <FaWhatsapp size={20} aria-hidden />
+                {content.footer.whatsappLabel}
+                <span className="ml-1 hidden font-normal text-[var(--color-whatsapp)]/80 sm:inline">
+                  — Schnelle Antwort garantiert
+                </span>
+              </button>
             </div>
           </div>
 
-          <button
-            data-contact-anim
-            type="button"
-            onClick={handleWhatsAppClick}
-            className="group relative w-full rounded-2xl border-2 border-green-500/30 bg-green-50 p-6 hover:bg-green-100 transition-colors overflow-hidden"
-          >
-            <span className="absolute inset-0 bg-green-500/10 transform scale-0 group-hover:scale-100 transition-transform duration-500 ease-out rounded-2xl" />
-            <div className="relative z-10 flex items-center justify-between">
-              <div className="text-left">
-                <div className="font-[var(--font-heading)] text-xl text-green-900 mb-1 flex items-center gap-2">
-                  WhatsApp
-                  <span className="inline-block transition-all group-hover:rotate-12 group-hover:scale-125">📱</span>
+          {/* Form */}
+          <div data-reveal className="min-w-0 lg:col-span-7">
+            <div className="surface-card p-7 sm:p-10">
+              <h3 className="mb-7 font-[var(--font-heading)] text-xl font-semibold text-[var(--color-dark)] sm:text-2xl">
+                Nachricht senden
+              </h3>
+
+              <form onSubmit={onSubmit} className="space-y-5">
+                <div className="grid grid-cols-1 gap-5 sm:grid-cols-2">
+                  <div>
+                    <label className="mb-2 block font-[var(--font-body)] text-sm font-semibold text-[var(--color-dark)]">
+                      Name
+                    </label>
+                    <input type="text" name="name" required className="input-field" placeholder="Ihr Name" />
+                  </div>
+                  <div>
+                    <label className="mb-2 block font-[var(--font-body)] text-sm font-semibold text-[var(--color-dark)]">
+                      E-Mail
+                    </label>
+                    <input type="email" name="email" required className="input-field" placeholder="ihre@email.com" />
+                  </div>
                 </div>
-                <div className="text-green-700 text-sm">
-                  Schnelle Antwort garantiert
+
+                <div>
+                  <label className="mb-2 block font-[var(--font-body)] text-sm font-semibold text-[var(--color-dark)]">
+                    Nachricht
+                  </label>
+                  <textarea
+                    name="message"
+                    rows="5"
+                    required
+                    className="input-field resize-none"
+                    placeholder="Beschreiben Sie Ihr Projekt..."
+                  />
                 </div>
-              </div>
-              <div className="text-4xl group-hover:scale-110 transition-transform">
-                💬
-              </div>
+
+                {result === "success" && (
+                  <div
+                    role="status"
+                    className="rounded-xl border border-[rgba(var(--color-whatsapp-rgb),0.28)] bg-[rgba(var(--color-whatsapp-rgb),0.1)] p-4 text-center font-[var(--font-body)] text-sm font-semibold text-[var(--color-accent)]"
+                  >
+                    Nachricht erfolgreich gesendet!
+                  </div>
+                )}
+                {result === "error" && (
+                  <div
+                    role="alert"
+                    className="rounded-xl border border-red-200 bg-red-50 p-4 text-center font-[var(--font-body)] text-sm font-semibold text-red-800"
+                  >
+                    Fehler beim Senden. Bitte versuchen Sie es erneut.
+                  </div>
+                )}
+
+                <button
+                  type="submit"
+                  disabled={isSubmitting}
+                  className="btn btn--primary btn--lg w-full disabled:cursor-not-allowed disabled:opacity-60"
+                >
+                  {isSubmitting ? "Wird gesendet..." : "Nachricht senden"}
+                </button>
+              </form>
             </div>
-          </button>
+          </div>
         </div>
-      </div>
       </div>
     </section>
   )

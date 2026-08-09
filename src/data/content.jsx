@@ -20,8 +20,6 @@ export const content = {
       subtitle:
         "Spezialisiert auf Badezimmer, Küchen, Bodenplatten und Renovationen. Präzise Verlegung, saubere Fugen und langlebige Qualität – von Zürich bis in die Region.",
       cta: "Jetzt Kontaktieren",
-      image: "/hero-tiler.jpg",
-      imageAlt: "Professioneller Plattenleger bei der Arbeit"
     },
   
     footer: {
@@ -157,7 +155,10 @@ export const content = {
         info: {
           phone: "+41 76 545 23 32",
           email: "info@jaho-plattenleger.ch",
-          address: "Schweiz"
+          address: "Winznauerstrasse 8, 4632 Trimbach",
+          street: "Winznauerstrasse 8",
+          postalCode: "4632",
+          city: "Trimbach",
         }
       },
     },
