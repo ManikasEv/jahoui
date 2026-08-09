@@ -13,8 +13,8 @@ export default function Home() {
   return (
     <>
       <Seo
-        title={`Plattenleger in Zürich & Schweiz | Badezimmer, Küchen & Bodenplatten | ${content.brand}`}
-        description="Professioneller Plattenleger in der Schweiz. Spezialisiert auf Badezimmer, Küchen, Bodenplatten und Renovationen. Präzise Arbeit & faire Preise."
+        title={`Plattenleger Zürich & Schweiz | Professionelle Plattenarbeiten | ${content.brand}`}
+        description="Plattenleger Jaho GmbH für professionelle Plattenarbeiten in Zürich, Trimbach und Umgebung. Präzise Verlegung, zuverlässige Ausführung und persönliche Beratung."
         path="/"
         jsonLd={buildHomeJsonLd(content)}
       />

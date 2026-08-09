@@ -1,75 +1,19 @@
-import { useEffect, useMemo, useRef, useState } from "react"
+import { useState } from "react"
 import ImageLightbox from "../ui/ImageLightbox"
-import { filterReferences, references, REFERENCE_FILTERS } from "../../data/references"
-import { usePrefersReducedMotion } from "../../hooks/usePrefersReducedMotion"
-import {
-  pickInitialGalleryFrame,
-  pickNextGalleryFrame,
-  shuffleItems,
-} from "../../utils/galleryRotation"
-
-const DEFAULT_ROTATE_MS = 5000
+import { references } from "../../data/references"
 
 /**
- * Clean portfolio grid — uniform tiles, optional category filter.
+ * Clean reference grid — uniform photo tiles without category controls.
  * compact: smaller cells for homepage / landing page embeds.
  */
 export default function ReferenzenGrid({
   items = references,
-  showFilters = false,
-  defaultFilter = "all",
   limit,
   compact = false,
-  autoRotate = false,
-  rotateIntervalMs = DEFAULT_ROTATE_MS,
   className = "",
 }) {
-  const reducedMotion = usePrefersReducedMotion()
-  const [activeFilter, setActiveFilter] = useState(defaultFilter)
   const [lightbox, setLightbox] = useState(null)
-  const [rotatingVisible, setRotatingVisible] = useState(null)
-  const [frameKey, setFrameKey] = useState(0)
-  const [paused, setPaused] = useState(false)
-  const cycleRef = useRef({ deck: [], deckIndex: 0 })
-  const lastFrameRef = useRef(null)
-
-  const filtered = useMemo(() => filterReferences(items, activeFilter), [items, activeFilter])
-  const n = filtered.length
-  const canRotate = autoRotate && limit && n > limit
-
-  useEffect(() => {
-    if (!canRotate) {
-      setRotatingVisible(null)
-      return
-    }
-
-    const deck = shuffleItems(filtered)
-    cycleRef.current = { deck, deckIndex: 0 }
-    const initial = pickInitialGalleryFrame(filtered, limit)
-    lastFrameRef.current = initial
-    setRotatingVisible(initial)
-    setFrameKey((k) => k + 1)
-  }, [filtered, canRotate, limit])
-
-  useEffect(() => {
-    if (!canRotate || reducedMotion || paused) return
-
-    const id = window.setInterval(() => {
-      const previous = lastFrameRef.current ?? pickInitialGalleryFrame(filtered, limit)
-      const next = pickNextGalleryFrame(filtered, previous, limit, cycleRef.current)
-      lastFrameRef.current = next
-      setRotatingVisible(next)
-      setFrameKey((k) => k + 1)
-    }, rotateIntervalMs)
-
-    return () => window.clearInterval(id)
-  }, [canRotate, filtered, limit, reducedMotion, paused, rotateIntervalMs])
-
-  const visible = useMemo(() => {
-    if (!limit) return filtered
-    if (!canRotate) return filtered.slice(0, limit)
-    return rotatingVisible ?? filtered.slice(0, limit)
-  }, [filtered, limit, canRotate, rotatingVisible])
+  const visible = limit ? items.slice(0, limit) : items
 
   const cellClass = compact
     ? "aspect-[4/3] rounded-xl"
@@ -81,44 +25,17 @@ export default function ReferenzenGrid({
 
   return (
     <>
-      {showFilters ? (
-        <div className="flex flex-wrap justify-center gap-2 mb-6 sm:mb-8">
-          {REFERENCE_FILTERS.map((f) => (
-            <button
-              key={f.id}
-              type="button"
-              onClick={() => setActiveFilter(f.id)}
-              className={[
-                "px-3.5 py-1.5 rounded-full text-xs sm:text-sm font-semibold transition-colors border",
-                activeFilter === f.id
-                  ? "bg-[var(--color-primary)] text-white border-[var(--color-primary)]"
-                  : "bg-white text-[var(--color-slate)] border-black/10 hover:border-[var(--color-primary)]/30 hover:text-[var(--color-dark)]",
-              ].join(" ")}
-            >
-              {f.label}
-            </button>
-          ))}
-        </div>
-      ) : null}
-
       <div
         className={[gridClass, className].join(" ")}
-        onMouseEnter={() => setPaused(true)}
-        onMouseLeave={() => setPaused(false)}
-        onFocus={() => setPaused(true)}
-        onBlur={(e) => {
-          if (!e.currentTarget.contains(e.relatedTarget)) setPaused(false)
-        }}
       >
-        {visible.map((item, i) => (
+        {visible.map((item) => (
           <button
-            key={canRotate ? `${item.id}-${frameKey}-${i}` : item.id}
+            key={item.id}
             type="button"
             onClick={() => setLightbox({ src: item.src, alt: item.title })}
             className={[
               "group relative overflow-hidden border border-black/[0.06] bg-[var(--color-dark)] shadow-[var(--shadow-card)] text-left",
               "focus:outline-none focus-visible:ring-2 focus-visible:ring-[var(--color-primary)]/50 focus-visible:ring-offset-2",
-              canRotate ? "referenzen-cell-enter" : "",
               cellClass,
             ].join(" ")}
             aria-label={`${item.title} vergrössern`}

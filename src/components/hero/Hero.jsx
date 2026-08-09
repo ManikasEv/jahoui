@@ -1,6 +1,6 @@
 import { useCallback, useEffect, useRef } from "react"
 import { useLocation, useNavigate, Link } from "react-router-dom"
-import heroBg from "../../assets/j7.jpg"
+import heroBg from "../../assets/platten4.jpeg"
 import { heroEntrance } from "../../animations/heroAnimation"
 import { content } from "../../data/content"
 

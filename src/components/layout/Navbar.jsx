@@ -2,7 +2,7 @@ import { useCallback, useEffect, useRef, useState } from "react"
 import { useLocation, useNavigate } from "react-router-dom"
 import NavbarDesktop from "./NavbarDesktop"
 import NavbarMobile from "./NavbarMobile"
-import { navbarAnimation, navbarReveal, mobileMenuAnimation } from "../../animations/navbarAnimation"
+import { navbarAnimation, mobileMenuAnimation } from "../../animations/navbarAnimation"
 import { content } from "../../data/content"
 import { useScrollDirection } from "../../hooks/useScrollDirection"
 
@@ -27,20 +27,6 @@ export default function Navbar() {
     })
     return () => window.cancelAnimationFrame(id)
   }, [])
-
-  // Replay the item reveal every time the navbar reappears after being hidden.
-  const wasVisible = useRef(true)
-  useEffect(() => {
-    if (navVisible && !wasVisible.current) {
-      // Wait a beat so the CSS slide-in has started before items drop in.
-      const id = window.setTimeout(() => {
-        navbarReveal({ nav: navRef.current })
-      }, 80)
-      wasVisible.current = true
-      return () => window.clearTimeout(id)
-    }
-    wasVisible.current = navVisible
-  }, [navVisible])
 
   useEffect(() => {
     mobileMenuAnimation({ panel: panelRef.current, items: itemRefs.current, isOpen })
@@ -99,8 +85,8 @@ export default function Navbar() {
     <nav
       ref={navRef}
       className={[
-        "fixed top-0 left-0 right-0 z-50 transition-[transform,background-color,box-shadow,border-color] duration-300 ease-out",
-        navVisible ? "translate-y-0" : "-translate-y-full",
+        "fixed top-0 left-0 right-0 z-50 will-change-transform transition-[transform,background-color,box-shadow,border-color,backdrop-filter] duration-500 ease-[cubic-bezier(0.22,1,0.36,1)]",
+        navVisible ? "translate-y-0" : "-translate-y-[110%]",
         isScrolled
           ? "bg-white/90 backdrop-blur-lg border-b border-black/[0.08] shadow-[0_12px_32px_-24px_rgba(18,20,23,0.35)]"
           : "bg-white/60 backdrop-blur-md border-b border-transparent",

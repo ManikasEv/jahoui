@@ -1,69 +1,96 @@
-import a1 from "../assets/a1.jpg"
-import a2 from "../assets/a2.jpg"
-import a3 from "../assets/a3.jpg"
-import a4 from "../assets/a4.jpg"
-import b1 from "../assets/b1.jpg"
-import b2 from "../assets/b2.jpg"
-import b3 from "../assets/b3.jpg"
-import b4 from "../assets/b4.jpg"
-import b5 from "../assets/b5.jpg"
-import b6 from "../assets/b6.jpg"
-import b7 from "../assets/b7.jpg"
-import c1 from "../assets/c1.jpg"
-import c2 from "../assets/c2.jpg"
-import c3 from "../assets/c3.jpg"
-import c4 from "../assets/c4.jpg"
-import c5 from "../assets/c5.jpg"
-import f1 from "../assets/f1.jpg"
-import h3 from "../assets/h3.jpg"
-import he1 from "../assets/he1.jpg"
-import he2 from "../assets/he2.jpg"
-import j1 from "../assets/j1.jpg"
-import j3 from "../assets/j3.jpg"
-import j4 from "../assets/j4.jpg"
-import j5 from "../assets/j5.jpg"
-import j6 from "../assets/j6.jpg"
-import j7 from "../assets/j7.jpg"
+import bath1 from "../assets/bath1.jpeg"
+import bath2 from "../assets/bath2.jpeg"
+import bath3 from "../assets/bath3.jpeg"
+import bath4 from "../assets/bath4.jpeg"
+import bath5 from "../assets/bath5.jpeg"
+import bath6 from "../assets/bath6.jpeg"
+import bath7 from "../assets/bath7.jpeg"
+import bath8 from "../assets/bath8.jpeg"
+import bath9 from "../assets/bath9.jpeg"
+import seal1 from "../assets/seal1.jpeg"
+import new1 from "../assets/new1.jpeg"
+import new2 from "../assets/new2.jpeg"
+import new3 from "../assets/new3.jpeg"
+import new4 from "../assets/new4.jpeg"
+import new5 from "../assets/new5.jpeg"
+import new6 from "../assets/new6.jpeg"
+import new7 from "../assets/new7.jpeg"
+import new8 from "../assets/new8.jpeg"
+import new9 from "../assets/new9.jpeg"
+import other1 from "../assets/other1.jpeg"
+import other2 from "../assets/other2.jpeg"
+import other3 from "../assets/other3.jpeg"
+import other4 from "../assets/other4.jpeg"
+import other5 from "../assets/other5.jpeg"
+import other6 from "../assets/other6.jpeg"
+import other7 from "../assets/other7.jpeg"
+import other8 from "../assets/other8.jpeg"
+import other9 from "../assets/other9.jpeg"
+import platten1 from "../assets/platten1.jpeg"
+import platten2 from "../assets/platten2.jpeg"
+import platten3 from "../assets/platten3.jpeg"
+import platten4 from "../assets/platten4.jpeg"
+import platten5 from "../assets/platten5.jpeg"
 
-export const REFERENCE_FILTERS = [
-  { id: "all", label: "Alle" },
-  { id: "bad", label: "Badezimmer" },
-  { id: "kueche", label: "Küche" },
-  { id: "boden", label: "Boden" },
-  { id: "detail", label: "Details" },
+const createReferences = (category, label, images) =>
+  images.map(({ src, width, height }, index) => ({
+    id: `${category}-${index + 1}`,
+    src,
+    width,
+    height,
+    category,
+    title: `${label} – Referenz ${index + 1} von Plattenleger Jaho GmbH`,
+  }))
+
+const referenceGroups = [
+  createReferences("bath", "Badezimmer und Badrenovation", [
+    { src: bath1, width: 704, height: 960 },
+    { src: bath2, width: 704, height: 960 },
+    { src: bath3, width: 704, height: 960 },
+    { src: bath4, width: 704, height: 960 },
+    { src: bath5, width: 704, height: 960 },
+    { src: bath6, width: 704, height: 960 },
+    { src: bath7, width: 704, height: 960 },
+    { src: bath8, width: 704, height: 960 },
+    { src: bath9, width: 704, height: 960 },
+  ]),
+  createReferences("seal", "Abdichtung im Nassbereich", [
+    { src: seal1, width: 960, height: 540 },
+  ]),
+  createReferences("new", "Neue Plattenleger-Arbeiten", [
+    { src: new1, width: 704, height: 960 },
+    { src: new2, width: 704, height: 960 },
+    { src: new3, width: 704, height: 960 },
+    { src: new4, width: 704, height: 960 },
+    { src: new5, width: 704, height: 960 },
+    { src: new6, width: 704, height: 960 },
+    { src: new7, width: 704, height: 960 },
+    { src: new8, width: 640, height: 1422 },
+    { src: new9, width: 704, height: 960 },
+  ]),
+  createReferences("other", "Weitere Fliesen- und Plattenarbeiten", [
+    { src: other1, width: 704, height: 960 },
+    { src: other2, width: 704, height: 960 },
+    { src: other3, width: 704, height: 960 },
+    { src: other4, width: 704, height: 960 },
+    { src: other5, width: 704, height: 960 },
+    { src: other6, width: 704, height: 960 },
+    { src: other7, width: 704, height: 960 },
+    { src: other8, width: 704, height: 960 },
+    { src: other9, width: 704, height: 960 },
+  ]),
+  createReferences("platten", "Bodenplatten und Grossformat", [
+    { src: platten1, width: 960, height: 540 },
+    { src: platten2, width: 960, height: 540 },
+    { src: platten3, width: 960, height: 540 },
+    { src: platten4, width: 960, height: 720 },
+    { src: platten5, width: 960, height: 720 },
+  ]),
 ]
 
-/** Shared reference portfolio data. */
-export const references = [
-  { id: "a1", src: a1, title: "Bad – Wand & Boden", category: "bad" },
-  { id: "a2", src: a2, title: "Küche – Rückwand", category: "kueche" },
-  { id: "a3", src: a3, title: "Boden – Wohnbereich", category: "boden" },
-  { id: "a4", src: a4, title: "Bad – Duschzone", category: "bad" },
-  { id: "b1", src: b1, title: "Treppen & Kanten", category: "detail" },
-  { id: "b2", src: b2, title: "Großformat – Fläche", category: "detail" },
-  { id: "b3", src: b3, title: "Naturstein-Optik", category: "detail" },
-  { id: "b4", src: b4, title: "Anschluss & Silikon", category: "detail" },
-  { id: "b5", src: b5, title: "Boden – Strapazierfähig", category: "boden" },
-  { id: "b6", src: b6, title: "Bad – Linienführung", category: "bad" },
-  { id: "b7", src: b7, title: "Küche – Details", category: "kueche" },
-  { id: "c1", src: c1, title: "Boden – Formatmix", category: "boden" },
-  { id: "c2", src: c2, title: "Bad – Wandflächen", category: "bad" },
-  { id: "c3", src: c3, title: "Boden – Übergänge", category: "boden" },
-  { id: "c4", src: c4, title: "Küche – Akzentfläche", category: "kueche" },
-  { id: "c5", src: c5, title: "Bad – Finish", category: "bad" },
-  { id: "f1", src: f1, title: "Boden – Finale Fläche", category: "boden" },
-  { id: "h3", src: h3, title: "Gewerbe – Grossfläche verlegt", category: "boden" },
-  { id: "he1", src: he1, title: "Industriehalle – Bodenverlegung", category: "boden" },
-  { id: "he2", src: he2, title: "Grossprojekt – Feinsteinzeug", category: "boden" },
-  { id: "j1", src: j1, title: "Treppenkante & Stufenprofil", category: "detail" },
-  { id: "j3", src: j3, title: "Flur – Grossformat-Boden", category: "boden" },
-  { id: "j4", src: j4, title: "Ladenfläche – Bodenplatten", category: "boden" },
-  { id: "j5", src: j5, title: "Büro – Boden fertig verlegt", category: "boden" },
-  { id: "j6", src: j6, title: "Wand – Nassbereich in Arbeit", category: "bad" },
-  { id: "j7", src: j7, title: "Grossraum – Boden & Säulen", category: "boden" },
-]
+/** Interleaved for a varied horizontal sequence while keeping output deterministic. */
+export const references = Array.from(
+  { length: Math.max(...referenceGroups.map((group) => group.length)) },
+  (_, index) => referenceGroups.map((group) => group[index]).filter(Boolean)
+).flat()
 
-export function filterReferences(items, categoryId) {
-  if (!categoryId || categoryId === "all") return items
-  return items.filter((item) => item.category === categoryId)
-}

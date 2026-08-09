@@ -8,8 +8,8 @@ export default function ReferenzenPage() {
   return (
     <>
       <Seo
-        title={`Referenzen & Projekte | Plattenleger ${content.brand}`}
-        description="Referenzprojekte von Plattenleger Jaho GmbH: Badezimmer, Küchenfliesen, Bodenplatten und Detailarbeiten in der Schweiz."
+        title={`Plattenleger-Referenzen & Projekte | ${content.brand}`}
+        description="Referenzen der Plattenleger Jaho GmbH: professionell und präzise ausgeführte Plattenarbeiten für private und gewerbliche Projekte in Zürich, Trimbach und Umgebung."
         path="/referenzen"
       />
 
@@ -17,12 +17,12 @@ export default function ReferenzenPage() {
         <div className="content-shell content-shell--article">
           <BackToHome className="mb-6" />
           <p className="text-xs font-semibold uppercase tracking-[0.14em] text-[var(--color-primary)] mb-2">
-            Portfolio
+            Referenzen
           </p>
           <h1 className="hero-title mb-4 max-w-3xl">Referenzen & abgeschlossene Projekte</h1>
           <p className="font-[var(--font-body)] text-[var(--color-slate)] text-base md:text-lg leading-relaxed max-w-2xl text-safe">
-            Ein Überblick über unsere Arbeit — von Nasszellen und Küchen bis zu Bodenflächen und präzisen
-            Detailanschlüssen. Klicken Sie auf ein Bild für die Grossansicht.
+            Ein Überblick über professionell ausgeführte Plattenarbeiten für private und gewerbliche
+            Projekte. Klicken Sie auf ein Bild für die Grossansicht.
           </p>
         </div>
       </section>

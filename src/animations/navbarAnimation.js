@@ -7,32 +7,19 @@ const prefersReducedMotion = () =>
 export function navbarAnimation({ nav }) {
   if (!nav) return
   if (prefersReducedMotion()) {
-    gsap.set(nav, { opacity: 1 })
+    gsap.set(nav, { opacity: 1, clearProps: "transform" })
     return
   }
 
-  gsap.fromTo(nav, { opacity: 0 }, { opacity: 1, duration: 0.35, ease: "power2.out" })
-  navbarReveal({ nav })
-}
-
-/** Staggered drop-in of navbar items; runs on mount and every reappearance. */
-export function navbarReveal({ nav }) {
-  if (!nav || prefersReducedMotion()) return
-
-  const items = nav.querySelectorAll("[data-nav-anim]")
-  if (!items.length) return
-
-  gsap.killTweensOf(items)
   gsap.fromTo(
-    items,
-    { autoAlpha: 0, y: -16 },
+    nav,
+    { autoAlpha: 0, y: -12 },
     {
       autoAlpha: 1,
       y: 0,
-      duration: 0.5,
-      stagger: 0.06,
+      duration: 0.65,
       ease: "power3.out",
-      clearProps: "opacity,visibility,transform",
+      clearProps: "opacity,visibility,transform"
     }
   )
 }
