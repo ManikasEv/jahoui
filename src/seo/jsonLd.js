@@ -38,7 +38,7 @@ export function buildHomeJsonLd(content) {
     ],
     sameAs: [`https://wa.me/${content.footer.whatsappPhone}`],
     description:
-      "Professioneller Plattenleger in der Schweiz. Spezialisiert auf Badezimmer, Küchen, Bodenplatten und Renovationen – präzise Verlegung und saubere Fugen.",
+      "Wir übernehmen jeden Auftrag im Fliesen- und Plattenbereich: Pool, Bad, Küche, Schlafzimmer, Wohnraum, Treppen, Terrasse, Gehwege, Pflaster und Gewerbe – jede Fliesenart und jedes Format.",
     areaServed: [
       { "@type": "City", name: "Zürich" },
       { "@type": "City", name: "Winterthur" },
@@ -49,8 +49,26 @@ export function buildHomeJsonLd(content) {
     ],
     hasOfferCatalog: {
       "@type": "OfferCatalog",
-      name: "Plattenleger-Leistungen",
+      name: "Jeder Fliesenauftrag – alle Räume und Materialien",
       itemListElement: [
+        {
+          "@type": "Offer",
+          itemOffered: {
+            "@type": "Service",
+            name: "Jeder Fliesen- und Plattenauftrag",
+            serviceType: "Alle Fliesenarbeiten",
+            description:
+              "Wir übernehmen jeden Job im Fliesenbereich – jede Raumart, jede Fliesenart, jedes Format.",
+          },
+        },
+        {
+          "@type": "Offer",
+          itemOffered: {
+            "@type": "Service",
+            name: "Pool & Schwimmbad – Fliesen und Platten",
+            serviceType: "Poolfliesen",
+          },
+        },
         {
           "@type": "Offer",
           itemOffered: {
@@ -71,16 +89,48 @@ export function buildHomeJsonLd(content) {
           "@type": "Offer",
           itemOffered: {
             "@type": "Service",
-            name: "Böden & Treppen – Feinsteinzeug und Grossformat",
-            serviceType: "Bodenplatten",
+            name: "Schlafzimmer & Wohnräume – Wand- und Bodenfliesen",
+            serviceType: "Schlafzimmer und Wohnraum Fliesen",
           },
         },
         {
           "@type": "Offer",
           itemOffered: {
             "@type": "Service",
-            name: "Renovationen und Sanierung",
-            serviceType: "Bad Renovation",
+            name: "Böden, Treppen & Pflaster – Innen und Aussen",
+            serviceType: "Bodenplatten, Treppen und Pflaster",
+          },
+        },
+        {
+          "@type": "Offer",
+          itemOffered: {
+            "@type": "Service",
+            name: "Terrasse, Gehwege & Aussenbereiche",
+            serviceType: "Terrassenfliesen und Gehwege",
+          },
+        },
+        {
+          "@type": "Offer",
+          itemOffered: {
+            "@type": "Service",
+            name: "Gewerbe & Objekte – langlebige Beläge",
+            serviceType: "Gewerbe Fliesen",
+          },
+        },
+        {
+          "@type": "Offer",
+          itemOffered: {
+            "@type": "Service",
+            name: "Jede Fliesenart – Keramik, Naturstein, Feinsteinzeug, Grossformat, Mosaik",
+            serviceType: "Alle Fliesenarten",
+          },
+        },
+        {
+          "@type": "Offer",
+          itemOffered: {
+            "@type": "Service",
+            name: "Renovationen, Neubau und Sanierung",
+            serviceType: "Fliesen Renovation",
           },
         },
       ],

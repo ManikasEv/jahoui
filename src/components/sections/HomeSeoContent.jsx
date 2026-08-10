@@ -14,71 +14,77 @@ export default function HomeSeoContent() {
             Leistungen & Region
           </p>
           <h2 id="home-seo-h2-main" className="font-[var(--font-heading)] text-[clamp(1.2rem,4vw+0.6rem,1.85rem)] md:text-3xl font-bold text-[var(--color-dark)] tracking-tight text-safe">
-            Leistungen von Bad, Küche bis Boden
+            Jeder Fliesenauftrag – jede Fliesenart
           </h2>
           <p className="text-base md:text-[1.05rem]">
-            Plattenleger Jaho GmbH verbindet handwerkliche Präzision mit klarer Beratung: Ob{" "}
-            <strong className="font-semibold text-[var(--color-dark)]">Badezimmer</strong>,{" "}
-            <strong className="font-semibold text-[var(--color-dark)]">Küche</strong> oder{" "}
-            <strong className="font-semibold text-[var(--color-dark)]">Boden</strong> – wir legen Feinsteinzeug,
-            Keramik und Grossformat so, dass Fugen ruhig wirken, Übergänge sauber sitzen und die Fläche im Alltag
-            mitmacht.
+            Plattenleger Jaho GmbH übernimmt{" "}
+            <strong className="font-semibold text-[var(--color-dark)]">jeden Auftrag im Fliesen- und Plattenbereich</strong>.
+            Kein Raum und keine Fliesenart ist ausgeschlossen:{" "}
+            <strong className="font-semibold text-[var(--color-dark)]">Pool</strong>,{" "}
+            <strong className="font-semibold text-[var(--color-dark)]">Bad</strong>,{" "}
+            <strong className="font-semibold text-[var(--color-dark)]">Küche</strong>,{" "}
+            <strong className="font-semibold text-[var(--color-dark)]">Schlafzimmer</strong>, Wohnraum, Treppen, Terrasse,{" "}
+            <strong className="font-semibold text-[var(--color-dark)]">Gehwege</strong>,{" "}
+            <strong className="font-semibold text-[var(--color-dark)]">Pflaster</strong> und Gewerbe – wir nehmen jeden Job.
           </p>
         </header>
 
         <article className="space-y-6">
           <h2 className="font-[var(--font-heading)] text-xl md:text-2xl text-[var(--color-dark)]">
-            Badezimmer Renovationen
+            Pool, Bad & Nassbereiche
           </h2>
           <p>
-            Im Bad entscheiden oft unsichtbare Details: Abdichtung, Gefälle in der Dusche, saubere Kanten an
-            Ecken und Einstiegen. Wir renovieren Nasszellen so, dass Technik stimmt und das Erscheinungsbild ruhig
-            bleibt – von der klassischen Keramik bis zu Grossformat-Platten.
-          </p>
-          <p>
-            Typische Materialien sind strapazierfähiges{" "}
-            <strong className="text-[var(--color-dark)]">Feinsteinzeug</strong>, strukturierte Oberflächen für mehr
-            Griff im Duschbereich und pflegeleichte Wände, die Feuchtigkeit und Reinigung mitmachen. Wo nötig,
-            stimmen wir uns mit Sanitär oder anderen Gewerken ab, damit Schnittstellen und Höhen exakt passen.
+            Ob <strong className="text-[var(--color-dark)]">Pool</strong> und Schwimmbad, Badezimmer oder Nasszelle:
+            Abdichtung, Gefälle, saubere Kanten und wasserfeste Details sind entscheidend. Wir verlegen Fliesen und
+            Platten so, dass Technik stimmt und die Optik ruhig bleibt – von klassischer Keramik bis Grossformat.
           </p>
         </article>
 
         <article className="space-y-6">
           <h2 className="font-[var(--font-heading)] text-xl md:text-2xl text-[var(--color-dark)]">
-            Küchenplatten
+            Küche, Schlafzimmer & Wohnräume
           </h2>
           <p>
-            In der Küche treffen Hitze, Spritzwasser und häufige Reinigung aufeinander. Deshalb setzen wir auf
-            widerstandsfähige Platten, saubere Schnitte an Steckdosen und Ausschnitten sowie durchdachte Übergänge zum
-            Boden. Ob{" "}
-            <strong className="text-[var(--color-dark)]">Küchenrückwand</strong>, Wand bis zur Unterschrankkante oder
-            durchgehender Boden – wir beraten zu Format und Stossverband, damit das Raumbild stimmig wirkt.
+            In der <strong className="text-[var(--color-dark)]">Küche</strong> zählen Pflegeleichtigkeit und robuste
+            Schnitte; im <strong className="text-[var(--color-dark)]">Schlafzimmer</strong> und Wohnraum ruhige Flächen
+            und saubere Übergänge. Wand- und Bodenfliesen, Rückwände, Eingänge – wir beraten zu Format und Material und
+            führen die Verlegung präzise aus.
           </p>
         </article>
 
         <article className="space-y-6">
           <h2 className="font-[var(--font-heading)] text-xl md:text-2xl text-[var(--color-dark)]">
-            Bodenplatten
+            Treppen, Terrasse, Gehwege & Pflaster
           </h2>
           <p>
-            Bodenfliesen müssen nicht nur gut aussehen, sondern auch Belastung, Stösse und punktuelle Feuchtigkeit
-            aushalten. Wir achten auf ebenen Untergrund, passende Verlegesysteme und ruhige Dehnungsbereiche – besonders
-            bei grossen Formaten. Treppen, Eingänge und offene Wohnbereiche profitieren von einer klaren
-            Linienführung und stabilen Übergängen zu anderen Belägen.
+            Innen und aussen: Treppen, Terrassen,{" "}
+            <strong className="text-[var(--color-dark)]">Gehwege</strong> und{" "}
+            <strong className="text-[var(--color-dark)]">Pflaster</strong> müssen Belastung und Witterung aushalten. Wir
+            achten auf Untergrund, Rutschhemmung und stabile Kanten – für private Wege ebenso wie für stark genutzte
+            Flächen.
           </p>
         </article>
 
         <article className="space-y-6">
           <h2 className="font-[var(--font-heading)] text-xl md:text-2xl text-[var(--color-dark)]">
-            Ablauf & Materialien
+            Jede Fliesenart & jedes Format
+          </h2>
+          <p>
+            Wir arbeiten mit{" "}
+            <strong className="text-[var(--color-dark)]">jeder Fliesenart</strong>: Feinsteinzeug, Keramik, Naturstein,
+            Steinoptik, Grossformat, Mosaik und weiteren Platten. Ob Neubau, Renovation, Gewerbe oder kleine Reparatur –
+            wenn es um Fliesen geht, übernehmen wir den Job.
+          </p>
+        </article>
+
+        <article className="space-y-6">
+          <h2 className="font-[var(--font-heading)] text-xl md:text-2xl text-[var(--color-dark)]">
+            Ablauf & Beratung
           </h2>
           <p>
             Unser Ablauf beginnt mit Ihrer Anfrage und einer realistischen Ersteinschätzung. Wo sinnvoll, klären wir
             Untergrund, bestehende Schichten und Details vor Ort. Danach folgen Vorbereitung, Verlegung und Finish –
-            inklusive sauberer Silikonfugen und Abnahme im gemeinsamen Blick. Als Materialien kommen je nach Projekt{" "}
-            <strong className="text-[var(--color-dark)]">Feinsteinzeug</strong>,{" "}
-            <strong className="text-[var(--color-dark)]">Keramik</strong>, Steinoptik oder Grossformat zum Einsatz; wir
-            erklären Vor- und Nachteile verständlich, ohne unnötige Upgrades zu verkaufen.
+            inklusive sauberer Silikonfugen und Abnahme im gemeinsamen Blick.
           </p>
         </article>
 
@@ -89,9 +95,9 @@ export default function HomeSeoContent() {
           <p>
             Mit über zwei Jahrzehnten Erfahrung im Fliesenhandwerk und der Arbeit in der Schweiz legen wir Wert auf
             messbare Qualität: gleichmässige Fugen, präzise Schnitte und ein Ergebnis, das auch nach Jahren noch
-            überzeugt. Unsere Kunden schätzen transparente Offerten, termintreue Umsetzung und eine Kommunikation, die
-            zum Projekt passt – vom Einfamilienhaus bis zur partnerschaftlichen Zusammenarbeit mit Architektur und
-            Gewerken.
+            überzeugt. Unsere Kunden schätzen transparente Offerten, termintreue Umsetzung und dass wir{" "}
+            <strong className="text-[var(--color-dark)]">jeden Fliesenauftrag</strong> ernst nehmen – vom kleinen
+            Reparaturjob bis zum grossen Objekt.
           </p>
         </article>
 
@@ -100,10 +106,9 @@ export default function HomeSeoContent() {
             Unsere Projekte & Referenzen
           </h2>
           <p>
-            Vor der Entscheidung für ein Material hilft oft ein konkretes Bild: In unserer Galerie zeigen wir eine
-            Auswahl realisierter Arbeiten – von kompakten Nassbereichen bis zu grossen Bodenflächen. So erhalten Sie ein
-            Gefühl für Fugenbild, Licht und Struktur. Kombiniert mit einer persönlichen Beratung finden wir die Lösung,
-            die zu Budget und Nutzung passt – ob minimalistisch, klassisch oder mit Akzentflächen.
+            In unserer Galerie zeigen wir realisierte Arbeiten aus verschiedenen Bereichen – Nasszellen, Wohnböden,
+            Aussenflächen und mehr. So erhalten Sie ein Gefühl für Fugenbild, Licht und Struktur. Kombiniert mit einer
+            persönlichen Beratung finden wir die Lösung, die zu Budget und Nutzung passt.
           </p>
         </article>
 
@@ -122,8 +127,8 @@ export default function HomeSeoContent() {
             Vertrauen & nächste Schritte
           </h3>
           <p className="mb-4">
-            Wenn Sie ein konkretes Projekt planen, freuen wir uns auf Ihre Nachricht – inklusive Fotos und groben
-            Massen, damit wir Sie effizient beraten können.
+            Haben Sie einen Fliesenauftrag – egal ob Pool, Bad, Küche, Schlafzimmer, Gehweg oder Pflaster? Schreiben Sie
+            uns mit Fotos und groben Massen. Wir übernehmen jeden Job im Fliesenbereich.
           </p>
           <p className="text-sm text-[var(--color-slate)]/90">
             Hinweis: Leistungsumfang und Preise hängen vom Objekt ab; alle Angaben auf dieser Seite ersetzen keine

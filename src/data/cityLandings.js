@@ -6,20 +6,20 @@
 export const cityLandings = {
   zuerich: {
     path: "/plattenleger-zuerich",
-    seoTitle: "Plattenleger Zürich – Fliesenleger vom Profi | Plattenleger Jaho GmbH",
+    seoTitle: "Plattenleger Zürich – Alle Fliesenarten | Plattenleger Jaho GmbH",
     seoDescription:
-      "Plattenleger in Zürich für Bad, Küche und Boden. Saubere Verlegung, faire Preise und zuverlässige Termine. Jetzt Offerte anfragen.",
+      "Plattenleger in Zürich für jede Fliesenart: Bad, Küche, Wohnraum, Treppen, Terrasse und Gewerbe. Feinsteinzeug, Keramik, Naturstein, Grossformat. Jetzt Offerte anfragen.",
     cityName: "Zürich",
     regionNote: "Schwerpunkt Zürich und Umgebung.",
-    h1: "Plattenleger Zürich – Fliesenleger vom Profi",
+    h1: "Plattenleger Zürich – Fliesenleger für jede Fliesenart",
     lead:
-      "Wir verlegen Fliesen und Platten präzise – in Badezimmern, Küchen und auf Böden. Sie erhalten eine saubere Ausführung, klare Kommunikation und eine Offerte, die zu Ihrem Projekt passt.",
+      "Wir verlegen jede Art von Fliesen und Platten – in Badezimmern, Küchen, Wohnräumen, an Treppen, auf Terrassen und im Gewerbe. Saubere Ausführung, klare Kommunikation und eine Offerte, die zu Ihrem Projekt passt.",
     servicesTitle: "Leistungen im Überblick",
     services: [
       { title: "Bad & Dusche", text: "Nasszellen, Duschen, Wände und Böden – langlebig, dicht und optisch perfekt." },
-      { title: "Küche", text: "Rückwände, Wandfliesen, Übergänge – modern, pflegeleicht und robust." },
-      { title: "Böden", text: "Wohnräume, Eingänge, Treppen – sauber verlegt, gerade Fugen, stabile Übergänge." },
-      { title: "Reparaturen", text: "Austausch einzelner Platten, Silikonfugen, kleinere Ausbesserungen." },
+      { title: "Küche & Wohnen", text: "Rückwände, Wohnböden, Eingänge – modern, pflegeleicht und robust." },
+      { title: "Treppen, Terrasse & Aussen", text: "Rutschhemmend, witterungsbeständig und sauber verlegt." },
+      { title: "Alle Materialien", text: "Feinsteinzeug, Keramik, Naturstein, Grossformat, Mosaik – und Reparaturen." },
     ],
     whyTitle: "Warum Plattenleger Jaho GmbH",
     why: [
@@ -49,25 +49,25 @@ export const cityLandings = {
 
   luzern: {
     path: "/plattenleger-luzern",
-    seoTitle: "Plattenleger Luzern & Zentralschweiz | Bad, Küche & Boden | Plattenleger Jaho GmbH",
+    seoTitle: "Plattenleger Luzern & Zentralschweiz | Alle Fliesenarten | Plattenleger Jaho GmbH",
     seoDescription:
-      "Professioneller Plattenleger für Luzern und die Zentralschweiz. Badezimmer, Küchenfliesen, Bodenplatten und Renovationen. Präzise Arbeit und faire Preise.",
+      "Professioneller Plattenleger für Luzern und die Zentralschweiz. Jede Fliesenart: Bad, Küche, Wohnraum, Treppen, Terrasse und Gewerbe. Feinsteinzeug, Keramik, Naturstein.",
     cityName: "Luzern",
     regionNote: "Einsatz in Luzern, Agglomeration und der Zentralschweiz – Termine nach Absprache.",
-    h1: "Plattenleger Luzern – Fliesen & Platten für Bad, Küche und Boden",
+    h1: "Plattenleger Luzern – Fliesen & Platten für jeden Raum",
     lead:
-      "Ob Nasszelle, Küchenrückwand oder Boden im Wohnbereich: Wir verlegen Platten und Fliesen mit sauberem Schnittbild, haltbaren Fugen und klarem Ablauf. Für Luzern und Umgebung beraten wir zu Material, Format und Detail­lösungen.",
+      "Ob Nasszelle, Küchenrückwand, Wohnboden, Treppe oder Terrasse: Wir verlegen jede Art von Platten und Fliesen mit sauberem Schnittbild, haltbaren Fugen und klarem Ablauf. Für Luzern und Umgebung beraten wir zu Material, Format und Detaillösungen.",
     servicesTitle: "Leistungen in Luzern & Region",
     services: [
       { title: "Badezimmer & Renovation", text: "Dichtigkeit, Gefälle und Optik – von der Planung bis zur Silikonfuge." },
-      { title: "Küchen", text: "Rückwand, Arbeitsbereich und Übergänge – pflegeleicht und robust." },
-      { title: "Böden", text: "Wohn- und Eingangsbereiche, Treppen – gerade Linien, stabile Kanten." },
-      { title: "Service & Reparatur", text: "Einzelplatten, Fugen und punktuelle Sanierung nach Absprache." },
+      { title: "Küche & Wohnräume", text: "Rückwand, Boden und Übergänge – pflegeleicht und robust." },
+      { title: "Treppen & Aussen", text: "Terrasse, Eingang, Treppen – gerade Linien, stabile Kanten." },
+      { title: "Material & Service", text: "Feinsteinzeug bis Mosaik, Einzelplatten und punktuelle Sanierung." },
     ],
     whyTitle: "Warum mit uns planen",
     why: [
       { title: "Regional & flexibel", text: "Wir koordinieren Anfahrt und Termine mit Ihrem Projektalltag." },
-      { title: "Handwerk mit Massstab", text: "Präzision bei Grossformat, Naturstein-Optik und klassischer Keramik." },
+      { title: "Handwerk mit Massstab", text: "Präzision bei Grossformat, Naturstein und klassischer Keramik." },
       { title: "Transparent", text: "Sie wissen, was geplant ist – bevor die erste Platte liegt." },
     ],
     costTitle: "Kosten & Offerte",
@@ -92,26 +92,26 @@ export const cityLandings = {
 
   zug: {
     path: "/plattenleger-zug",
-    seoTitle: "Plattenleger Zug & Zugersee | Fliesen Bad & Küche | Plattenleger Jaho GmbH",
+    seoTitle: "Plattenleger Zug & Zugersee | Alle Fliesenarten | Plattenleger Jaho GmbH",
     seoDescription:
-      "Plattenleger für Zug: Bad, Küche, Bodenplatten und Renovationen. Saubere Ausführung, Feinsteinzeug & Grossformat. Jetzt Offerte.",
+      "Plattenleger für Zug: jede Fliesenart für Bad, Küche, Wohnraum, Treppen, Terrasse und Gewerbe. Feinsteinzeug, Keramik, Naturstein & Grossformat. Jetzt Offerte.",
     cityName: "Zug",
     regionNote: "Projekte in Zug, Zugersee-Ufergemeinden und naher Umgebung.",
-    h1: "Plattenleger Zug – Präzise Fliesenarbeit für Ihr Projekt",
+    h1: "Plattenleger Zug – Präzise Fliesenarbeit für jedes Projekt",
     lead:
-      "Im Raum Zug setzen wir auf termintreue Ausführung und ein ruhiges Fugenbild. Von der Nasszelle bis zur Küchenzeile: Wir kombinieren technische Sauberkeit mit einer Optik, die im Alltag funktioniert.",
+      "Im Raum Zug setzen wir auf termintreue Ausführung und ein ruhiges Fugenbild. Von der Nasszelle über Wohnböden bis zur Terrasse: Wir verlegen jede Fliesenart mit technischer Sauberkeit und einer Optik, die im Alltag funktioniert.",
     servicesTitle: "Leistungen",
     services: [
       { title: "Nassbereiche", text: "Duschen, Wände, Boden – Abdichtung und Details im Griff." },
-      { title: "Küchen & Wohnen", text: "Rückwände, Bodenfliesen, Übergänge zu Parkett oder Bodenbelägen." },
-      { title: "Grossformat", text: "Schnitte, Kanten und Transport – sicher beherrscht." },
-      { title: "Nacharbeit & Pflege", text: "Silikon, Ergänzungen und gezielte Reparaturen." },
+      { title: "Küche, Wohnen & Treppen", text: "Rückwände, Bodenfliesen, Treppen und Übergänge zu anderen Belägen." },
+      { title: "Terrasse & Aussen", text: "Witterungsbeständige, rutschhemmende Platten für den Aussenbereich." },
+      { title: "Grossformat & alle Materialien", text: "Feinsteinzeug, Keramik, Naturstein, Mosaik – inkl. Reparaturen." },
     ],
     whyTitle: "Darauf können Sie bauen",
     why: [
       { title: "Qualität sichtbar", text: "Saubere Ecken, gleichmässige Fugen – ohne Kompromisse bei der Dichtigkeit." },
       { title: "Klare Kommunikation", text: "Sie wissen, was wann passiert – besonders bei Umbauten mit festem Zeitplan." },
-      { title: "Erfahrung", text: "Vom kompakten City-Bad bis zur grosszügigen Wohnküche." },
+      { title: "Erfahrung", text: "Vom kompakten City-Bad bis zur grosszügigen Wohnfläche und Terrasse." },
     ],
     costTitle: "Investition",
     costText:
@@ -135,26 +135,26 @@ export const cityLandings = {
 
   winterthur: {
     path: "/plattenleger-winterthur",
-    seoTitle: "Plattenleger Winterthur & Umgebung | Bad & Küche | Plattenleger Jaho GmbH",
+    seoTitle: "Plattenleger Winterthur & Umgebung | Alle Fliesenarten | Plattenleger Jaho GmbH",
     seoDescription:
-      "Fliesenleger und Plattenleger für Winterthur: Badsanierung, Küchenfliesen und Bodenplatten. Professionelle Verlegung und faire Offerten.",
+      "Fliesenleger und Plattenleger für Winterthur: jede Fliesenart – Bad, Küche, Wohnraum, Treppen, Terrasse und Gewerbe. Professionelle Verlegung und faire Offerten.",
     cityName: "Winterthur",
     regionNote: "Winterthur, Tösstal und Umgebung – Anfahrt und Termine nach Projekt.",
-    h1: "Plattenleger Winterthur – Sanierung, Küche & Boden",
+    h1: "Plattenleger Winterthur – Fliesen für jeden Raum und jede Art",
     lead:
-      "Renovation oder Neubauprojekt in Winterthur: Wir liefern eine ruhige Linienführung, saubere Schnitte und robuste Ergebnisse für Familienbad, Gäste-WC oder gewerbliche Nassbereiche.",
+      "Renovation oder Neubauprojekt in Winterthur: Wir liefern ruhige Linienführung, saubere Schnitte und robuste Ergebnisse – für Bad, Küche, Wohnraum, Treppen, Terrasse und gewerbliche Flächen.",
     servicesTitle: "Unsere Schwerpunkte",
     services: [
-      { title: "Bad & WC", text: "Komplette Flächen oder Teilbereiche – immer mit Blick auf Langlebigkeit." },
-      { title: "Küche", text: "Spritzschutz, Boden und Übergänge – abstimmend auf Möbel und Technik." },
-      { title: "Öffentliche & halböffentliche Bereiche", text: "Langlebige Beläge dort, wo viel Verkehr herrscht." },
-      { title: "Instandhaltung", text: "Fugen erneuern, Platten austauschen – wo es sich lohnt." },
+      { title: "Bad, WC & Küche", text: "Komplette Flächen oder Teilbereiche – immer mit Blick auf Langlebigkeit." },
+      { title: "Wohnraum & Treppen", text: "Boden, Wand und Treppen – abgestimmt auf Stil und Nutzung." },
+      { title: "Terrasse & Gewerbe", text: "Langlebige Beläge dort, wo Wetter oder viel Verkehr herrscht." },
+      { title: "Alle Materialien & Instandhaltung", text: "Feinsteinzeug bis Mosaik, Fugen erneuern, Platten austauschen." },
     ],
     whyTitle: "Winterthur & Umgebung",
     why: [
       { title: "Zuverlässige Termine", text: "Wir planen realistisch – besonders bei bewohnten Objekten." },
       { title: "Sauberkeit auf der Baustelle", text: "Respekt vor Ihrem Zuhause während der Arbeiten." },
-      { title: "Beratung", text: "Materialwahl, die zu Budget und Stil passt." },
+      { title: "Beratung", text: "Materialwahl, die zu Budget und Stil passt – für jede Fliesenart." },
     ],
     costTitle: "Preise & Absprache",
     costText:
@@ -178,20 +178,20 @@ export const cityLandings = {
 
   aargau: {
     path: "/plattenleger-aargau",
-    seoTitle: "Plattenleger Aargau – Bad, Küche & Boden | Region Zürich | Plattenleger Jaho GmbH",
+    seoTitle: "Plattenleger Aargau – Alle Fliesenarten | Region Zürich | Plattenleger Jaho GmbH",
     seoDescription:
-      "Plattenleger im Kanton Aargau: Fliesen für Badezimmer, Küchen und Böden. Renovationen, Feinsteinzeug und zuverlässige Umsetzung.",
+      "Plattenleger im Kanton Aargau: jede Fliesenart für Bad, Küche, Wohnraum, Treppen, Terrasse und Gewerbe. Renovationen, Feinsteinzeug, Keramik und Naturstein.",
     cityName: "Aargau",
     regionNote: "Einsatz im Kanton Aargau und angrenzenden Regionen.",
-    h1: "Plattenleger Aargau – Fliesenarbeit für Küche, Bad und Boden",
+    h1: "Plattenleger Aargau – Fliesenarbeit für jeden Raum und jede Art",
     lead:
-      "Von Aarau bis Baden und der näheren Region: Wir unterstützen Sie bei Neubau und Sanierung mit sauberer Untergrundvorbereitung, präzisen Schnitten und einem Finish, das Alltag und Reinigung mitmacht.",
+      "Von Aarau bis Baden und der näheren Region: Wir unterstützen Sie bei Neubau und Sanierung mit sauberer Untergrundvorbereitung, präzisen Schnitten und einem Finish, das Alltag und Reinigung mitmacht – egal welche Fliesenart.",
     servicesTitle: "Leistungen im Aargau",
     services: [
-      { title: "Sanierung", text: "Bäder und Nassbereiche mit Fokus auf Dichtigkeit und Optik." },
-      { title: "Wohnbereiche", text: "Bodenfliesen, Übergänge und Treppen – durchgängiges Erscheinungsbild." },
-      { title: "Küchen", text: "Wand und Boden – abgestimmt auf Geräte und Arbeitsablauf." },
-      { title: "Objekte & Partner", text: "Abstimmung mit Gewerken für reibungslose Übergaben." },
+      { title: "Sanierung & Nassbereiche", text: "Bäder und Nasszellen mit Fokus auf Dichtigkeit und Optik." },
+      { title: "Wohnräume, Treppen & Küchen", text: "Bodenfliesen, Wand, Treppen und Übergänge – durchgängiges Erscheinungsbild." },
+      { title: "Terrasse & Aussen", text: "Witterungsbeständige Platten für Balkon, Terrasse und Eingang." },
+      { title: "Objekte & alle Materialien", text: "Gewerbe, Feinsteinzeug, Keramik, Naturstein, Grossformat und Mosaik." },
     ],
     whyTitle: "Ihre Vorteile",
     why: [

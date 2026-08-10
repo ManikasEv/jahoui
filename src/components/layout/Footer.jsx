@@ -30,7 +30,7 @@ export default function Footer() {
             </a>
 
             <p className="mt-5 max-w-md font-[var(--font-body)] text-sm leading-relaxed text-white/60">
-              „Präzise Ausführung, saubere Übergaben und Ergebnisse, die im Alltag bestehen — in Bad, Küche und Boden.“
+              „Wir übernehmen jeden Auftrag im Fliesenbereich — Pool, Bad, Küche, Schlafzimmer, Gehwege, Pflaster und mehr.“
             </p>
 
             <div className="mt-7 flex flex-wrap gap-3">

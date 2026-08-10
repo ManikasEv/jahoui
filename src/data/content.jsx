@@ -15,10 +15,10 @@ export const content = {
     },
   
     hero: {
-      badge: "Professioneller Plattenleger Service",
+      badge: "Jeder Fliesenauftrag willkommen",
       title: "Professioneller Plattenleger in der Schweiz",
       subtitle:
-        "Spezialisiert auf Badezimmer, Küchen, Bodenplatten und Renovationen. Präzise Verlegung, saubere Fugen und langlebige Qualität – von Zürich bis in die Region.",
+        "Wir übernehmen jeden Auftrag im Fliesen- und Plattenbereich: Pool, Bad, Küche, Schlafzimmer, Wohnraum, Treppen, Terrasse, Gehwege, Pflaster und Gewerbe – jede Fliesenart, jedes Format. Präzise Verlegung, saubere Fugen und langlebige Qualität – von Zürich bis in die Region.",
       cta: "Jetzt Kontaktieren",
     },
   
@@ -50,7 +50,7 @@ export const content = {
         items: [
           {
             title: "Privatpersonen",
-            description: "Renovierungen und Neubauten für Ihr Zuhause - Badezimmer, Küchen, Wohnräume",
+            description: "Jeden Fliesenauftrag: Pool, Bad, Küche, Schlafzimmer, Wohnraum, Treppen, Gehwege und mehr",
             icon: "home"
           },
           {
@@ -124,6 +124,10 @@ export const content = {
           "Kurze Antworten zu Offerten, Material und Ablauf. Für Einzelfälle melden wir uns gern persönlich bei Ihnen.",
         items: [
           {
+            q: "Welche Fliesenaufträge übernehmen Sie?",
+            a: "Jeden Auftrag im Fliesen- und Plattenbereich: Pool, Bad, Küche, Schlafzimmer, Wohnraum, Treppen, Terrasse, Gehwege, Pflaster, Gewerbe – jede Fliesenart und jedes Format. Schreiben Sie uns einfach, was geplant ist.",
+          },
+          {
             q: "Wie läuft eine Offerte ab?",
             a: "Schreiben Sie uns kurz Ihr Projekt (Räume, ungefähre Flächen, Fotos wenn möglich). Wir melden uns zeitnah mit Rückfragen und einer transparenten Einschätzung.",
           },
@@ -133,7 +137,7 @@ export const content = {
           },
           {
             q: "Verlegen Sie auch Grossformat und Feinsteinzeug?",
-            a: "Ja. Wir legen Wert auf saubere Untergrundvorbereitung, präzise Schnitte und Kanten – auch bei Grossformat-Platten.",
+            a: "Ja. Wir legen Wert auf saubere Untergrundvorbereitung, präzise Schnitte und Kanten – auch bei Grossformat-Platten. Ebenso Keramik, Naturstein, Mosaik und alle weiteren Fliesenarten.",
           },
           {
             q: "Übernehmen Sie Beratung oder nur die Ausführung?",
