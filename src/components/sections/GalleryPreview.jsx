@@ -9,7 +9,7 @@ import { useReveal } from "../../hooks/useReveal"
 // A full browser refresh intentionally resets the collection.
 const revealedReferenceIds = new Set()
 
-function ReferencePhoto({ item, rail, onOpen, delay }) {
+function ReferencePhoto({ item, onOpen, delay }) {
   const photoRef = useRef(null)
   const reducedMotion = usePrefersReducedMotion()
   const [revealState, setRevealState] = useState(() =>
@@ -34,15 +34,15 @@ function ReferencePhoto({ item, rail, onOpen, delay }) {
         observer.disconnect()
       },
       {
-        root: rail,
-        threshold: 0.18,
-        rootMargin: "0px 10%",
+        root: null,
+        threshold: 0.12,
+        rootMargin: "0px 0px -6% 0px",
       }
     )
 
     observer.observe(element)
     return () => observer.disconnect()
-  }, [revealState, rail, reducedMotion, item.id])
+  }, [revealState, reducedMotion, item.id])
 
   return (
     <li
@@ -82,7 +82,6 @@ function ReferencePhoto({ item, rail, onOpen, delay }) {
 export default function GalleryPreview() {
   const sectionRef = useRef(null)
   const railRef = useRef(null)
-  const [rail, setRail] = useState(null)
   const [lightbox, setLightbox] = useState(null)
   const [scrollState, setScrollState] = useState({ previous: false, next: true })
 
@@ -100,10 +99,7 @@ export default function GalleryPreview() {
       })
     }
 
-    const frame = window.requestAnimationFrame(() => {
-      setRail(node)
-      updateScrollState()
-    })
+    const frame = window.requestAnimationFrame(updateScrollState)
     const resizeObserver = new ResizeObserver(updateScrollState)
 
     node.addEventListener("scroll", updateScrollState, { passive: true })
@@ -153,7 +149,6 @@ export default function GalleryPreview() {
               <ReferencePhoto
                 key={item.id}
                 item={item}
-                rail={rail}
                 delay={(index % 4) * 65}
                 onOpen={setLightbox}
               />

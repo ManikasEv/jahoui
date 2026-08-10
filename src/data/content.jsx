@@ -46,7 +46,7 @@ export const content = {
       },
       clients: {
         title: "Für wen wir arbeiten",
-        text: "Wir bieten professionelle Fliesenverlegung für verschiedene Kundengruppen",
+        text: "Wir übernehmen jeden Fliesenauftrag – für Privatpersonen, Bauunternehmen, Architekten und Verwaltungen",
         items: [
           {
             title: "Privatpersonen",

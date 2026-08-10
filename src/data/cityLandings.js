@@ -6,24 +6,24 @@
 export const cityLandings = {
   zuerich: {
     path: "/plattenleger-zuerich",
-    seoTitle: "Plattenleger Zürich – Alle Fliesenarten | Plattenleger Jaho GmbH",
+    seoTitle: "Plattenleger Zürich – Jeder Fliesenauftrag | Plattenleger Jaho GmbH",
     seoDescription:
-      "Plattenleger in Zürich für jede Fliesenart: Bad, Küche, Wohnraum, Treppen, Terrasse und Gewerbe. Feinsteinzeug, Keramik, Naturstein, Grossformat. Jetzt Offerte anfragen.",
+      "Plattenleger Zürich: Wir übernehmen jeden Fliesenauftrag – Pool, Bad, Küche, Schlafzimmer, Wohnraum, Treppen, Terrasse, Gehwege, Pflaster und Gewerbe. Jede Fliesenart. Offerte anfragen.",
     cityName: "Zürich",
     regionNote: "Schwerpunkt Zürich und Umgebung.",
-    h1: "Plattenleger Zürich – Fliesenleger für jede Fliesenart",
+    h1: "Plattenleger Zürich – jeder Fliesenauftrag willkommen",
     lead:
-      "Wir verlegen jede Art von Fliesen und Platten – in Badezimmern, Küchen, Wohnräumen, an Treppen, auf Terrassen und im Gewerbe. Saubere Ausführung, klare Kommunikation und eine Offerte, die zu Ihrem Projekt passt.",
-    servicesTitle: "Leistungen im Überblick",
+      "Wir übernehmen jeden Auftrag im Fliesen- und Plattenbereich: Pool, Bad, Küche, Schlafzimmer, Wohnraum, Treppen, Terrasse, Gehwege, Pflaster und Gewerbe. Saubere Ausführung, klare Kommunikation und eine Offerte, die zu Ihrem Projekt passt.",
+    servicesTitle: "Leistungen – wir nehmen jeden Job",
     services: [
-      { title: "Bad & Dusche", text: "Nasszellen, Duschen, Wände und Böden – langlebig, dicht und optisch perfekt." },
-      { title: "Küche & Wohnen", text: "Rückwände, Wohnböden, Eingänge – modern, pflegeleicht und robust." },
-      { title: "Treppen, Terrasse & Aussen", text: "Rutschhemmend, witterungsbeständig und sauber verlegt." },
-      { title: "Alle Materialien", text: "Feinsteinzeug, Keramik, Naturstein, Grossformat, Mosaik – und Reparaturen." },
+      { title: "Pool, Bad & Nasszelle", text: "Schwimmbad, Dusche, Wände und Böden – dicht, langlebig und sauber verlegt." },
+      { title: "Küche, Schlafzimmer & Wohnen", text: "Rückwände, Böden, Wandfliesen – jedes Zimmer, jede Fliesenart." },
+      { title: "Treppen, Terrasse, Gehwege & Pflaster", text: "Innen und aussen – rutschhemmend, stabil und präzise." },
+      { title: "Jede Fliesenart & Reparaturen", text: "Feinsteinzeug, Keramik, Naturstein, Grossformat, Mosaik – und kleine Jobs." },
     ],
     whyTitle: "Warum Plattenleger Jaho GmbH",
     why: [
-      { title: "Sauber & präzise", text: "Gerade Linien, gleichmässige Fugen und ein Ergebnis, das lange hält." },
+      { title: "Jeder Fliesenjob", text: "Kein Raum und keine Fliesenart ist ausgeschlossen – wir nehmen den Auftrag." },
       { title: "Fair & transparent", text: "Klare Offerte und nachvollziehbare Schritte – ohne Überraschungen." },
       { title: "Zuverlässig", text: "Termintreue und ein reibungsloser Ablauf – vom Start bis zur Abnahme." },
     ],
@@ -33,8 +33,8 @@ export const cityLandings = {
     galleryTitle: "Referenzen & Bilder",
     faq: [
       {
-        q: "Wie schnell erhalte ich eine Offerte?",
-        a: "In der Regel melden wir uns kurzfristig. Für eine genaue Offerte klären wir kurz die Details (Fläche, Material, Zustand).",
+        q: "Welche Fliesenaufträge übernehmen Sie in Zürich?",
+        a: "Jeden: Pool, Bad, Küche, Schlafzimmer, Wohnraum, Treppen, Terrasse, Gehwege, Pflaster, Gewerbe – jede Fliesenart und jedes Format.",
       },
       {
         q: "Arbeitet ihr auch mit Grossformat-Platten?",
@@ -49,24 +49,24 @@ export const cityLandings = {
 
   luzern: {
     path: "/plattenleger-luzern",
-    seoTitle: "Plattenleger Luzern & Zentralschweiz | Alle Fliesenarten | Plattenleger Jaho GmbH",
+    seoTitle: "Plattenleger Luzern – Jeder Fliesenauftrag | Plattenleger Jaho GmbH",
     seoDescription:
-      "Professioneller Plattenleger für Luzern und die Zentralschweiz. Jede Fliesenart: Bad, Küche, Wohnraum, Treppen, Terrasse und Gewerbe. Feinsteinzeug, Keramik, Naturstein.",
+      "Plattenleger Luzern & Zentralschweiz: jeder Fliesenauftrag – Pool, Bad, Küche, Schlafzimmer, Gehwege, Pflaster und Gewerbe. Jede Fliesenart. Präzise Arbeit und faire Preise.",
     cityName: "Luzern",
     regionNote: "Einsatz in Luzern, Agglomeration und der Zentralschweiz – Termine nach Absprache.",
-    h1: "Plattenleger Luzern – Fliesen & Platten für jeden Raum",
+    h1: "Plattenleger Luzern – jeder Job im Fliesenbereich",
     lead:
-      "Ob Nasszelle, Küchenrückwand, Wohnboden, Treppe oder Terrasse: Wir verlegen jede Art von Platten und Fliesen mit sauberem Schnittbild, haltbaren Fugen und klarem Ablauf. Für Luzern und Umgebung beraten wir zu Material, Format und Detaillösungen.",
+      "Wir übernehmen jeden Fliesenauftrag in Luzern und Umgebung: Pool, Bad, Küche, Schlafzimmer, Wohnraum, Treppen, Terrasse, Gehwege, Pflaster und Gewerbe. Sauberes Schnittbild, haltbare Fugen und klarer Ablauf.",
     servicesTitle: "Leistungen in Luzern & Region",
     services: [
-      { title: "Badezimmer & Renovation", text: "Dichtigkeit, Gefälle und Optik – von der Planung bis zur Silikonfuge." },
-      { title: "Küche & Wohnräume", text: "Rückwand, Boden und Übergänge – pflegeleicht und robust." },
-      { title: "Treppen & Aussen", text: "Terrasse, Eingang, Treppen – gerade Linien, stabile Kanten." },
-      { title: "Material & Service", text: "Feinsteinzeug bis Mosaik, Einzelplatten und punktuelle Sanierung." },
+      { title: "Pool, Bad & Renovation", text: "Schwimmbad und Nasszelle – Dichtigkeit, Gefälle und Optik." },
+      { title: "Küche, Schlafzimmer & Wohnräume", text: "Jedes Zimmer – Wand, Boden und Übergänge." },
+      { title: "Treppen, Terrasse, Gehwege & Pflaster", text: "Innen und aussen – gerade Linien, stabile Kanten." },
+      { title: "Jede Fliesenart & Service", text: "Feinsteinzeug bis Mosaik, Neubau, Renovation und Reparatur." },
     ],
     whyTitle: "Warum mit uns planen",
     why: [
-      { title: "Regional & flexibel", text: "Wir koordinieren Anfahrt und Termine mit Ihrem Projektalltag." },
+      { title: "Jeder Fliesenjob", text: "Wir nehmen jeden Auftrag im Fliesenbereich – gross oder klein." },
       { title: "Handwerk mit Massstab", text: "Präzision bei Grossformat, Naturstein und klassischer Keramik." },
       { title: "Transparent", text: "Sie wissen, was geplant ist – bevor die erste Platte liegt." },
     ],
@@ -76,8 +76,8 @@ export const cityLandings = {
     galleryTitle: "Referenzen",
     faq: [
       {
-        q: "Wie weit fahren Sie für Projekte rund um Luzern?",
-        a: "Wir arbeiten in der Region Luzern und der Zentralschweiz; bei grösseren Aufträgen auch weiter – sprechen Sie uns an.",
+        q: "Nehmen Sie jeden Fliesenauftrag an?",
+        a: "Ja – Pool, Bad, Küche, Schlafzimmer, Gehwege, Pflaster und mehr. Jede Fliesenart und jedes Format.",
       },
       {
         q: "Können Sie bei Renovationen mit anderen Gewerken koordinieren?",
@@ -92,26 +92,26 @@ export const cityLandings = {
 
   zug: {
     path: "/plattenleger-zug",
-    seoTitle: "Plattenleger Zug & Zugersee | Alle Fliesenarten | Plattenleger Jaho GmbH",
+    seoTitle: "Plattenleger Zug – Jeder Fliesenauftrag | Plattenleger Jaho GmbH",
     seoDescription:
-      "Plattenleger für Zug: jede Fliesenart für Bad, Küche, Wohnraum, Treppen, Terrasse und Gewerbe. Feinsteinzeug, Keramik, Naturstein & Grossformat. Jetzt Offerte.",
+      "Plattenleger Zug: jeder Fliesenauftrag – Pool, Bad, Küche, Schlafzimmer, Wohnraum, Treppen, Terrasse, Gehwege, Pflaster und Gewerbe. Jede Fliesenart. Jetzt Offerte.",
     cityName: "Zug",
     regionNote: "Projekte in Zug, Zugersee-Ufergemeinden und naher Umgebung.",
-    h1: "Plattenleger Zug – Präzise Fliesenarbeit für jedes Projekt",
+    h1: "Plattenleger Zug – jeder Fliesenauftrag",
     lead:
-      "Im Raum Zug setzen wir auf termintreue Ausführung und ein ruhiges Fugenbild. Von der Nasszelle über Wohnböden bis zur Terrasse: Wir verlegen jede Fliesenart mit technischer Sauberkeit und einer Optik, die im Alltag funktioniert.",
+      "Im Raum Zug übernehmen wir jeden Job im Fliesenbereich: Pool, Bad, Küche, Schlafzimmer, Wohnraum, Treppen, Terrasse, Gehwege, Pflaster und Gewerbe – jede Fliesenart, mit termintreuer Ausführung und ruhigem Fugenbild.",
     servicesTitle: "Leistungen",
     services: [
-      { title: "Nassbereiche", text: "Duschen, Wände, Boden – Abdichtung und Details im Griff." },
-      { title: "Küche, Wohnen & Treppen", text: "Rückwände, Bodenfliesen, Treppen und Übergänge zu anderen Belägen." },
-      { title: "Terrasse & Aussen", text: "Witterungsbeständige, rutschhemmende Platten für den Aussenbereich." },
-      { title: "Grossformat & alle Materialien", text: "Feinsteinzeug, Keramik, Naturstein, Mosaik – inkl. Reparaturen." },
+      { title: "Pool & Nassbereiche", text: "Schwimmbad, Duschen, Wände, Boden – Abdichtung und Details im Griff." },
+      { title: "Küche, Schlafzimmer & Wohnen", text: "Jedes Zimmer – Rückwände, Böden, Treppen und Übergänge." },
+      { title: "Terrasse, Gehwege & Pflaster", text: "Witterungsbeständige Platten und Pflaster für den Aussenbereich." },
+      { title: "Jede Fliesenart", text: "Feinsteinzeug, Keramik, Naturstein, Grossformat, Mosaik – inkl. Reparaturen." },
     ],
     whyTitle: "Darauf können Sie bauen",
     why: [
-      { title: "Qualität sichtbar", text: "Saubere Ecken, gleichmässige Fugen – ohne Kompromisse bei der Dichtigkeit." },
+      { title: "Jeder Fliesenjob", text: "Kein Auftrag ist zu speziell – wir arbeiten im gesamten Fliesenbereich." },
       { title: "Klare Kommunikation", text: "Sie wissen, was wann passiert – besonders bei Umbauten mit festem Zeitplan." },
-      { title: "Erfahrung", text: "Vom kompakten City-Bad bis zur grosszügigen Wohnfläche und Terrasse." },
+      { title: "Erfahrung", text: "Vom kleinen Reparaturjob bis zur grossen Wohnfläche, Pool oder Terrasse." },
     ],
     costTitle: "Investition",
     costText:
@@ -119,12 +119,12 @@ export const cityLandings = {
     galleryTitle: "Referenzen",
     faq: [
       {
-        q: "Arbeiten Sie auch in Neubauprojekten?",
-        a: "Ja – wir sind mit Bauabläufen vertraut und können Termine mit anderen Gewerken abstimmen.",
+        q: "Arbeiten Sie auch an Pools und Gehwegen?",
+        a: "Ja – Pool, Bad, Küche, Schlafzimmer, Gehwege, Pflaster und alle weiteren Fliesenaufträge.",
       },
       {
         q: "Sind Sie für kleinere Aufträge in Zug erreichbar?",
-        a: "Ja, nach Kapazität – eine kurze Anfrage genügt.",
+        a: "Ja, nach Kapazität – eine kurze Anfrage genügt. Wir nehmen jeden Fliesenjob ernst.",
       },
       {
         q: "Welche Platten eignen sich für stark befrequente Eingänge?",
@@ -135,26 +135,26 @@ export const cityLandings = {
 
   winterthur: {
     path: "/plattenleger-winterthur",
-    seoTitle: "Plattenleger Winterthur & Umgebung | Alle Fliesenarten | Plattenleger Jaho GmbH",
+    seoTitle: "Plattenleger Winterthur – Jeder Fliesenauftrag | Plattenleger Jaho GmbH",
     seoDescription:
-      "Fliesenleger und Plattenleger für Winterthur: jede Fliesenart – Bad, Küche, Wohnraum, Treppen, Terrasse und Gewerbe. Professionelle Verlegung und faire Offerten.",
+      "Fliesenleger Winterthur: jeder Fliesenauftrag – Pool, Bad, Küche, Schlafzimmer, Wohnraum, Treppen, Terrasse, Gehwege, Pflaster und Gewerbe. Professionelle Verlegung und faire Offerten.",
     cityName: "Winterthur",
     regionNote: "Winterthur, Tösstal und Umgebung – Anfahrt und Termine nach Projekt.",
-    h1: "Plattenleger Winterthur – Fliesen für jeden Raum und jede Art",
+    h1: "Plattenleger Winterthur – jeder Fliesenauftrag",
     lead:
-      "Renovation oder Neubauprojekt in Winterthur: Wir liefern ruhige Linienführung, saubere Schnitte und robuste Ergebnisse – für Bad, Küche, Wohnraum, Treppen, Terrasse und gewerbliche Flächen.",
+      "In Winterthur übernehmen wir jeden Job im Fliesenbereich: Pool, Bad, Küche, Schlafzimmer, Wohnraum, Treppen, Terrasse, Gehwege, Pflaster und Gewerbe – ruhige Linienführung, saubere Schnitte und robuste Ergebnisse.",
     servicesTitle: "Unsere Schwerpunkte",
     services: [
-      { title: "Bad, WC & Küche", text: "Komplette Flächen oder Teilbereiche – immer mit Blick auf Langlebigkeit." },
-      { title: "Wohnraum & Treppen", text: "Boden, Wand und Treppen – abgestimmt auf Stil und Nutzung." },
-      { title: "Terrasse & Gewerbe", text: "Langlebige Beläge dort, wo Wetter oder viel Verkehr herrscht." },
-      { title: "Alle Materialien & Instandhaltung", text: "Feinsteinzeug bis Mosaik, Fugen erneuern, Platten austauschen." },
+      { title: "Pool, Bad, WC & Küche", text: "Nassbereiche und Küche – komplett oder Teilflächen." },
+      { title: "Schlafzimmer, Wohnraum & Treppen", text: "Jedes Zimmer – Boden, Wand und Treppen." },
+      { title: "Terrasse, Gehwege, Pflaster & Gewerbe", text: "Aussen und stark frequentierte Flächen." },
+      { title: "Jede Fliesenart & Instandhaltung", text: "Feinsteinzeug bis Mosaik, Fugen, Austausch und Reparatur." },
     ],
     whyTitle: "Winterthur & Umgebung",
     why: [
-      { title: "Zuverlässige Termine", text: "Wir planen realistisch – besonders bei bewohnten Objekten." },
+      { title: "Jeder Fliesenjob", text: "Wir nehmen jeden Auftrag im Fliesenbereich an – gross oder klein." },
       { title: "Sauberkeit auf der Baustelle", text: "Respekt vor Ihrem Zuhause während der Arbeiten." },
-      { title: "Beratung", text: "Materialwahl, die zu Budget und Stil passt – für jede Fliesenart." },
+      { title: "Beratung", text: "Materialwahl für jede Fliesenart und jeden Raum." },
     ],
     costTitle: "Preise & Absprache",
     costText:
@@ -162,8 +162,8 @@ export const cityLandings = {
     galleryTitle: "Referenzen",
     faq: [
       {
-        q: "Wie läuft eine Badrenovation typischerweise ab?",
-        a: "Erst Klärung von Untergrund und Leitungen, dann Abdichtung und Verlegung – wir erklären die Schritte vorab.",
+        q: "Welche Fliesenaufträge machen Sie in Winterthur?",
+        a: "Jeden: Pool, Bad, Küche, Schlafzimmer, Gehwege, Pflaster und mehr – jede Fliesenart.",
       },
       {
         q: "Können Sie alte Fliesen überdecken?",
@@ -178,24 +178,24 @@ export const cityLandings = {
 
   aargau: {
     path: "/plattenleger-aargau",
-    seoTitle: "Plattenleger Aargau – Alle Fliesenarten | Region Zürich | Plattenleger Jaho GmbH",
+    seoTitle: "Plattenleger Aargau – Jeder Fliesenauftrag | Plattenleger Jaho GmbH",
     seoDescription:
-      "Plattenleger im Kanton Aargau: jede Fliesenart für Bad, Küche, Wohnraum, Treppen, Terrasse und Gewerbe. Renovationen, Feinsteinzeug, Keramik und Naturstein.",
+      "Plattenleger Aargau: jeder Fliesenauftrag – Pool, Bad, Küche, Schlafzimmer, Wohnraum, Treppen, Terrasse, Gehwege, Pflaster und Gewerbe. Jede Fliesenart. Renovation und Neubau.",
     cityName: "Aargau",
     regionNote: "Einsatz im Kanton Aargau und angrenzenden Regionen.",
-    h1: "Plattenleger Aargau – Fliesenarbeit für jeden Raum und jede Art",
+    h1: "Plattenleger Aargau – jeder Fliesenauftrag willkommen",
     lead:
-      "Von Aarau bis Baden und der näheren Region: Wir unterstützen Sie bei Neubau und Sanierung mit sauberer Untergrundvorbereitung, präzisen Schnitten und einem Finish, das Alltag und Reinigung mitmacht – egal welche Fliesenart.",
+      "Im Aargau übernehmen wir jeden Auftrag im Fliesenbereich: Pool, Bad, Küche, Schlafzimmer, Wohnraum, Treppen, Terrasse, Gehwege, Pflaster und Gewerbe – Neubau und Sanierung, jede Fliesenart.",
     servicesTitle: "Leistungen im Aargau",
     services: [
-      { title: "Sanierung & Nassbereiche", text: "Bäder und Nasszellen mit Fokus auf Dichtigkeit und Optik." },
-      { title: "Wohnräume, Treppen & Küchen", text: "Bodenfliesen, Wand, Treppen und Übergänge – durchgängiges Erscheinungsbild." },
-      { title: "Terrasse & Aussen", text: "Witterungsbeständige Platten für Balkon, Terrasse und Eingang." },
-      { title: "Objekte & alle Materialien", text: "Gewerbe, Feinsteinzeug, Keramik, Naturstein, Grossformat und Mosaik." },
+      { title: "Pool, Bad & Nassbereiche", text: "Schwimmbad und Sanierung mit Fokus auf Dichtigkeit und Optik." },
+      { title: "Küche, Schlafzimmer & Wohnräume", text: "Jedes Zimmer – Boden, Wand, Treppen und Übergänge." },
+      { title: "Terrasse, Gehwege & Pflaster", text: "Aussenbeläge für Wege, Terrasse und Eingang." },
+      { title: "Jede Fliesenart & Objekte", text: "Gewerbe, Feinsteinzeug, Keramik, Naturstein, Grossformat und Mosaik." },
     ],
     whyTitle: "Ihre Vorteile",
     why: [
-      { title: "Regional unterwegs", text: "Wir kennen die typischen Baustellen der Region." },
+      { title: "Jeder Fliesenjob", text: "Wir nehmen jeden Auftrag im Fliesenbereich – ohne Ausnahme beim Raum oder Material." },
       { title: "Qualität", text: "Präzise Fugen und Details, die auch Jahre später überzeugen." },
       { title: "Partnerschaftlich", text: "Offene Kommunikation vom ersten Kontakt bis zur Abnahme." },
     ],
@@ -205,8 +205,8 @@ export const cityLandings = {
     galleryTitle: "Referenzen",
     faq: [
       {
-        q: "Decken Sie den gesamten Kanton ab?",
-        a: "Schwerpunkt Zürich und Umgebung inklusive angrenzender Aargau-Gemeinden – bei grösseren Aufträgen sind wir flexibel.",
+        q: "Übernehmen Sie wirklich jeden Fliesenauftrag?",
+        a: "Ja – Pool, Bad, Küche, Schlafzimmer, Gehwege, Pflaster, Gewerbe und mehr. Jede Fliesenart und jedes Format.",
       },
       {
         q: "Welche Platten sind für beheizte Böden geeignet?",
